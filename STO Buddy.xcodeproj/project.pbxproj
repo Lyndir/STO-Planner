@@ -1,0 +1,572 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6B5DAD4492BE751EC025FB78 /* libPods-STO Buddy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */; };
+		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
+		DA993B861BB459C1007CB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B851BB459C1007CB7A0 /* ViewController.swift */; };
+		DA993B891BB459C1007CB7A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA993B871BB459C1007CB7A0 /* Main.storyboard */; };
+		DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */; };
+		DA993B8E1BB459C1007CB7A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8C1BB459C1007CB7A0 /* LaunchScreen.storyboard */; };
+		DA993B991BB459C1007CB7A0 /* STO_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */; };
+		DA993BA41BB459C1007CB7A0 /* STO_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */; };
+		DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA993BB11BB792D9007CB7A0 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA993B951BB459C1007CB7A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
+			remoteInfo = "STO Buddy";
+		};
+		DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
+			remoteInfo = "STO Buddy";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
+		6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
+		D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-STO Buddy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DA993B851BB459C1007CB7A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA993B881BB459C1007CB7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA993B8D1BB459C1007CB7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA993B8F1BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO BuddyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STO_BuddyTests.swift; sourceTree = "<group>"; };
+		DA993B9A1BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STO_BuddyUITests.swift; sourceTree = "<group>"; };
+		DA993BA51BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA993BB11BB792D9007CB7A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA993B7D1BB459C1007CB7A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
+				6B5DAD4492BE751EC025FB78 /* libPods-STO Buddy.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B911BB459C1007CB7A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B9C1BB459C1007CB7A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28F11F8DB22DE62F3F944BE0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */,
+				2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DA993B771BB459C1007CB7A0 = {
+			isa = PBXGroup;
+			children = (
+				DA993BB11BB792D9007CB7A0 /* MapKit.framework */,
+				DA993B821BB459C1007CB7A0 /* STO Buddy */,
+				DA993B971BB459C1007CB7A0 /* STO BuddyTests */,
+				DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */,
+				DA993B811BB459C1007CB7A0 /* Products */,
+				28F11F8DB22DE62F3F944BE0 /* Pods */,
+				DF960004C8A7B9F64C9AFFAE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DA993B811BB459C1007CB7A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA993B801BB459C1007CB7A0 /* STO Buddy.app */,
+				DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */,
+				DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA993B821BB459C1007CB7A0 /* STO Buddy */ = {
+			isa = PBXGroup;
+			children = (
+				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
+				DA993B851BB459C1007CB7A0 /* ViewController.swift */,
+				DA993B871BB459C1007CB7A0 /* Main.storyboard */,
+				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
+				DA993B8C1BB459C1007CB7A0 /* LaunchScreen.storyboard */,
+				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
+			);
+			path = "STO Buddy";
+			sourceTree = "<group>";
+		};
+		DA993B971BB459C1007CB7A0 /* STO BuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */,
+				DA993B9A1BB459C1007CB7A0 /* Info.plist */,
+			);
+			path = "STO BuddyTests";
+			sourceTree = "<group>";
+		};
+		DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */,
+				DA993BA51BB459C1007CB7A0 /* Info.plist */,
+			);
+			path = "STO BuddyUITests";
+			sourceTree = "<group>";
+		};
+		DF960004C8A7B9F64C9AFFAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA993B7F1BB459C1007CB7A0 /* STO Buddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Buddy" */;
+			buildPhases = (
+				7118855B7A464AF04AF5A6E0 /* Check Pods Manifest.lock */,
+				DA993B7C1BB459C1007CB7A0 /* Sources */,
+				DA993B7D1BB459C1007CB7A0 /* Frameworks */,
+				DA993B7E1BB459C1007CB7A0 /* Resources */,
+				4389D5855DCDD43AD7752915 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "STO Buddy";
+			productName = "STO Buddy";
+			productReference = DA993B801BB459C1007CB7A0 /* STO Buddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DA993B931BB459C1007CB7A0 /* STO BuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyTests" */;
+			buildPhases = (
+				DA993B901BB459C1007CB7A0 /* Sources */,
+				DA993B911BB459C1007CB7A0 /* Frameworks */,
+				DA993B921BB459C1007CB7A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA993B961BB459C1007CB7A0 /* PBXTargetDependency */,
+			);
+			name = "STO BuddyTests";
+			productName = "STO BuddyTests";
+			productReference = DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DA993B9E1BB459C1007CB7A0 /* STO BuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyUITests" */;
+			buildPhases = (
+				DA993B9B1BB459C1007CB7A0 /* Sources */,
+				DA993B9C1BB459C1007CB7A0 /* Frameworks */,
+				DA993B9D1BB459C1007CB7A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */,
+			);
+			name = "STO BuddyUITests";
+			productName = "STO BuddyUITests";
+			productReference = DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA993B781BB459C1007CB7A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Maarten Billemont";
+				TargetAttributes = {
+					DA993B7F1BB459C1007CB7A0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					DA993B931BB459C1007CB7A0 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = DA993B7F1BB459C1007CB7A0;
+					};
+					DA993B9E1BB459C1007CB7A0 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = DA993B7F1BB459C1007CB7A0;
+					};
+				};
+			};
+			buildConfigurationList = DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Buddy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DA993B771BB459C1007CB7A0;
+			productRefGroup = DA993B811BB459C1007CB7A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA993B7F1BB459C1007CB7A0 /* STO Buddy */,
+				DA993B931BB459C1007CB7A0 /* STO BuddyTests */,
+				DA993B9E1BB459C1007CB7A0 /* STO BuddyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA993B7E1BB459C1007CB7A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA993B8E1BB459C1007CB7A0 /* LaunchScreen.storyboard in Resources */,
+				DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */,
+				DA993B891BB459C1007CB7A0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B921BB459C1007CB7A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B9D1BB459C1007CB7A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4389D5855DCDD43AD7752915 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7118855B7A464AF04AF5A6E0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA993B7C1BB459C1007CB7A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA993B861BB459C1007CB7A0 /* ViewController.swift in Sources */,
+				DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B901BB459C1007CB7A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA993B991BB459C1007CB7A0 /* STO_BuddyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA993B9B1BB459C1007CB7A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA993BA41BB459C1007CB7A0 /* STO_BuddyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA993B961BB459C1007CB7A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA993B7F1BB459C1007CB7A0 /* STO Buddy */;
+			targetProxy = DA993B951BB459C1007CB7A0 /* PBXContainerItemProxy */;
+		};
+		DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA993B7F1BB459C1007CB7A0 /* STO Buddy */;
+			targetProxy = DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA993B871BB459C1007CB7A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA993B881BB459C1007CB7A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DA993B8C1BB459C1007CB7A0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA993B8D1BB459C1007CB7A0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA993BA61BB459C1007CB7A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DA993BA71BB459C1007CB7A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA993BA91BB459C1007CB7A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Buddy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DA993BAA1BB459C1007CB7A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Buddy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DA993BAC1BB459C1007CB7A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "STO BuddyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Buddy.app/STO Buddy";
+			};
+			name = Debug;
+		};
+		DA993BAD1BB459C1007CB7A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "STO BuddyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Buddy.app/STO Buddy";
+			};
+			name = Release;
+		};
+		DA993BAF1BB459C1007CB7A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "STO BuddyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "STO Buddy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		DA993BB01BB459C1007CB7A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "STO BuddyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "STO Buddy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA993BA61BB459C1007CB7A0 /* Debug */,
+				DA993BA71BB459C1007CB7A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA993BA91BB459C1007CB7A0 /* Debug */,
+				DA993BAA1BB459C1007CB7A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA993BAC1BB459C1007CB7A0 /* Debug */,
+				DA993BAD1BB459C1007CB7A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA993BAF1BB459C1007CB7A0 /* Debug */,
+				DA993BB01BB459C1007CB7A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA993B781BB459C1007CB7A0 /* Project object */;
+}

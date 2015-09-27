@@ -1,0 +1,20 @@
+# OS-Specific junk.
+.DS_Store
+Thumbs.db
+
+# IntelliJ
+/.idea/*
+!/.idea/encodings.xml
+!/.idea/inspectionProfiles
+!/.idea/projectCodeStyle.xml
+!/.idea/validation.xml
+*.iml
+*.ipr
+*.iws
+
+# CocoaPods
+/Pods
+
+# Xcode IDE
+xcuserdata/
+/DerivedData/
