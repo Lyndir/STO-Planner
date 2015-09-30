@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B5DAD4492BE751EC025FB78 /* libPods-STO Buddy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */; };
+		18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		93D3918BA85F57A208904D85 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */; };
+		93D39406C739BF29243C0CDA /* STOWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39CC8469F7C60F29003BF /* STOWebViewController.swift */; };
+		93D39D76CEF6374BA53CE2FF /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3925C86712698D7581C74 /* RouteViewController.swift */; };
 		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
-		DA993B861BB459C1007CB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B851BB459C1007CB7A0 /* ViewController.swift */; };
+		DA993B861BB459C1007CB7A0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B851BB459C1007CB7A0 /* MapViewController.swift */; };
 		DA993B891BB459C1007CB7A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA993B871BB459C1007CB7A0 /* Main.storyboard */; };
 		DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */; };
 		DA993B8E1BB459C1007CB7A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8C1BB459C1007CB7A0 /* LaunchScreen.storyboard */; };
@@ -36,12 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
-		D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-STO Buddy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D3925C86712698D7581C74 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		93D39CC8469F7C60F29003BF /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA993B851BB459C1007CB7A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA993B851BB459C1007CB7A0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DA993B881BB459C1007CB7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA993B8D1BB459C1007CB7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
-				6B5DAD4492BE751EC025FB78 /* libPods-STO Buddy.a in Frameworks */,
+				18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,11 +124,14 @@
 			isa = PBXGroup;
 			children = (
 				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
-				DA993B851BB459C1007CB7A0 /* ViewController.swift */,
+				DA993B851BB459C1007CB7A0 /* MapViewController.swift */,
 				DA993B871BB459C1007CB7A0 /* Main.storyboard */,
 				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
 				DA993B8C1BB459C1007CB7A0 /* LaunchScreen.storyboard */,
 				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
+				93D3925C86712698D7581C74 /* RouteViewController.swift */,
+				93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */,
+				93D39CC8469F7C60F29003BF /* STOWebViewController.swift */,
 			);
 			path = "STO Buddy";
 			sourceTree = "<group>";
@@ -148,7 +157,7 @@
 		DF960004C8A7B9F64C9AFFAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D67A7CDA25238675E9953619 /* libPods-STO Buddy.a */,
+				2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,6 +174,7 @@
 				DA993B7D1BB459C1007CB7A0 /* Frameworks */,
 				DA993B7E1BB459C1007CB7A0 /* Resources */,
 				4389D5855DCDD43AD7752915 /* Copy Pods Resources */,
+				D96DF154AE4756853D6D51FB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -311,6 +321,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D96DF154AE4756853D6D51FB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -318,8 +343,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA993B861BB459C1007CB7A0 /* ViewController.swift in Sources */,
+				DA993B861BB459C1007CB7A0 /* MapViewController.swift in Sources */,
 				DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */,
+				93D39D76CEF6374BA53CE2FF /* RouteViewController.swift in Sources */,
+				93D3918BA85F57A208904D85 /* BookmarksViewController.swift in Sources */,
+				93D39406C739BF29243C0CDA /* STOWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

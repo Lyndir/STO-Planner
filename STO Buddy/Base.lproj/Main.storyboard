@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -105,6 +106,23 @@
                                 <exclude reference="9Z9-oH-B0c"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="uik-SX-IQh"/>
+                                <exclude reference="T82-xN-TD3"/>
+                                <exclude reference="ZOp-8x-p0S"/>
+                                <exclude reference="aAd-g2-2NK"/>
+                                <exclude reference="pGg-r0-dT6"/>
+                                <exclude reference="pW9-ND-FU2"/>
+                                <exclude reference="uow-j4-cZh"/>
+                                <exclude reference="EPz-Qm-AhI"/>
+                                <exclude reference="c7o-0q-dAN"/>
+                                <exclude reference="gyf-DO-gtn"/>
+                                <exclude reference="xb8-lY-9sG"/>
+                                <exclude reference="0Nh-hP-4Ti"/>
+                                <exclude reference="6cf-5k-e3c"/>
+                                <exclude reference="74m-5v-DPY"/>
+                                <exclude reference="IFE-kz-8Wx"/>
+                                <exclude reference="aMB-St-AAu"/>
+                                <exclude reference="wk5-ll-rON"/>
                                 <exclude reference="Nyc-sK-5Gj"/>
                                 <exclude reference="m3K-4H-3MG"/>
                                 <exclude reference="p7l-aR-Xzi"/>
@@ -114,23 +132,6 @@
                                 <exclude reference="VR0-1A-dGp"/>
                                 <exclude reference="ksL-Uk-dOY"/>
                                 <exclude reference="mGW-8I-Yvi"/>
-                                <exclude reference="ZOp-8x-p0S"/>
-                                <exclude reference="aAd-g2-2NK"/>
-                                <exclude reference="pGg-r0-dT6"/>
-                                <exclude reference="pW9-ND-FU2"/>
-                                <exclude reference="uow-j4-cZh"/>
-                                <exclude reference="0Nh-hP-4Ti"/>
-                                <exclude reference="6cf-5k-e3c"/>
-                                <exclude reference="74m-5v-DPY"/>
-                                <exclude reference="IFE-kz-8Wx"/>
-                                <exclude reference="aMB-St-AAu"/>
-                                <exclude reference="wk5-ll-rON"/>
-                                <exclude reference="T82-xN-TD3"/>
-                                <exclude reference="EPz-Qm-AhI"/>
-                                <exclude reference="c7o-0q-dAN"/>
-                                <exclude reference="gyf-DO-gtn"/>
-                                <exclude reference="xb8-lY-9sG"/>
-                                <exclude reference="uik-SX-IQh"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -143,6 +144,23 @@
                                 <include reference="9Z9-oH-B0c"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="uik-SX-IQh"/>
+                                <include reference="T82-xN-TD3"/>
+                                <include reference="ZOp-8x-p0S"/>
+                                <exclude reference="aAd-g2-2NK"/>
+                                <include reference="pGg-r0-dT6"/>
+                                <exclude reference="pW9-ND-FU2"/>
+                                <include reference="uow-j4-cZh"/>
+                                <include reference="EPz-Qm-AhI"/>
+                                <include reference="c7o-0q-dAN"/>
+                                <include reference="gyf-DO-gtn"/>
+                                <include reference="xb8-lY-9sG"/>
+                                <exclude reference="0Nh-hP-4Ti"/>
+                                <include reference="6cf-5k-e3c"/>
+                                <include reference="74m-5v-DPY"/>
+                                <exclude reference="IFE-kz-8Wx"/>
+                                <include reference="aMB-St-AAu"/>
+                                <include reference="wk5-ll-rON"/>
                                 <include reference="Nyc-sK-5Gj"/>
                                 <include reference="m3K-4H-3MG"/>
                                 <include reference="p7l-aR-Xzi"/>
@@ -152,23 +170,6 @@
                                 <include reference="VR0-1A-dGp"/>
                                 <include reference="ksL-Uk-dOY"/>
                                 <include reference="mGW-8I-Yvi"/>
-                                <include reference="ZOp-8x-p0S"/>
-                                <exclude reference="aAd-g2-2NK"/>
-                                <include reference="pGg-r0-dT6"/>
-                                <exclude reference="pW9-ND-FU2"/>
-                                <include reference="uow-j4-cZh"/>
-                                <exclude reference="0Nh-hP-4Ti"/>
-                                <include reference="6cf-5k-e3c"/>
-                                <include reference="74m-5v-DPY"/>
-                                <exclude reference="IFE-kz-8Wx"/>
-                                <include reference="aMB-St-AAu"/>
-                                <include reference="wk5-ll-rON"/>
-                                <include reference="T82-xN-TD3"/>
-                                <include reference="EPz-Qm-AhI"/>
-                                <include reference="c7o-0q-dAN"/>
-                                <include reference="gyf-DO-gtn"/>
-                                <include reference="xb8-lY-9sG"/>
-                                <include reference="uik-SX-IQh"/>
                             </mask>
                         </variation>
                         <connections>
@@ -189,19 +190,22 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="309" y="385"/>
+            <point key="canvasLocation" x="217.5" y="385"/>
         </scene>
         <!--Bookmarks-->
         <scene sceneID="XgI-6p-93y">
             <objects>
-                <tableViewController id="HVR-yW-qWD" sceneMemberID="viewController">
+                <tableViewController id="HVR-yW-qWD" customClass="BookmarksViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8oV-3Z-s8z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nYt-N4-iJ8">
+                                <rect key="frame" x="0.0" y="122" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nYt-N4-iJ8" id="XTh-CK-WR2">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -212,24 +216,31 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bookmarks" prompt="Where do you want to go today?" id="cr2-cw-5yu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Gk6-1R-cXH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Gk6-1R-cXH">
+                            <connections>
+                                <action selector="cancel:" destination="HVR-yW-qWD" id="2gm-1N-WkG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lo7-bg-zIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2053.5" y="385"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Route View Controller-->
         <scene sceneID="lv5-04-Koe">
             <objects>
-                <tableViewController id="Tve-g9-5oM" sceneMemberID="viewController">
+                <tableViewController id="Tve-g9-5oM" customClass="RouteViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1OA-f2-azd">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kk5-uh-RIj">
+                                <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kk5-uh-RIj" id="HPm-SE-RC9">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -242,17 +253,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSk-NC-Ue5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="309" y="1100"/>
+            <point key="canvasLocation" x="217.5" y="1100"/>
         </scene>
-        <!--m.sto.ca-->
+        <!--Web View Controller-->
         <scene sceneID="N1U-oR-1xn">
             <objects>
-                <viewController id="U31-GJ-gY0" sceneMemberID="viewController">
+                <viewController id="U31-GJ-gY0" customClass="STOWebViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="He1-iu-Zg7"/>
                         <viewControllerLayoutGuide type="bottom" id="xs0-2P-ihb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yCJ-tN-Gyh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-Rn-GSz">
@@ -272,10 +284,10 @@
                                 <exclude reference="uxn-Rn-GSz"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="NvR-o3-ChW"/>
                                 <exclude reference="PY7-oR-aOk"/>
                                 <exclude reference="Q28-Vx-gbS"/>
                                 <exclude reference="lVA-AA-7yg"/>
-                                <exclude reference="NvR-o3-ChW"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -283,20 +295,24 @@
                                 <include reference="uxn-Rn-GSz"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="NvR-o3-ChW"/>
                                 <include reference="PY7-oR-aOk"/>
                                 <include reference="Q28-Vx-gbS"/>
                                 <include reference="lVA-AA-7yg"/>
-                                <include reference="NvR-o3-ChW"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="m.sto.ca" id="4vV-fn-JcQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sFB-Py-dan"/>
+                    <navigationItem key="navigationItem" id="4vV-fn-JcQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sFB-Py-dan">
+                            <connections>
+                                <action selector="close:" destination="U31-GJ-gY0" id="x8q-Zm-BUq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3u-F1-vEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2053.5" y="1162"/>
+            <point key="canvasLocation" x="2053.5" y="1132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PRW-Qe-NoC">
