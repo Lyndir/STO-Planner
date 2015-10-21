@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		93D3918BA85F57A208904D85 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */; };
+		93D39269783D1B3A47DDEE52 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D392BA88240F3E5D41A3CC /* Route.swift */; };
 		93D39406C739BF29243C0CDA /* STOWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39CC8469F7C60F29003BF /* STOWebViewController.swift */; };
+		93D399FA23D2E046106D1ECA /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D398856382609D6E77417E /* RecentsViewController.swift */; };
+		93D39C582106E5D5D2AEDA5E /* UIControl+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39E299881E901CA0F09EA /* UIControl+Closures.swift */; };
 		93D39D76CEF6374BA53CE2FF /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3925C86712698D7581C74 /* RouteViewController.swift */; };
 		DA7EED541BC073BD00F4E5E1 /* NSArray+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7EE8701BC073B700F4E5E1 /* NSArray+Indexing.m */; settings = {ASSET_TAGS = (); }; };
 		DA7EED551BC073BD00F4E5E1 /* NSArray+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7EE8721BC073B700F4E5E1 /* NSArray+Pearl.m */; settings = {ASSET_TAGS = (); }; };
@@ -88,6 +91,7 @@
 		DA7EED9E1BC073BD00F4E5E1 /* UIView+FontScale.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7EED4F1BC073BD00F4E5E1 /* UIView+FontScale.m */; settings = {ASSET_TAGS = (); }; };
 		DA7EED9F1BC073BD00F4E5E1 /* UIView+LayoutGone.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7EED511BC073BD00F4E5E1 /* UIView+LayoutGone.m */; settings = {ASSET_TAGS = (); }; };
 		DA7EEDA01BC073BD00F4E5E1 /* UIView+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7EED531BC073BD00F4E5E1 /* UIView+Touches.m */; settings = {ASSET_TAGS = (); }; };
+		DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */; settings = {ASSET_TAGS = (); }; };
 		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
 		DA993B861BB459C1007CB7A0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B851BB459C1007CB7A0 /* MapViewController.swift */; };
 		DA993B891BB459C1007CB7A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA993B871BB459C1007CB7A0 /* Main.storyboard */; };
@@ -132,8 +136,11 @@
 		2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
 		93D3925C86712698D7581C74 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		93D392BA88240F3E5D41A3CC /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		93D398856382609D6E77417E /* RecentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		93D39CC8469F7C60F29003BF /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
+		93D39E299881E901CA0F09EA /* UIControl+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Closures.swift"; sourceTree = "<group>"; };
 		DA7EE8631BC0736800F4E5E1 /* libPearl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPearl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7EE86E1BC073B700F4E5E1 /* map-macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "map-macro.h"; sourceTree = "<group>"; };
 		DA7EE86F1BC073B700F4E5E1 /* NSArray+Indexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Indexing.h"; sourceTree = "<group>"; };
@@ -1378,6 +1385,7 @@
 		DA7EED511BC073BD00F4E5E1 /* UIView+LayoutGone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutGone.m"; sourceTree = "<group>"; };
 		DA7EED521BC073BD00F4E5E1 /* UIView+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Touches.h"; sourceTree = "<group>"; };
 		DA7EED531BC073BD00F4E5E1 /* UIView+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Touches.m"; sourceTree = "<group>"; };
+		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA993B851BB459C1007CB7A0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -2791,7 +2799,6 @@
 		DA993B771BB459C1007CB7A0 = {
 			isa = PBXGroup;
 			children = (
-				DA993BB11BB792D9007CB7A0 /* MapKit.framework */,
 				DA993B821BB459C1007CB7A0 /* STO Buddy */,
 				DA993B971BB459C1007CB7A0 /* STO BuddyTests */,
 				DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */,
@@ -2825,6 +2832,10 @@
 				93D3925C86712698D7581C74 /* RouteViewController.swift */,
 				93D396B74988EDAD7CFAE89C /* BookmarksViewController.swift */,
 				93D39CC8469F7C60F29003BF /* STOWebViewController.swift */,
+				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
+				93D39E299881E901CA0F09EA /* UIControl+Closures.swift */,
+				93D398856382609D6E77417E /* RecentsViewController.swift */,
+				93D392BA88240F3E5D41A3CC /* Route.swift */,
 			);
 			path = "STO Buddy";
 			sourceTree = "<group>";
@@ -2850,6 +2861,7 @@
 		DF960004C8A7B9F64C9AFFAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA993BB11BB792D9007CB7A0 /* MapKit.framework */,
 				2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */,
 			);
 			name = Frameworks;
@@ -3139,8 +3151,12 @@
 				DA993B861BB459C1007CB7A0 /* MapViewController.swift in Sources */,
 				DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */,
 				93D39D76CEF6374BA53CE2FF /* RouteViewController.swift in Sources */,
+				DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */,
 				93D3918BA85F57A208904D85 /* BookmarksViewController.swift in Sources */,
 				93D39406C739BF29243C0CDA /* STOWebViewController.swift in Sources */,
+				93D39C582106E5D5D2AEDA5E /* UIControl+Closures.swift in Sources */,
+				93D399FA23D2E046106D1ECA /* RecentsViewController.swift in Sources */,
+				93D39269783D1B3A47DDEE52 /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3405,6 +3421,7 @@
 				DA7EE86A1BC0736800F4E5E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Buddy" */ = {
 			isa = XCConfigurationList;

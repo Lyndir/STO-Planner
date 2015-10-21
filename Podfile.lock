@@ -1,8 +1,12 @@
 PODS:
-  - Alamofire (3.0.0-beta.3)
+  - Alamofire (3.0.0)
+  - HTMLReader (0.9)
+  - Reveal-iOS-SDK (1.6.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire`)
+  - HTMLReader
+  - Reveal-iOS-SDK
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -10,10 +14,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: f129adb21d7d9d3747eab8ad1e4a372fbcde67dd
+    :commit: 2beb1e3b6ca9349badcd9cbba1a7efad8bc43c89
     :git: https://github.com/Alamofire/Alamofire
 
 SPEC CHECKSUMS:
-  Alamofire: c89149e58431f6f94527e8c01f920456afe39bd0
+  Alamofire: b61782387f81bcc538a0284cf2bb5d7995cd0a80
+  HTMLReader: d93d3db9fe26c28c2479bcc906d3e7453377a902
+  Reveal-iOS-SDK: 6afacafd60f66f2822c09c43ae60562881bfab6e
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

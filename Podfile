@@ -1,9 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'STO Buddy' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire'
+    pod 'HTMLReader'
+    pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end
 
 target 'STO BuddyTests' do
