@@ -5,6 +5,7 @@ use_frameworks!
 target 'STO Buddy' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire'
     pod 'HTMLReader'
+    pod 'JRSwizzle'
     pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end
 
