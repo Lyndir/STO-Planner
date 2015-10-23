@@ -291,7 +291,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         if let mapSearchAnnotation_ = self.mapSearchAnnotation {
             annotations.append( mapSearchAnnotation_ )
         }
-        annotations.appendContentsOf( self.locationAnnotations as! [MKAnnotation] )
+        annotations.appendContentsOf( self.locationAnnotations.array as! [MKAnnotation] )
         mapView.showAnnotations( annotations, animated: true )
     }
 
