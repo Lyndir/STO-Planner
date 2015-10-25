@@ -182,11 +182,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         let region   = mapView.region
         let regionNW = CLLocation( latitude: region.center.latitude - region.span.latitudeDelta * 0.5,
-                longitude: region.center.longitude - region.span.longitudeDelta * 0.5 )
+                                   longitude: region.center.longitude - region.span.longitudeDelta * 0.5 )
         let regionSE = CLLocation( latitude: region.center.latitude + region.span.latitudeDelta * 0.5,
-                longitude: region.center.longitude + region.span.longitudeDelta * 0.5 )
+                                   longitude: region.center.longitude + region.span.longitudeDelta * 0.5 )
         let clRegion = CLCircularRegion( center: mapView.region.center, radius: regionNW.distanceFromLocation( regionSE ) / 2,
-                identifier: "search" )
+                                         identifier: "search" )
 
         activityView.startAnimating()
         searchBar.resignFirstResponder()
@@ -258,13 +258,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
         if (sender == rightSlideOutPanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
-                    gestureState: sender.state, rest: rightSlideOutTotal, target: 0,
-                    current: rightSlideOutTotal + sender.translationInView( rightSlideOut ).x )
+                                              gestureState: sender.state, rest: rightSlideOutTotal, target: 0,
+                                              current: rightSlideOutTotal + sender.translationInView( rightSlideOut ).x )
         }
         else if (sender == screenEdgePanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
-                    gestureState: sender.state, rest: 0, target: rightSlideOutTotal,
-                    current: sender.translationInView( rightSlideOut ).x )
+                                              gestureState: sender.state, rest: 0, target: rightSlideOutTotal,
+                                              current: sender.translationInView( rightSlideOut ).x )
         }
     }
 
@@ -301,6 +301,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         button.on( .TouchUpInside, {
             if self.locationAnnotations.containsObject( annotation ) {
                 return
+            }
+            if let title_: String = annotation.title ?? nil {
+                Locations.recent().add( Location( name: title_,
+                                                  latitude: annotation.coordinate.latitude,
+                                                  longitude: annotation.coordinate.longitude ) )
             }
 
             self.locationAnnotations.addObject( annotation )
@@ -394,9 +399,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
                         if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
                             steps.append( RouteStep(
-                            timing: stepTiming_,
-                                    mode: stepMode_, modeContext: stepModeContext,
-                                    explanation: stepExplanation_ ) )
+                                          timing: stepTiming_,
+                                          mode: stepMode_, modeContext: stepModeContext,
+                                          explanation: stepExplanation_ ) )
                         }
                         else {
                             print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
@@ -424,30 +429,35 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             current = min( rest, max( target, current ) )
         }
 
-        switch gestureState {
-            case .Possible:
-                break
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration( gestureState == UIGestureRecognizerState.Changed ? 0: 0.3, animations: {
+            switch gestureState {
+                case .Possible:
+                    break
 
-            case .Began:
-                constraint.constant = current
+                case .Began:
+                    constraint.constant = current
 
-            case .Changed:
-                constraint.constant = current
+                case .Changed:
+                    constraint.constant = current
 
-            case .Ended:
-                if abs( current - rest ) < abs( current - target ) {
+                case .Ended:
+                    if abs( current - rest ) < abs( current - target ) {
+                        constraint.constant = rest
+                    }
+                    else {
+                        constraint.constant = target
+                    }
+
+                case .Cancelled:
                     constraint.constant = rest
-                }
-                else {
-                    constraint.constant = target
-                }
 
-            case .Cancelled:
-                constraint.constant = rest
+                case .Failed:
+                    constraint.constant = rest
+            }
 
-            case .Failed:
-                constraint.constant = rest
-        }
+            self.view.layoutIfNeeded()
+        } )
     }
 }
 
