@@ -6,23 +6,27 @@
 import UIKit
 
 class RouteViewController: UITableViewController {
-    var route: Route? {
+    var routes = [Route]() {
         didSet {
             tableView.reloadData()
         }
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let route_ = route {
-            return route_.steps.count
-        }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return routes.count
+    }
 
-        return 0
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return routes[section].title
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return routes[section].steps.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell      = tableView.dequeueReusableCellWithIdentifier( "RouteStepCell", forIndexPath: indexPath )
-        let routeStep = route!.steps[indexPath.row]
+        let routeStep = routes[indexPath.section].steps[indexPath.row]
 
         cell.textLabel!.text = routeStep.shortExplanation
         cell.detailTextLabel!.text = routeStep.explanation

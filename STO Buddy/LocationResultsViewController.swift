@@ -6,35 +6,62 @@
 import UIKit
 
 class LocationResultsViewController: UITableViewController {
-    typealias C = LocationCell
+    typealias Cell = LocationCell
 
-    lazy var locations: Locations = self.initLocations()
-
-    func initLocations() -> Locations {
-        preconditionFailure( "Abstract method -initLocations not implemented" )
-    }
+    let favoriteLocations: Locations = Locations.starred()
+    let recentLocations:   Locations = Locations.recent()
 
     @IBAction func didTapDismiss(sender: UIBarButtonItem) {
         navigationController?.dismissViewControllerAnimated( true, completion: nil )
     }
 
     @IBAction func didTapClear(sender: UIBarButtonItem) {
-        locations.clear()
+        recentLocations.clear()
+    }
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+            case 0:
+                return "Favorite Locations"
+            case 1:
+                return "Recent Locations"
+            default:
+                preconditionFailure( "Unexpected section: \(section)" )
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        switch section {
+            case 0:
+                return favoriteLocations.count
+            case 1:
+                return recentLocations.count
+            default:
+                preconditionFailure( "Unexpected section: \(section)" )
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell     = tableView.dequeueReusableCellWithIdentifier( C.name(), forIndexPath: indexPath ) as! C
-        let location = locations[indexPath.row]
+        let location: Location
+        switch indexPath.section {
+            case 0:
+                location = favoriteLocations[indexPath.row]
+            case 1:
+                location = recentLocations[indexPath.row]
+            default:
+                preconditionFailure( "Unexpected section: \(indexPath.section)" )
+        }
 
+        let cell = tableView.dequeueReusableCellWithIdentifier( Cell.name(), forIndexPath: indexPath ) as! Cell
         cell.titleLabel.text = location.placemark.name
         cell.subtitleLabel.text = location.placemark.thoroughfare
         cell.sourceDestinationControl.on( .ValueChanged, {
             let navigationController = self.navigationController as! STONavigationController
-            
+
             switch cell.sourceDestinationControl.selectedSegmentIndex {
                 case 0:
                     navigationController.mapViewController.sourcePlacemark = location.placemark
@@ -53,7 +80,15 @@ class LocationResultsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        (self.navigationController as! STONavigationController).mapViewController.searchPlacemark = locations[indexPath.row].placemark
+        let mapViewController = (self.navigationController as! STONavigationController).mapViewController
+        switch indexPath.section {
+            case 0:
+                mapViewController.searchPlacemark = favoriteLocations[indexPath.row].placemark
+            case 1:
+                mapViewController.searchPlacemark = recentLocations[indexPath.row].placemark
+            default:
+                preconditionFailure( "Unexpected section: \(indexPath.section)" )
+        }
     }
 }
 

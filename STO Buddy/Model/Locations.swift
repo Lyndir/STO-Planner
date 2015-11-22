@@ -41,7 +41,7 @@ public class Locations: SequenceType {
     }
 
     func add(location: Location) {
-        state = state.filter( { location.matchesDict( $0 ) } )
+        state = state.filter( { !location.matchesDict( $0 ) } )
         state.append( location.toDict() )
         NSUserDefaults.standardUserDefaults().setObject( state, forKey: key )
     }

@@ -6,9 +6,11 @@
 import Foundation
 
 class Route: CustomStringConvertible {
+    let title: String
     let steps: Array<RouteStep>
 
-    init(steps: Array<RouteStep>) {
+    init(title: String, steps: Array<RouteStep>) {
+        self.title = title
         self.steps = steps
     }
 

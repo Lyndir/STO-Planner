@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		93D392404C6CDC67B8778825 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3959B9603FA3007B973A8 /* BookmarksViewController.swift */; };
 		93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39ED83F945D18A00E7424 /* Main.storyboard */; };
 		93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39B2C4D27DFF487143C9E /* RouteViewController.swift */; };
 		93D3965BF1E544E77800A280 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39893AF667A3068FCDACC /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 		93D39A8C4AFAEECC3EBC42CC /* UIControl+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3919BB49F8892394079C3 /* UIControl+Closures.swift */; };
 		93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */; };
 		93D39D9272CD100521F2868A /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D393EA9A1A008FDEF72DF5 /* Route.swift */; };
-		93D39E7599DC193A5120AC40 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39C367075410AEF13B066 /* RecentsViewController.swift */; };
 		DA24BFAB1BD9B2E8002B219C /* NSArray+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */; };
 		DA24BFAC1BD9B2E8002B219C /* NSArray+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */; };
 		DA24BFAD1BD9B2E8002B219C /* NSBundle+PearlMutableInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */; };
@@ -138,11 +136,9 @@
 		93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultsViewController.swift; sourceTree = "<group>"; };
 		93D393EA9A1A008FDEF72DF5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93D394D7B1F54230E9E385C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		93D3959B9603FA3007B973A8 /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		93D396914B88815B86C1BDD3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
-		93D39C367075410AEF13B066 /* RecentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		93D39D13C3C403586A09DFF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STONavigationController.swift; sourceTree = "<group>"; };
 		DA24B5871BD9B292002B219C /* libPearl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPearl.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1489,11 +1485,9 @@
 		93D3947B5028DBCDF2E8B1EA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93D3959B9603FA3007B973A8 /* BookmarksViewController.swift */,
 				93D39893AF667A3068FCDACC /* LaunchScreen.storyboard */,
 				93D39ED83F945D18A00E7424 /* Main.storyboard */,
 				93D396914B88815B86C1BDD3 /* MapViewController.swift */,
-				93D39C367075410AEF13B066 /* RecentsViewController.swift */,
 				93D39B2C4D27DFF487143C9E /* RouteViewController.swift */,
 				93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */,
 				93D3919BB49F8892394079C3 /* UIControl+Closures.swift */,
@@ -3289,9 +3283,7 @@
 			files = (
 				DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */,
 				DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */,
-				93D392404C6CDC67B8778825 /* BookmarksViewController.swift in Sources */,
 				93D399B15B2FCBB849E9D61C /* MapViewController.swift in Sources */,
-				93D39E7599DC193A5120AC40 /* RecentsViewController.swift in Sources */,
 				93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */,
 				93D39859E0B3978A1A8039AE /* STOWebViewController.swift in Sources */,
 				93D39A8C4AFAEECC3EBC42CC /* UIControl+Closures.swift in Sources */,

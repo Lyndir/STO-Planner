@@ -45,10 +45,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 }
                 else if destinationPlacemark == nil {
                     mapLocationPlacemarkResolver.resolvePlacemark( {
-                        (placemark: MKPlacemark) in
+                                                                       (placemark: MKPlacemark) in
 
-                        self.destinationPlacemark = placemark
-                    }, placemarkResolutionFailed: {
+                                                                       self.destinationPlacemark = placemark
+                                                                   }, placemarkResolutionFailed: {
                     } )
                 }
             }
@@ -77,10 +77,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 }
                 else if sourcePlacemark == nil {
                     mapLocationPlacemarkResolver.resolvePlacemark( {
-                        (placemark: MKPlacemark) in
+                                                                       (placemark: MKPlacemark) in
 
-                        self.sourcePlacemark = placemark
-                    }, placemarkResolutionFailed: {
+                                                                       self.sourcePlacemark = placemark
+                                                                   }, placemarkResolutionFailed: {
                     } )
                 }
             }
@@ -108,13 +108,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             }
         }
     }
-    var route: Route? {
+    var routes = [ Route ]() {
         didSet {
-            rightSlideOutViewController.route = route
+            rightSlideOutViewController.routes = routes
 
             self.view.layoutIfNeeded()
             UIView.animateWithDuration( 0.3, animations: {
-                if self.route != nil {
+                if self.routes.count > 0 {
                     self.rightSlideOutConstraint.constant = -self.rightSlideOut.bounds.size.width
                 }
                 else {
@@ -158,6 +158,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         toolBar.items!.insert( MKUserTrackingBarButtonItem( mapView: self.mapView ), atIndex: 0 )
 
         rightSlideOutConstraint.constant = 0
+        rebuildRouteLocationsStackView()
 
         super.viewDidLoad()
     }
@@ -341,7 +342,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didTapClear(sender: AnyObject) {
-        route = nil
+        routes.removeAll()
 
         searchPlacemark = nil
         sourcePlacemark = nil
@@ -373,21 +374,21 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         let control = UISegmentedControl( items: [ "↱", "↴" ] )
         control.on( .ValueChanged, {
             placemarkResolver.resolvePlacemark( {
-                (placemark: MKPlacemark) in
+                                                    (placemark: MKPlacemark) in
 
-                switch control.selectedSegmentIndex {
-                    case 0:
-                        self.sourcePlacemark = placemark
+                                                    switch control.selectedSegmentIndex {
+                                                        case 0:
+                                                            self.sourcePlacemark = placemark
 
-                    case 1:
-                        self.destinationPlacemark = placemark
+                                                        case 1:
+                                                            self.destinationPlacemark = placemark
 
-                    default:
-                        preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
-                }
+                                                        default:
+                                                            preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
+                                                    }
 
-                Locations.recent().add( Location( placemark: placemark ) )
-            }, placemarkResolutionFailed: {
+                                                    Locations.recent().add( Location( placemark: placemark ) )
+                                                }, placemarkResolutionFailed: {
                 control.selectedSegmentIndex = -1
             } )
         } )
@@ -466,38 +467,54 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                         print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
                     }
 
-                    var steps   = [ RouteStep ]()
-                    let results = html.firstNodeMatchingSelector( "#TravelPlansResultsMainPage" )
-                    if let results_ = results {
-                        for result in results_.childElementNodes as! [HTMLElement]
-                        where !(result.attributes["id"] as? String ?? "").commonPrefixWithString( "TVP0STEP", options: [] ).isEmpty {
-                            var stepMode: RouteStepMode?
-                            if let routeStepModeElement = result.firstNodeMatchingSelector( "*[data-role=content]>div[class~=StepImage]" ) {
-                                if routeStepModeElement.hasClass( "BusImage" ) {
-                                    stepMode = .Bus
+                    self.routes.removeAll()
+                    let routeResults     = html.firstNodeMatchingSelector( "#TravelPlanLinkListView" )
+                    var routeTitles = [ String ]()
+                    if let routeResults_ = routeResults {
+                        for result in routeResults_.nodesMatchingSelector( "li>a[data-clientsideurl] p" ) as! [HTMLElement] {
+                            routeTitles.append( result.textContent )
+                        }
+                    }
+
+                    let stepResults = html.firstNodeMatchingSelector( "#TravelPlansResultsMainPage" )
+                    if let stepResults_ = stepResults {
+                        var routeSteps = [ RouteStep ]()
+                        for route in 0 ... (routeTitles.count - 1) {
+                            routeSteps.removeAll()
+
+                            for result in stepResults_.childElementNodes as! [HTMLElement]
+                            where (result.attributes["id"] as? String ?? "").commonPrefixWithString( "TVP\(route)STEP", options: [] ) == "TVP\(route)STEP" {
+                                var stepMode: RouteStepMode?
+                                if let routeStepModeElement = result.firstNodeMatchingSelector( "*[data-role=content]>div[class~=StepImage]" ) {
+                                    if routeStepModeElement.hasClass( "BusImage" ) {
+                                        stepMode = .Bus
+                                    }
+                                    else if routeStepModeElement.hasClass( "WalkImage" ) {
+                                        stepMode = .Walk
+                                    }
                                 }
-                                else if routeStepModeElement.hasClass( "WalkImage" ) {
-                                    stepMode = .Walk
+
+                                let stepTiming      = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(1)" )?.innerHTML
+                                let stepModeContext = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(3)" )?.innerHTML
+                                let stepExplanation = result.firstNodeMatchingSelector( "*[data-role=content]>p" )?.innerHTML
+
+                                if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
+                                    routeSteps.append( RouteStep(
+                                                       timing: stepTiming_,
+                                                       mode: stepMode_, modeContext: stepModeContext,
+                                                       explanation: stepExplanation_ ) )
+                                }
+                                else {
+                                    print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
                                 }
                             }
 
-                            let stepTiming      = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(1)" )?.innerHTML
-                            let stepModeContext = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(3)" )?.innerHTML
-                            let stepExplanation = result.firstNodeMatchingSelector( "*[data-role=content]>p" )?.innerHTML
-
-                            if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
-                                steps.append( RouteStep(
-                                              timing: stepTiming_,
-                                              mode: stepMode_, modeContext: stepModeContext,
-                                              explanation: stepExplanation_ ) )
-                            }
-                            else {
-                                print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
+                            if (routeSteps.count > 0) {
+                                self.routes.append( Route( title: routeTitles[route], steps: routeSteps ) )
                             }
                         }
                     }
-                    self.route = Route( steps: steps )
-                    print( "STO Route:\n\(self.route)" )
+                    print( "STO Routes:\n\(self.routes)" )
 
                     NSOperationQueue.mainQueue().addOperationWithBlock( {
                         var locations = [ sourcePlacemark_.coordinate, destinationPlacemark_.coordinate ]
