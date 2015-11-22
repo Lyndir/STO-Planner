@@ -444,10 +444,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         routeOverlay = nil
 
         if let sourcePlacemark_ = sourcePlacemark, destinationPlacemark_ = destinationPlacemark {
-            Alamofire.request( .GET, "http://planibus.sto.ca/hastinfowebmobile/TravelPlansResults.aspx", parameters: [
+            Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx", parameters: [
                     "origin": "external_geolocation_name=origin;external_geolocation_latitude_coordinate=\(sourcePlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(sourcePlacemark_.coordinate.longitude)",
                     "destination": "external_geolocation_name=destination;external_geolocation_latitude_coordinate=\(destinationPlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(destinationPlacemark_.coordinate.longitude)",
-                    "flexible": "true"/*,
+                    "flexible": "false"/*,
                 "date": "20151018",
                 "hour": "1050",
                 "timeType": "SpecifiedArrivalTime"*/
@@ -477,7 +477,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     }
 
                     let stepResults = html.firstNodeMatchingSelector( "#TravelPlansResultsMainPage" )
-                    if let stepResults_ = stepResults {
+                    if let stepResults_ = stepResults where routeTitles.count > 0 {
                         var routeSteps = [ RouteStep ]()
                         for route in 0 ... (routeTitles.count - 1) {
                             routeSteps.removeAll()
@@ -525,6 +525,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             }
         }
         else {
+            routes.removeAll()
             showAnnotations()
         }
     }
