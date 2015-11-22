@@ -5,8 +5,8 @@
 
 import UIKit
 
-class BookmarksViewController: UITableViewController {
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        navigationController?.dismissViewControllerAnimated( true, completion:nil )
+class BookmarksViewController: LocationResultsViewController {
+    override func initLocations() -> Locations {
+        return Locations.starred()
     }
 }

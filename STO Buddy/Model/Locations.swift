@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 
 public class Locations: SequenceType {
     let key:   String
@@ -28,7 +28,7 @@ public class Locations: SequenceType {
         var stateGenerator = state.generate()
         return anyGenerator( {
             let locationState = stateGenerator.next()
-            return locationState == nil ? nil: Location( locationState! )
+            return locationState == nil ? nil: Location( dict: locationState! )
         } )
     }
 
@@ -37,7 +37,7 @@ public class Locations: SequenceType {
     }
 
     public subscript(index: Int) -> Location {
-        return Location( state[index] )
+        return Location( dict: state[index] )
     }
 
     func add(location: Location) {
@@ -53,32 +53,28 @@ public class Locations: SequenceType {
 }
 
 public class Location {
-    let name:      String
-    let latitude:  CLLocationDegrees
-    let longitude: CLLocationDegrees
+    let placemark: MKPlacemark
 
-    init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        print( "creating Location (name: \(name), lat: \(latitude), long: \(longitude))" )
-        self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
+    init(placemark: MKPlacemark) {
+        self.placemark = placemark
     }
 
-    init(_ dict: [String:AnyObject]) {
-        self.name = dict["name"] as! String
-        self.latitude = dict["latitude"] as! Double
-        self.longitude = dict["longitude"] as! Double
+    init(dict: [String:AnyObject]) {
+        self.placemark = MKPlacemark( coordinate: CLLocationCoordinate2D( latitude: dict["coordinate.latitude"]!.doubleValue!,
+                                                                          longitude: dict["coordinate.longitude"]!.doubleValue! ),
+                                      addressDictionary: dict["addressDictionary"] as! [String:AnyObject]? )
     }
 
     func toDict() -> [String:AnyObject] {
-        return [ "name": name,
-                 "latitude": latitude,
-                 "longitude": longitude ]
+        return [ "coordinate.latitude": placemark.coordinate.latitude,
+                 "coordinate.longitude": placemark.coordinate.longitude,
+                 "addressDictionary": placemark.addressDictionary! ]
     }
 
     func matchesDict(dict: [String:AnyObject]) -> Bool {
-        if let name_ = dict["name"] as? String {
-            return name_ != self.name
+        if let latitude_ = dict["coordinate.latitude"] as? CLLocationDegrees,
+        longitude_ = dict["coordinate.longitude"] as? CLLocationDegrees {
+            return latitude_ == self.placemark.coordinate.latitude && longitude_ == self.placemark.coordinate.longitude
         }
 
         return false

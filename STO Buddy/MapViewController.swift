@@ -10,36 +10,104 @@ import Alamofire
 import HTMLReader
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearchBarDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
-    let locationManager: CLLocationManager = CLLocationManager()
-    let geoCoder:        CLGeocoder        = CLGeocoder()
+    let geoCoder        = CLGeocoder()
+    let locationManager = CLLocationManager()
 
-    var mapSearchAnnotation: MKAnnotation? {
+    lazy var mapLocationPlacemarkResolver: STOPlacemarkLocationResolver
+    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationSupplier: {
+        self.mapView.userLocation.location
+    } )
+
+    var searchPlacemark: MKPlacemark? {
         willSet {
-            if let searchAnnotation_ = mapSearchAnnotation {
-                mapView.removeAnnotation( searchAnnotation_ )
+            if let searchPlacemark_ = searchPlacemark {
+                mapView.removeAnnotation( searchPlacemark_ )
             }
         }
         didSet {
-            if let searchAnnotation_ = mapSearchAnnotation {
-                mapView.addAnnotation( searchAnnotation_ )
+            if let searchPlacemark_ = searchPlacemark {
+                mapView.addAnnotation( searchPlacemark_ )
                 showAnnotations()
             }
         }
     }
-    var mapRouteOverlay: MKPolyline? {
+    var isFlippingSourceAndDestinationPlacemarks = false
+    var sourcePlacemark: MKPlacemark? {
         willSet {
-            if let mapRouteOverlay_ = mapRouteOverlay {
-                mapView.removeOverlay( mapRouteOverlay_ )
+            if let sourcePlacemark_ = sourcePlacemark {
+                mapView.removeAnnotation( sourcePlacemark_ )
+            }
+            if let newValue_ = newValue {
+                if newValue_ == destinationPlacemark && !isFlippingSourceAndDestinationPlacemarks {
+                    isFlippingSourceAndDestinationPlacemarks = true
+                    destinationPlacemark = sourcePlacemark
+                    isFlippingSourceAndDestinationPlacemarks = false
+                }
+                else if destinationPlacemark == nil {
+                    mapLocationPlacemarkResolver.resolvePlacemark( {
+                        (placemark: MKPlacemark) in
+
+                        self.destinationPlacemark = placemark
+                    }, placemarkResolutionFailed: {
+                    } )
+                }
             }
         }
         didSet {
-            if let mapRouteOverlay_ = mapRouteOverlay {
-                mapView.addOverlay( mapRouteOverlay_ )
+            rebuildRouteLocationsStackView()
+
+            if let sourcePlacemark_ = sourcePlacemark {
+                mapView.addAnnotation( sourcePlacemark_ )
+                showAnnotations()
+            }
+
+            buildLocationsRoute()
+        }
+    }
+    var destinationPlacemark: MKPlacemark? {
+        willSet {
+            if let destinationPlacemark_ = destinationPlacemark {
+                mapView.removeAnnotation( destinationPlacemark_ )
+            }
+            if let newValue_ = newValue {
+                if newValue_ == sourcePlacemark && !isFlippingSourceAndDestinationPlacemarks {
+                    isFlippingSourceAndDestinationPlacemarks = true
+                    sourcePlacemark = destinationPlacemark
+                    isFlippingSourceAndDestinationPlacemarks = false
+                }
+                else if sourcePlacemark == nil {
+                    mapLocationPlacemarkResolver.resolvePlacemark( {
+                        (placemark: MKPlacemark) in
+
+                        self.sourcePlacemark = placemark
+                    }, placemarkResolutionFailed: {
+                    } )
+                }
+            }
+        }
+        didSet {
+            rebuildRouteLocationsStackView()
+
+            if let destinationPlacemark_ = destinationPlacemark {
+                mapView.addAnnotation( destinationPlacemark_ )
+                showAnnotations()
+            }
+
+            buildLocationsRoute()
+        }
+    }
+    var routeOverlay: MKPolyline? {
+        willSet {
+            if let routeOverlay_ = routeOverlay {
+                mapView.removeOverlay( routeOverlay_ )
+            }
+        }
+        didSet {
+            if let routeOverlay_ = routeOverlay {
+                mapView.addOverlay( routeOverlay_ )
             }
         }
     }
-
-    let locationAnnotations: NSMutableOrderedSet = NSMutableOrderedSet()
     var route: Route? {
         didSet {
             rightSlideOutViewController.route = route
@@ -87,7 +155,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
         searchBar.delegate = self
 
-        toolBar.items!.insert( MKUserTrackingBarButtonItem( mapView: self.mapView ), atIndex: 0 );
+        toolBar.items!.insert( MKUserTrackingBarButtonItem( mapView: self.mapView ), atIndex: 0 )
 
         rightSlideOutConstraint.constant = 0
 
@@ -114,6 +182,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         if segue.identifier == "rightSlideOut" {
             rightSlideOutViewController = segue.destinationViewController as! RouteViewController
         }
+        if segue.identifier == "bookmarks" {
+            (segue.destinationViewController as! STONavigationController).mapViewController = self
+        }
 
         super.prepareForSegue( segue, sender: sender )
     }
@@ -121,19 +192,23 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     /* MKMapViewDelegate */
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let searchAnnotation_ = mapSearchAnnotation
-        where searchAnnotation_ === annotation {
-            let identifier               = "SearchAnnotation"
-            var annotationView:
-                    MKPinAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier( identifier ) as? MKPinAnnotationView
+        if let searchPlacemark_ = searchPlacemark
+        where searchPlacemark_ === annotation {
+            let identifier                           = "SearchAnnotation"
+            var annotationView: MKPinAnnotationView! =
+            mapView.dequeueReusableAnnotationViewWithIdentifier( identifier ) as? MKPinAnnotationView
             if annotationView == nil {
-                annotationView = MKPinAnnotationView( annotation: searchAnnotation_, reuseIdentifier: identifier )
+                annotationView = MKPinAnnotationView( annotation: searchPlacemark_, reuseIdentifier: identifier )
+            }
+            else {
+                annotationView.annotation = searchPlacemark_
             }
 
             annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
             annotationView.animatesDrop = true
-            annotationView.canShowCallout = true
-            annotationView.rightCalloutAccessoryView = createAddRouteLocationButton( annotation )
+            addSourceOrDestinationCallout( annotationView,
+                                           placemarkResolver: STOPlacemarkValueResolver( placemark: searchPlacemark_ ) )
+
             return annotationView
         }
 
@@ -141,9 +216,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if let mapRouteOverlay_ = self.mapRouteOverlay
-        where mapRouteOverlay_ === overlay {
-            let renderer = MKPolylineRenderer( polyline: mapRouteOverlay_ )
+        if let routeOverlay_ = self.routeOverlay
+        where routeOverlay_ === overlay {
+            let renderer = MKPolylineRenderer( polyline: routeOverlay_ )
             renderer.strokeColor = UIColor.blueColor().colorWithAlphaComponent( 0.5 )
             renderer.lineWidth = 3
             renderer.lineDashPattern = [ 5, 5 ]
@@ -157,13 +232,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         for annotationView in views {
             if annotationView.annotation === mapView.userLocation {
-                annotationView.rightCalloutAccessoryView = createAddRouteLocationButton( mapView.userLocation )
-
-                showAnnotations()
+                addSourceOrDestinationCallout( annotationView, placemarkResolver: mapLocationPlacemarkResolver )
             }
         }
     }
-
 
     /* UISearchBarDelegate */
 
@@ -194,10 +266,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         geoCoder.geocodeAddressString( searchBar.text!.stringByAppendingString( ", Canada" ), inRegion: clRegion, completionHandler: {
             (placemarks: [CLPlacemark]?, error: NSError?) in
             if let error_ = error {
-                print( "ERROR: Geocode: \(error_)" )
+                print( "ERROR: Geocode: \(error_.fullDescription())" )
             }
 
-            var closestSearchAnnotation: MKAnnotation?
+            var closestSearchAnnotation: MKPlacemark?
             if let placemarks_ = placemarks
             where placemarks_.count > 0 {
                 var closest = CLLocationDistance.infinity
@@ -211,7 +283,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     }
                 }
             }
-            self.mapSearchAnnotation = closestSearchAnnotation
+            self.searchPlacemark = closestSearchAnnotation
 
             self.activityView.stopAnimating()
         } )
@@ -271,13 +343,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     @IBAction func didTapClear(sender: AnyObject) {
         route = nil
 
-        self.mapView.removeAnnotations( locationAnnotations.array as! [MKAnnotation] )
-        locationAnnotations.removeAllObjects()
-
-        mapSearchAnnotation = nil
-        mapRouteOverlay = nil
-
-        buildLocationsRoute()
+        searchPlacemark = nil
+        sourcePlacemark = nil
+        destinationPlacemark = nil
+        routeOverlay = nil
     }
 
     @IBAction func didTapReload(sender: AnyObject) {
@@ -288,36 +357,43 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     func showAnnotations() {
         var annotations: [MKAnnotation] = [ mapView.userLocation ]
-        if let mapSearchAnnotation_ = self.mapSearchAnnotation {
+        if let mapSearchAnnotation_ = self.searchPlacemark {
             annotations.append( mapSearchAnnotation_ )
         }
-        annotations.appendContentsOf( self.locationAnnotations.array as! [MKAnnotation] )
+        if let sourcePlacemark_ = self.sourcePlacemark {
+            annotations.append( sourcePlacemark_ )
+        }
+        if let destinationPlacemark_ = self.destinationPlacemark {
+            annotations.append( destinationPlacemark_ )
+        }
         mapView.showAnnotations( annotations, animated: true )
     }
 
-    func createAddRouteLocationButton(annotation: MKAnnotation) -> UIButton {
-        let button = UIButton( type: .ContactAdd )
+    func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {
+        let control = UISegmentedControl( items: [ "↱", "↴" ] )
+        control.on( .ValueChanged, {
+            placemarkResolver.resolvePlacemark( {
+                (placemark: MKPlacemark) in
 
-        button.on( .TouchUpInside, {
-            if self.locationAnnotations.containsObject( annotation ) {
-                return
-            }
-            if let title_: String = annotation.title ?? nil {
-                Locations.recent().add( Location( name: title_,
-                                                  latitude: annotation.coordinate.latitude,
-                                                  longitude: annotation.coordinate.longitude ) )
-            }
+                switch control.selectedSegmentIndex {
+                    case 0:
+                        self.sourcePlacemark = placemark
 
-            self.locationAnnotations.addObject( annotation )
-            self.rebuildRouteLocationsStackView();
-            self.showAnnotations()
+                    case 1:
+                        self.destinationPlacemark = placemark
 
-            if self.locationAnnotations.count == 2 {
-                self.buildLocationsRoute();
-            }
+                    default:
+                        preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
+                }
+
+                Locations.recent().add( Location( placemark: placemark ) )
+            }, placemarkResolutionFailed: {
+                control.selectedSegmentIndex = -1
+            } )
         } )
 
-        return button
+        annotationView.rightCalloutAccessoryView = control
+        annotationView.canShowCallout = true
     }
 
     func rebuildRouteLocationsStackView() {
@@ -325,98 +401,114 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             routeLocationsStackView.removeArrangedSubview( locationButton )
             locationButton.removeFromSuperview()
         }
-        for locationAnnotation in locationAnnotations {
-            routeLocationsStackView.addArrangedSubview( createRouteLocationButton( locationAnnotation as! MKAnnotation ) )
+        if let sourcePlacemark_ = sourcePlacemark {
+            routeLocationsStackView.addArrangedSubview( createRouteLocationButtonWithPlacemark( sourcePlacemark_ ) )
         }
-        headerStackMarginConstraint.active = locationAnnotations.count > 0
+        if let destinationPlacemark_ = destinationPlacemark {
+            routeLocationsStackView.addArrangedSubview( createRouteLocationButtonWithPlacemark( destinationPlacemark_ ) )
+        }
+        headerStackMarginConstraint.active = routeLocationsStackView.arrangedSubviews.count > 0
     }
 
-    func createRouteLocationButton(annotation: MKAnnotation) -> UIButton {
-        let button = UIButton( type: .System )
+    func createRouteLocationButtonWithPlacemark(placemark: MKPlacemark) -> UIButton {
+        let locationButton = UIButton( type: .System )
+        locationButton.backgroundColor = UIColor.lightTextColor()
+        locationButton.layer.cornerRadius = 4
 
-        button.setTitle( annotation.title ?? "Pin", forState: .Normal )
-        button.backgroundColor = UIColor.lightTextColor()
-        button.layer.cornerRadius = 4
-        button.on( .TouchUpInside, {
-            self.locationAnnotations.removeObject( annotation )
-            self.rebuildRouteLocationsStackView();
-            self.showAnnotations()
-        } );
+        // Title
+        var title = placemark.title ?? "Pin"
+        if placemark == sourcePlacemark {
+            title = "From: \(title)"
+        }
+        else if placemark == destinationPlacemark {
+            title = "To: \(title)"
+        }
+        locationButton.setTitle( title, forState: .Normal )
+        locationButton.titleLabel!.lineBreakMode = .ByTruncatingTail
 
-        return button
+        // Action
+        locationButton.on( .TouchUpInside, {
+            if placemark == self.sourcePlacemark {
+                self.sourcePlacemark = nil
+            }
+            else if placemark == self.destinationPlacemark {
+                self.destinationPlacemark = nil
+            }
+        } )
+
+        return locationButton
     }
 
     func buildLocationsRoute() {
-        mapRouteOverlay = nil
+        routeOverlay = nil
 
-        if self.locationAnnotations.count < 2 {
-            showAnnotations()
-            return
-        }
-
-        let origin      = self.locationAnnotations.firstObject as! MKAnnotation
-        let destination = self.locationAnnotations.lastObject as! MKAnnotation
-        Alamofire.request( .GET, "http://planibus.sto.ca/hastinfowebmobile/TravelPlansResults.aspx", parameters: [
-                "origin": "external_geolocation_name=origin;external_geolocation_latitude_coordinate=\(origin.coordinate.latitude);external_geolocation_longitude_coordinate=\(origin.coordinate.longitude)",
-                "destination": "external_geolocation_name=destination;external_geolocation_latitude_coordinate=\(destination.coordinate.latitude);external_geolocation_longitude_coordinate=\(destination.coordinate.longitude)",
-                "flexible": "true"/*,
+        if let sourcePlacemark_ = sourcePlacemark, destinationPlacemark_ = destinationPlacemark {
+            Alamofire.request( .GET, "http://planibus.sto.ca/hastinfowebmobile/TravelPlansResults.aspx", parameters: [
+                    "origin": "external_geolocation_name=origin;external_geolocation_latitude_coordinate=\(sourcePlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(sourcePlacemark_.coordinate.longitude)",
+                    "destination": "external_geolocation_name=destination;external_geolocation_latitude_coordinate=\(destinationPlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(destinationPlacemark_.coordinate.longitude)",
+                    "flexible": "true"/*,
                 "date": "20151018",
                 "hour": "1050",
                 "timeType": "SpecifiedArrivalTime"*/
-        ] ).responseString {
-            (response: Response) in
-            print( "STO URL:\n\(response.request?.URL)" )
-            if !response.result.isSuccess {
-                print( "ERROR: STO Error Response:\n\(response.result.error)" )
-                return
-            }
+            ] ).responseString {
+                (response: Response) in
 
-            if let result_ = response.result.value {
-                let html  = HTMLDocument( string: result_ )
-                let error = html.firstNodeMatchingSelector( "#ErrorMessageSpan" )
-                if let error_ = error {
-                    print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
+                print( "STO URL:\n\(response.request?.URL)" )
+                if !response.result.isSuccess {
+                    print( "ERROR: STO Error Response:\n\(response.result.error)" )
+                    return
                 }
 
-                var steps   = [ RouteStep ]()
-                let results = html.firstNodeMatchingSelector( "#TravelPlansResultsMainPage" )
-                if let results_ = results {
-                    for result in results_.childElementNodes as! [HTMLElement]
-                    where !(result.attributes["id"] as? String ?? "").commonPrefixWithString( "TVP0STEP", options: [] ).isEmpty {
-                        var stepMode: RouteStepMode?
-                        if let routeStepModeElement = result.firstNodeMatchingSelector( "*[data-role=content]>div[class~=StepImage]" ) {
-                            if routeStepModeElement.hasClass( "BusImage" ) {
-                                stepMode = .Bus
-                            }
-                            else if routeStepModeElement.hasClass( "WalkImage" ) {
-                                stepMode = .Walk
-                            }
-                        }
+                if let result_ = response.result.value {
+                    let html  = HTMLDocument( string: result_ )
+                    let error = html.firstNodeMatchingSelector( "#ErrorMessageSpan" )
+                    if let error_ = error {
+                        print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
+                    }
 
-                        let stepTiming      = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(1)" )?.innerHTML
-                        let stepModeContext = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(3)" )?.innerHTML
-                        let stepExplanation = result.firstNodeMatchingSelector( "*[data-role=content]>p" )?.innerHTML
+                    var steps   = [ RouteStep ]()
+                    let results = html.firstNodeMatchingSelector( "#TravelPlansResultsMainPage" )
+                    if let results_ = results {
+                        for result in results_.childElementNodes as! [HTMLElement]
+                        where !(result.attributes["id"] as? String ?? "").commonPrefixWithString( "TVP0STEP", options: [] ).isEmpty {
+                            var stepMode: RouteStepMode?
+                            if let routeStepModeElement = result.firstNodeMatchingSelector( "*[data-role=content]>div[class~=StepImage]" ) {
+                                if routeStepModeElement.hasClass( "BusImage" ) {
+                                    stepMode = .Bus
+                                }
+                                else if routeStepModeElement.hasClass( "WalkImage" ) {
+                                    stepMode = .Walk
+                                }
+                            }
 
-                        if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
-                            steps.append( RouteStep(
-                                          timing: stepTiming_,
-                                          mode: stepMode_, modeContext: stepModeContext,
-                                          explanation: stepExplanation_ ) )
-                        }
-                        else {
-                            print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
+                            let stepTiming      = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(1)" )?.innerHTML
+                            let stepModeContext = result.firstNodeMatchingSelector( "*[data-role=content]>span:nth-child(3)" )?.innerHTML
+                            let stepExplanation = result.firstNodeMatchingSelector( "*[data-role=content]>p" )?.innerHTML
+
+                            if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
+                                steps.append( RouteStep(
+                                              timing: stepTiming_,
+                                              mode: stepMode_, modeContext: stepModeContext,
+                                              explanation: stepExplanation_ ) )
+                            }
+                            else {
+                                print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
+                            }
                         }
                     }
-                }
-                self.route = Route( steps: steps )
-                print( "STO Route:\n\(self.route)" )
+                    self.route = Route( steps: steps )
+                    print( "STO Route:\n\(self.route)" )
 
-                NSOperationQueue.mainQueue().addOperationWithBlock( {
-                    var locations = [ origin.coordinate, destination.coordinate ]
-                    self.mapRouteOverlay = MKPolyline( coordinates: &locations, count: locations.count )
-                    self.showAnnotations()
-                } )
+                    NSOperationQueue.mainQueue().addOperationWithBlock( {
+                        var locations = [ sourcePlacemark_.coordinate, destinationPlacemark_.coordinate ]
+                        self.routeOverlay = MKPolyline( coordinates: &locations, count: locations.count )
+                        self.showAnnotations()
+                    } )
+                }
             }
+        }
+        else {
+            showAnnotations()
         }
     }
 
@@ -461,3 +553,49 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 }
 
+protocol STOPlacemarkResolver {
+    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ())
+}
+
+class STOPlacemarkValueResolver: STOPlacemarkResolver {
+    let placemark: MKPlacemark
+
+    init(placemark: MKPlacemark) {
+        self.placemark = placemark
+    }
+
+    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ()) {
+        placemarkResolved( placemark )
+    }
+}
+
+class STOPlacemarkLocationResolver: STOPlacemarkResolver {
+    let geoCoder:         CLGeocoder
+    let locationSupplier: () -> (CLLocation?)
+
+    init(geoCoder: CLGeocoder, locationSupplier: () -> (CLLocation?)) {
+        self.geoCoder = geoCoder
+        self.locationSupplier = locationSupplier
+    }
+
+    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ()) {
+        if let location_ = locationSupplier() {
+            geoCoder.reverseGeocodeLocation( location_, completionHandler: {
+                (placemarks: [CLPlacemark]?, error: NSError?) in
+                if let error_ = error {
+                    print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
+                }
+
+                if let firstPlacemark = placemarks?.first {
+                    placemarkResolved( MKPlacemark( placemark: firstPlacemark ) )
+                }
+                else {
+                    placemarkResolutionFailed()
+                }
+            } )
+        }
+        else {
+            placemarkResolutionFailed()
+        }
+    }
+}
