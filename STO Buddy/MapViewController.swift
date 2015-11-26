@@ -9,7 +9,7 @@ import MapKit
 import Alamofire
 import HTMLReader
 
-class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearchBarDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearchBarDelegate, CLLocationManagerDelegate, MKMapViewDelegate, UIScrollViewDelegate {
     let geoCoder        = CLGeocoder()
     let locationManager = CLLocationManager()
 
@@ -108,31 +108,72 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             }
         }
     }
-    var routes = [ Route ]() {
+    var routeLookup: RouteLookup? {
         didSet {
-            rightSlideOutViewController.routes = routes
+            print( self.routeLookup )
+            rightSlideOutViewController.routeLookup = routeLookup
 
-            self.view.layoutIfNeeded()
+            view.layoutIfNeeded()
             UIView.animateWithDuration( 0.3, animations: {
-                if self.routes.count > 0 {
-                    self.rightSlideOutConstraint.constant = -self.rightSlideOut.bounds.size.width
+                if self.routeLookup == nil {
+                    self.rightSlideOutConstraint.constant = 0
                 }
                 else {
-                    self.rightSlideOutConstraint.constant = 0
+                    self.rightSlideOutConstraint.constant = -self.rightSlideOut.bounds.size.width
                 }
 
                 self.view.layoutIfNeeded()
             } )
+
+            if let routeLookup_ = self.routeLookup {
+                var locations = [ routeLookup_.sourcePlacemark.coordinate,
+                                  routeLookup_.destinationPlacemark.coordinate ]
+                self.routeOverlay = MKPolyline( coordinates: &locations, count: locations.count )
+                self.showAnnotations()
+            }
+        }
+    }
+    var travelTime: STOTravelTime = STOTravelTimeLeavingNow() {
+        didSet {
+            self.view.layoutIfNeeded()
+            UIView.animateWithDuration( 0.3, animations: {
+                self.travelTimePager.currentPage = self.travelTime.page()
+                self.travelTimeNowConstraint.active = !(self.travelTime is STOFutureTravelTime)
+                self.view.layoutIfNeeded()
+            } )
+
+            if !(travelTimePicker.tracking || travelTimePicker.dragging || travelTimePicker.decelerating) {
+                travelTimePicker.setContentOffset(
+                CGPointMake( CGFloat( travelTime.page() ) * travelTimePicker.frame.size.width, 0 ),
+                animated: true )
+            }
+            if let arrivingTravelTime = travelTime as? STOTravelTimeArriving {
+                arrivingTimeControl.date = arrivingTravelTime.at()
+            }
+            if let leavingTravelTime = travelTime as? STOTravelTimeLeaving {
+                leavingTimeControl.date = leavingTravelTime.at()
+            }
+
+            buildLocationsRoute()
+        }
+    }
+    var planibusRequest: Request? {
+        willSet {
+            planibusRequest?.cancel()
         }
     }
 
-    @IBOutlet var headerBlurView:              UIVisualEffectView!
-    @IBOutlet var headerStackMarginConstraint: NSLayoutConstraint!
-    @IBOutlet var searchBar:                   UISearchBar!
-    @IBOutlet var routeLocationsStackView:     UIStackView!
-    @IBOutlet var activityView:                UIActivityIndicatorView!
-    @IBOutlet var mapView:                     MKMapView!
-    @IBOutlet var toolBar:                     UIToolbar!
+    @IBOutlet var headerBlurView:          UIVisualEffectView!
+    @IBOutlet var travelTimeNowConstraint: NSLayoutConstraint!
+    @IBOutlet var searchBar:               UISearchBar!
+    @IBOutlet var travelTimePicker:        UIScrollView!
+    @IBOutlet var travelTimePager:         UIPageControl!
+    @IBOutlet var arrivingTimeControl:     UIDatePicker!
+    @IBOutlet var leavingTimeControl:      UIDatePicker!
+    @IBOutlet var routeLocationsStackView: UIStackView!
+    @IBOutlet var activityView:            UIActivityIndicatorView!
+    @IBOutlet var mapView:                 MKMapView!
+    @IBOutlet var toolBar:                 UIToolbar!
 
     @IBOutlet var rightSlideOutBlurView:       UIVisualEffectView!
     @IBOutlet var rightSlideOut:               UIView!
@@ -324,6 +365,27 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         return false
     }
 
+    /* UIScrollViewDelegate */
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let scrollPage = Int( scrollView.contentOffset.x / scrollView.frame.size.width + 0.5 )
+        if scrollView == self.travelTimePicker {
+            if travelTime.page() != scrollPage {
+                switch scrollPage {
+                    case 0:
+                        travelTime = STOTravelTimeLeavingNow()
+                    case 1:
+                        travelTime = STOTravelTimeArriving( time: self.arrivingTimeControl.date )
+                    case 2:
+                        travelTime = STOTravelTimeLeaving( time: self.leavingTimeControl.date )
+                    default:
+                        preconditionFailure( "Unexpected travel time page: \(scrollPage)" )
+                }
+            }
+        }
+    }
+
+
     /* Actions */
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
@@ -342,8 +404,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didTapClear(sender: AnyObject) {
-        routes.removeAll()
-
+        routeLookup = nil
         searchPlacemark = nil
         sourcePlacemark = nil
         destinationPlacemark = nil
@@ -408,7 +469,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         if let destinationPlacemark_ = destinationPlacemark {
             routeLocationsStackView.addArrangedSubview( createRouteLocationButtonWithPlacemark( destinationPlacemark_ ) )
         }
-        headerStackMarginConstraint.active = routeLocationsStackView.arrangedSubviews.count > 0
     }
 
     func createRouteLocationButtonWithPlacemark(placemark: MKPlacemark) -> UIButton {
@@ -442,16 +502,21 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     func buildLocationsRoute() {
         routeOverlay = nil
+        routeLookup = nil
 
         if let sourcePlacemark_ = sourcePlacemark, destinationPlacemark_ = destinationPlacemark {
-            Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx", parameters: [
+            var parameters = [
                     "origin": "external_geolocation_name=origin;external_geolocation_latitude_coordinate=\(sourcePlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(sourcePlacemark_.coordinate.longitude)",
                     "destination": "external_geolocation_name=destination;external_geolocation_latitude_coordinate=\(destinationPlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(destinationPlacemark_.coordinate.longitude)",
-                    "flexible": "false"/*,
-                "date": "20151018",
-                "hour": "1050",
-                "timeType": "SpecifiedArrivalTime"*/
-            ] ).responseString {
+                    "flexible": "false"
+            ]
+            for (key, value) in travelTime.planibusParameters() {
+                parameters.updateValue( value, forKey: key )
+            }
+
+            planibusRequest = Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx",
+                                                 parameters: parameters )
+            planibusRequest?.responseString {
                 (response: Response) in
 
                 print( "STO URL:\n\(response.request?.URL)" )
@@ -467,9 +532,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                         print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
                     }
 
-                    self.routes.removeAll()
-                    let routeResults     = html.firstNodeMatchingSelector( "#TravelPlanLinkListView" )
-                    var routeTitles = [ String ]()
+                    let routeResults = html.firstNodeMatchingSelector( "#TravelPlanLinkListView" )
+                    var routeTitles  = [ String ]()
+                    var routes       = [ Route ]()
                     if let routeResults_ = routeResults {
                         for result in routeResults_.nodesMatchingSelector( "li>a[data-clientsideurl] p" ) as! [HTMLElement] {
                             routeTitles.append( result.textContent )
@@ -510,23 +575,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                             }
 
                             if (routeSteps.count > 0) {
-                                self.routes.append( Route( title: routeTitles[route], steps: routeSteps ) )
+                                routes.append( Route( title: routeTitles[route], steps: routeSteps ) )
                             }
                         }
                     }
-                    print( "STO Routes:\n\(self.routes)" )
 
                     NSOperationQueue.mainQueue().addOperationWithBlock( {
-                        var locations = [ sourcePlacemark_.coordinate, destinationPlacemark_.coordinate ]
-                        self.routeOverlay = MKPolyline( coordinates: &locations, count: locations.count )
-                        self.showAnnotations()
+                        self.routeLookup = RouteLookup( sourcePlacemark: sourcePlacemark_, destinationPlacemark: destinationPlacemark_,
+                                                        travelTime: self.travelTime, routes: routes )
                     } )
                 }
             }
-        }
-        else {
-            routes.removeAll()
-            showAnnotations()
         }
     }
 
@@ -615,5 +674,74 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
         else {
             placemarkResolutionFailed()
         }
+    }
+}
+
+// TODO: Can we turn this into an enum instead and turn scrollPage into a type-checked value?
+
+protocol STOTravelTime {
+    func page() -> Int
+
+    func planibusParameters() -> Dictionary<String, String>
+}
+
+class STOFutureTravelTime: STOTravelTime {
+    let dateFormatter = NSDateFormatter(), timeFormatter = NSDateFormatter()
+    let time: NSDate
+
+    init(time: NSDate) {
+        dateFormatter.dateFormat = "yyyyMMdd"
+        timeFormatter.dateFormat = "HHmm"
+        self.time = time
+    }
+
+    func at() -> NSDate {
+        return time
+    }
+
+    func page() -> Int {
+        preconditionFailure( "Abstract class not fully implemented" );
+    }
+
+    func planibusParameters() -> Dictionary<String, String> {
+        preconditionFailure( "Abstract class not fully implemented" );
+    }
+}
+
+class STOTravelTimeLeavingNow: STOTravelTime {
+    func page() -> Int {
+        return 0
+    }
+
+    func planibusParameters() -> Dictionary<String, String> {
+        return [:]
+    }
+}
+
+class STOTravelTimeArriving: STOFutureTravelTime {
+    override func page() -> Int {
+        return 1
+    }
+
+    override func planibusParameters() -> Dictionary<String, String> {
+        return [
+                "date": dateFormatter.stringFromDate( time ),
+                "hour": timeFormatter.stringFromDate( time ),
+                "timeType": "SpecifiedArrivalTime"
+        ]
+    }
+}
+
+class STOTravelTimeLeaving: STOFutureTravelTime {
+    override func page() -> Int {
+        return 2
+    }
+
+    override func planibusParameters() -> Dictionary<String, String> {
+        return [
+                "date": dateFormatter.stringFromDate( time ),
+                "hour": timeFormatter.stringFromDate( time ),
+                "timeType": "SpecifiedDepartureTime"
+        ]
     }
 }

@@ -6,8 +6,6 @@
 import UIKit
 
 class LocationResultsViewController: UITableViewController {
-    typealias Cell = LocationCell
-
     let favoriteLocations: Locations = Locations.starred()
     let recentLocations:   Locations = Locations.recent()
 
@@ -56,7 +54,7 @@ class LocationResultsViewController: UITableViewController {
                 preconditionFailure( "Unexpected section: \(indexPath.section)" )
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier( Cell.name(), forIndexPath: indexPath ) as! Cell
+        let cell = tableView.dequeueReusableCellWithIdentifier( LocationCell.name(), forIndexPath: indexPath ) as! LocationCell
         cell.titleLabel.text = location.placemark.name
         cell.subtitleLabel.text = location.placemark.thoroughfare
         cell.sourceDestinationControl.on( .ValueChanged, {

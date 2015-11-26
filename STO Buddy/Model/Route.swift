@@ -4,6 +4,34 @@
 //
 
 import Foundation
+import MapKit
+
+class RouteLookup: CustomStringConvertible {
+    let sourcePlacemark:      MKPlacemark
+    let destinationPlacemark: MKPlacemark
+    let travelTime:           STOTravelTime
+    let routes:               Array<Route>
+    let title:                String
+
+    init(sourcePlacemark: MKPlacemark, destinationPlacemark: MKPlacemark,
+         travelTime: STOTravelTime, routes: Array<Route>) {
+        self.sourcePlacemark = sourcePlacemark
+        self.destinationPlacemark = destinationPlacemark
+        self.travelTime = travelTime
+        self.routes = routes
+            self.title = "\(self.sourcePlacemark.thoroughfare) -> \(self.destinationPlacemark.thoroughfare)"
+    }
+
+    var description: String {
+        var lookup: String = "{RouteLookup[\(title)]:"
+        for route in routes {
+            lookup.appendContentsOf( "\n\(route)" )
+        }
+        lookup.append( "}" as Character )
+
+        return lookup
+    }
+}
 
 class Route: CustomStringConvertible {
     let title: String
@@ -15,7 +43,7 @@ class Route: CustomStringConvertible {
     }
 
     var description: String {
-        var route: String = "{Route:"
+        var route: String = "{Route[\(title)]:"
         for step in steps {
             route.appendContentsOf( "\n\(step)" )
         }
@@ -39,7 +67,7 @@ class RouteStep: CustomStringConvertible {
     }
 
     var shortExplanation: String {
-        return mode.withContext( modeContext )
+        return mode.descriptionWithContext( modeContext )
     }
 
     var description: String {
@@ -51,7 +79,11 @@ enum RouteStepMode: Int {
     case Walk
     case Bus
 
-    func withContext(context: String?) -> String {
+    func image() -> UIImage {
+        return UIImage( named: "\(self)".lowercaseString )!
+    }
+
+    func descriptionWithContext(context: String?) -> String {
         if let context_ = context {
             return "\(self) \(context_)"
         }
