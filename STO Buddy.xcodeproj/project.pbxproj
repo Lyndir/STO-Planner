@@ -96,8 +96,12 @@
 		DA993B991BB459C1007CB7A0 /* STO_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */; };
 		DA993BA41BB459C1007CB7A0 /* STO_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */; };
 		DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA993BB11BB792D9007CB7A0 /* MapKit.framework */; };
-		DAF4A6851C0792E800D9E4DB /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6831C0792E800D9E4DB /* bus.png */; };
-		DAF4A6861C0792E800D9E4DB /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6841C0792E800D9E4DB /* walk.png */; };
+		DAF4A68D1C07A6DD00D9E4DB /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */; };
+		DAF4A68E1C07A6DD00D9E4DB /* bus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */; };
+		DAF4A68F1C07A6DD00D9E4DB /* walk@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6891C07A6DD00D9E4DB /* walk@3x.png */; };
+		DAF4A6901C07A6DD00D9E4DB /* walk@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */; };
+		DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */; };
+		DAF4A6921C07A6DD00D9E4DB /* bus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1429,8 +1433,12 @@
 		DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STO_BuddyUITests.swift; sourceTree = "<group>"; };
 		DA993BA51BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA993BB11BB792D9007CB7A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DAF4A6831C0792E800D9E4DB /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
-		DAF4A6841C0792E800D9E4DB /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
+		DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
+		DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@1x.png"; sourceTree = "<group>"; };
+		DAF4A6891C07A6DD00D9E4DB /* walk@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk@3x.png"; sourceTree = "<group>"; };
+		DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk@1x.png"; sourceTree = "<group>"; };
+		DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk@2x.png"; sourceTree = "<group>"; };
+		DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2964,14 +2972,18 @@
 		DA993B821BB459C1007CB7A0 /* STO Buddy */ = {
 			isa = PBXGroup;
 			children = (
-				DAF4A6831C0792E800D9E4DB /* bus.png */,
-				DAF4A6841C0792E800D9E4DB /* walk.png */,
 				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
 				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
+				DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */,
+				DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */,
+				DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */,
 				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
 				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
-				93D3947B5028DBCDF2E8B1EA /* View */,
 				93D391D0C79E129BEE752D1D /* Model */,
+				93D3947B5028DBCDF2E8B1EA /* View */,
+				DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */,
+				DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */,
+				DAF4A6891C07A6DD00D9E4DB /* walk@3x.png */,
 			);
 			path = "STO Buddy";
 			sourceTree = "<group>";
@@ -3134,11 +3146,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF4A6851C0792E800D9E4DB /* bus.png in Resources */,
-				DAF4A6861C0792E800D9E4DB /* walk.png in Resources */,
+				DAF4A68F1C07A6DD00D9E4DB /* walk@3x.png in Resources */,
 				DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */,
+				DAF4A68E1C07A6DD00D9E4DB /* bus@1x.png in Resources */,
+				DAF4A6901C07A6DD00D9E4DB /* walk@1x.png in Resources */,
+				DAF4A68D1C07A6DD00D9E4DB /* bus@2x.png in Resources */,
 				93D3965BF1E544E77800A280 /* LaunchScreen.storyboard in Resources */,
+				DAF4A6921C07A6DD00D9E4DB /* bus@3x.png in Resources */,
 				93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */,
+				DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
