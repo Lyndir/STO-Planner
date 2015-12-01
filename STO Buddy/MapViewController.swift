@@ -27,6 +27,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         didSet {
             if let searchPlacemark_ = searchPlacemark {
                 mapView.addAnnotation( searchPlacemark_ )
+                triggerLocation( Location( placemark: searchPlacemark_ ) )
                 showAnnotations()
             }
         }
@@ -222,7 +223,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "rightSlideOut" {
-            rightSlideOutViewController = segue.destinationViewController as! RouteViewController
+            rightSlideOutViewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! RouteViewController
         }
         if segue.identifier == "bookmarks" {
             (segue.destinationViewController as! STONavigationController).mapViewController = self
@@ -415,12 +416,18 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         buildLocationsRoute()
     }
 
+    @IBAction func didTapMark(barButtonItem: UIBarButtonItem) {
+        if let location = LocationMark( rawValue: barButtonItem.tag )?.getLocation() {
+            triggerLocation( location )
+        }
+    }
+
     /* Private */
 
     func showAnnotations() {
         var annotations: [MKAnnotation] = [ mapView.userLocation ]
-        if let mapSearchAnnotation_ = self.searchPlacemark {
-            annotations.append( mapSearchAnnotation_ )
+        if let seachPlacemark_ = self.searchPlacemark {
+            annotations.append( seachPlacemark_ )
         }
         if let sourcePlacemark_ = self.sourcePlacemark {
             annotations.append( sourcePlacemark_ )
@@ -428,7 +435,29 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         if let destinationPlacemark_ = self.destinationPlacemark {
             annotations.append( destinationPlacemark_ )
         }
-        mapView.showAnnotations( annotations, animated: true )
+        if let sourceLocation_ = self.sourcePlacemark?.location, destinationLocation_ = self.destinationPlacemark?.location {
+            mapView.setCamera( MKMapCamera( lookingAtCenterCoordinate: destinationLocation_.coordinate,
+                                            fromEyeCoordinate: sourceLocation_.coordinate,
+                                            eyeAltitude: 100 ), animated: true )
+        }
+        else {
+            mapView.showAnnotations( annotations, animated: true )
+            mapView.setVisibleMapRect( mapView.visibleMapRect, edgePadding: mapView.occludedInsets(), animated: true );
+        }
+    }
+
+    func triggerLocation(location: Location) {
+        if destinationPlacemark == nil {
+            destinationPlacemark = location.placemark
+        }
+        else if sourcePlacemark == nil {
+            sourcePlacemark = location.placemark
+        }
+        else {
+            destinationPlacemark = location.placemark
+        }
+
+        Locations.recent().add( location )
     }
 
     func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {

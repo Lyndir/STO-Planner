@@ -55,38 +55,29 @@ class LocationResultsViewController: UITableViewController {
         }
 
         let cell = tableView.dequeueReusableCellWithIdentifier( LocationCell.name(), forIndexPath: indexPath ) as! LocationCell
-        cell.titleLabel.text = location.placemark.name
-        cell.subtitleLabel.text = location.placemark.thoroughfare
-        cell.sourceDestinationControl.on( .ValueChanged, {
-            let navigationController = self.navigationController as! STONavigationController
-
-            switch cell.sourceDestinationControl.selectedSegmentIndex {
-                case 0:
-                    navigationController.mapViewController.sourcePlacemark = location.placemark
-
-                case 1:
-                    navigationController.mapViewController.destinationPlacemark = location.placemark
-
-                default:
-                    preconditionFailure( "Unexpected segment for source/destination control: \(cell.sourceDestinationControl.selectedSegmentIndex)" )
-            }
-
-            navigationController.dismissViewControllerAnimated( true, completion: nil )
-        } )
+        if let navigationController_ = self.navigationController as? STONavigationController {
+            cell.navigationController = navigationController_
+            cell.location = location
+        }
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let mapViewController = (self.navigationController as! STONavigationController).mapViewController
-        switch indexPath.section {
-            case 0:
-                mapViewController.searchPlacemark = favoriteLocations[indexPath.row].placemark
-            case 1:
-                mapViewController.searchPlacemark = recentLocations[indexPath.row].placemark
-            default:
-                preconditionFailure( "Unexpected section: \(indexPath.section)" )
+        if let navigationController_ = self.navigationController as? STONavigationController {
+            switch indexPath.section {
+                case 0:
+                    navigationController_.mapViewController.searchPlacemark = favoriteLocations[indexPath.row].placemark
+                case 1:
+                    navigationController_.mapViewController.searchPlacemark = recentLocations[indexPath.row].placemark
+                default:
+                    preconditionFailure( "Unexpected section: \(indexPath.section)" )
+            }
+
+            navigationController_.dismissViewControllerAnimated( true, completion: nil )
         }
+
+        tableView.deselectRowAtIndexPath( indexPath, animated: true )
     }
 }
 
@@ -95,7 +86,70 @@ class LocationCell: UITableViewCell {
         return "LocationCell"
     }
 
-    @IBOutlet var titleLabel:               UILabel!
-    @IBOutlet var subtitleLabel:            UILabel!
-    @IBOutlet var sourceDestinationControl: UISegmentedControl!
+    @IBOutlet var titleLabel:                 UILabel!
+    @IBOutlet var subtitleLabel:              UILabel!
+    @IBOutlet var extrasMenuControl:          UISegmentedControl!
+    @IBOutlet var extrasMenuHiddenConstraint: NSLayoutConstraint!
+    @IBOutlet var sourceDestinationControl:   UISegmentedControl!
+
+    var extraMenuShowing = false
+
+    var navigationController: STONavigationController!
+    var location: Location! {
+        didSet {
+            titleLabel.text = location.placemark.name
+            subtitleLabel.text = location.placemark.thoroughfare
+        }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        extrasMenuControl.on( .ValueChanged, {
+            switch self.extrasMenuControl.selectedSegmentIndex {
+                case 0: // Disclosure button
+                    self.extraMenuShowing = !self.extraMenuShowing
+                case 1: // Home
+                    LocationMark.Home.setLocation( self.location )
+                case 2: // Work
+                    LocationMark.Work.setLocation( self.location )
+                case 3: // Play
+                    LocationMark.Play.setLocation( self.location )
+                default:
+                    preconditionFailure( "Unsupported extras segment index: \(self.extrasMenuControl.selectedSegmentIndex)" )
+            }
+            self.updateExtrasMenu()
+        } )
+        sourceDestinationControl.on( .ValueChanged, {
+            switch self.sourceDestinationControl.selectedSegmentIndex {
+                case 0:
+                    self.navigationController.mapViewController.sourcePlacemark = self.location.placemark
+
+                case 1:
+                    self.navigationController.mapViewController.destinationPlacemark = self.location.placemark
+
+                default:
+                    preconditionFailure( "Unexpected segment for source/destination control: \(self.sourceDestinationControl.selectedSegmentIndex)" )
+            }
+
+            self.navigationController.dismissViewControllerAnimated( true, completion: nil )
+        } )
+    }
+
+    func updateExtrasMenu() {
+        layoutIfNeeded()
+        UIView.animateWithDuration( 0.3, animations: {
+            self.extrasMenuHiddenConstraint.active = !self.extraMenuShowing
+            self.layoutIfNeeded()
+        } )
+
+        extrasMenuControl.setTitle( extraMenuShowing ? "➡︎": "⬅︎", forSegmentAtIndex: 0 )
+        extrasMenuControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        for mark in iterateEnum( LocationMark ) {
+            if mark.matchesLocation( location ) {
+                extrasMenuControl.selectedSegmentIndex = mark.rawValue + 1
+                break
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ class RouteLookup: CustomStringConvertible {
         self.destinationPlacemark = destinationPlacemark
         self.travelTime = travelTime
         self.routes = routes
-            self.title = "\(self.sourcePlacemark.thoroughfare) -> \(self.destinationPlacemark.thoroughfare)"
+        self.title = "\(self.sourcePlacemark.thoroughfare) -> \(self.destinationPlacemark.thoroughfare)"
     }
 
     var description: String {
@@ -79,8 +79,12 @@ enum RouteStepMode: Int {
     case Walk
     case Bus
 
-    func image() -> UIImage {
+    var thumbnailImage: UIImage {
         return UIImage( named: "\(self)".lowercaseString )!
+    }
+
+    var backgroundImage: UIImage {
+        return UIImage( named: "\(self)-large".lowercaseString )!
     }
 
     func descriptionWithContext(context: String?) -> String {

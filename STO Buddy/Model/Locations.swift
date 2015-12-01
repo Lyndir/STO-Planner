@@ -80,3 +80,29 @@ public class Location {
         return false
     }
 }
+
+enum LocationMark: Int {
+    case Home
+    case Work
+    case Play
+
+    func setLocation(location: Location) {
+        NSUserDefaults.standardUserDefaults().setObject( location.toDict(), forKey: "locationMarks.\(self)" )
+    }
+
+    func getLocation() -> Location? {
+        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" )  as? [String : AnyObject] {
+            return Location( dict: locationDict )
+        }
+
+        return nil
+    }
+
+    func matchesLocation(location: Location) -> Bool {
+        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" ) as? [String : AnyObject]  {
+            return location.matchesDict( locationDict )
+        }
+
+        return false
+    }
+}

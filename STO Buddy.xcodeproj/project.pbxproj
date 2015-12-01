@@ -102,6 +102,8 @@
 		DAF4A6901C07A6DD00D9E4DB /* walk@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */; };
 		DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */; };
 		DAF4A6921C07A6DD00D9E4DB /* bus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */; };
+		DAF4A69A1C0971D200D9E4DB /* bus-large.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6981C0971D200D9E4DB /* bus-large.png */; };
+		DAF4A69B1C0971D200D9E4DB /* walk-large.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6991C0971D200D9E4DB /* walk-large.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1439,6 +1441,8 @@
 		DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk@1x.png"; sourceTree = "<group>"; };
 		DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk@2x.png"; sourceTree = "<group>"; };
 		DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@3x.png"; sourceTree = "<group>"; };
+		DAF4A6981C0971D200D9E4DB /* bus-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus-large.png"; sourceTree = "<group>"; };
+		DAF4A6991C0971D200D9E4DB /* walk-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walk-large.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2972,18 +2976,20 @@
 		DA993B821BB459C1007CB7A0 /* STO Buddy */ = {
 			isa = PBXGroup;
 			children = (
-				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
-				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
+				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
+				DAF4A6981C0971D200D9E4DB /* bus-large.png */,
 				DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */,
 				DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */,
 				DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */,
-				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
-				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
-				93D391D0C79E129BEE752D1D /* Model */,
-				93D3947B5028DBCDF2E8B1EA /* View */,
+				DAF4A6991C0971D200D9E4DB /* walk-large.png */,
 				DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */,
 				DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */,
 				DAF4A6891C07A6DD00D9E4DB /* walk@3x.png */,
+				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
+				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
+				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
+				93D391D0C79E129BEE752D1D /* Model */,
+				93D3947B5028DBCDF2E8B1EA /* View */,
 			);
 			path = "STO Buddy";
 			sourceTree = "<group>";
@@ -3108,6 +3114,7 @@
 					};
 					DA993B7F1BB459C1007CB7A0 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = HL3Q45LX9N;
 					};
 					DA993B931BB459C1007CB7A0 = {
 						CreatedOnToolsVersion = 7.0;
@@ -3151,9 +3158,11 @@
 				DAF4A68E1C07A6DD00D9E4DB /* bus@1x.png in Resources */,
 				DAF4A6901C07A6DD00D9E4DB /* walk@1x.png in Resources */,
 				DAF4A68D1C07A6DD00D9E4DB /* bus@2x.png in Resources */,
+				DAF4A69B1C0971D200D9E4DB /* walk-large.png in Resources */,
 				93D3965BF1E544E77800A280 /* LaunchScreen.storyboard in Resources */,
 				DAF4A6921C07A6DD00D9E4DB /* bus@3x.png in Resources */,
 				93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */,
+				DAF4A69A1C0971D200D9E4DB /* bus-large.png in Resources */,
 				DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3535,6 +3544,7 @@
 			baseConfigurationReference = 6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
 				INFOPLIST_FILE = "STO Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3553,6 +3563,7 @@
 			baseConfigurationReference = 2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
 				INFOPLIST_FILE = "STO Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
