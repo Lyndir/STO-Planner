@@ -196,6 +196,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         locationManager.requestWhenInUseAuthorization()
 
         searchBar.delegate = self
+        searchBar.enumerateViews(
+        {
+            (subview: UIView!, stop: UnsafeMutablePointer<ObjCBool>, recurse: UnsafeMutablePointer<ObjCBool>) in
+            if let searchField_ = subview as? UITextField {
+                searchField_.layer.backgroundColor = UIColor( white: 1, alpha: 0.5 ).CGColor
+                searchField_.layer.cornerRadius = 4
+//                searchField_.attributedPlaceholder = stra( self.searchBar.placeholder,
+//                                                           [ NSForegroundColorAttributeName: self.searchBar.tintColor ] )
+            }
+        }, recurse: true )
 
         toolBar.items!.insert( MKUserTrackingBarButtonItem( mapView: self.mapView ), atIndex: 0 )
 
