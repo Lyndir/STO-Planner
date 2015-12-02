@@ -435,15 +435,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         if let destinationPlacemark_ = self.destinationPlacemark {
             annotations.append( destinationPlacemark_ )
         }
-        if let sourceLocation_ = self.sourcePlacemark?.location, destinationLocation_ = self.destinationPlacemark?.location {
-            mapView.setCamera( MKMapCamera( lookingAtCenterCoordinate: destinationLocation_.coordinate,
-                                            fromEyeCoordinate: sourceLocation_.coordinate,
-                                            eyeAltitude: 100 ), animated: true )
-        }
-        else {
-            mapView.showAnnotations( annotations, animated: true )
-            mapView.setVisibleMapRect( mapView.visibleMapRect, edgePadding: mapView.occludedInsets(), animated: true );
-        }
+
+        let mapRect = mapView.visibleMapRect
+        mapView.showAnnotations( annotations, animated: false )
+        let annotationsRect = mapView.visibleMapRect
+        mapView.setVisibleMapRect( mapRect, animated: false )
+        var mapInsets = mapView.occludedInsets()
+        mapInsets.right = 0
+        mapView.setVisibleMapRect( annotationsRect, edgePadding: mapInsets, animated: true );
     }
 
     func triggerLocation(location: Location) {
