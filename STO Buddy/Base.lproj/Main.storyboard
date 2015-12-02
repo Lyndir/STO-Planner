@@ -28,15 +28,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HAK-5B-bhh"/>
                                 </connections>
                             </mapView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQd-46-cA9" userLabel="Right Slide Out Blur">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQd-46-cA9" userLabel="Right Slide Out Blur" customClass="STOVisualEffectView" customModule="STO_Buddy" customModuleProvider="target">
                                 <rect key="frame" x="238" y="186" width="602" height="370"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OSC-82-Pi6">
                                     <rect key="frame" x="0.0" y="0.0" width="602" height="370"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSt-dm-u5P">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSt-dm-u5P">
                                             <rect key="frame" x="-238" y="-186" width="0.0" height="0.0"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="CQ2-8M-LAH">
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CQ2-8M-LAH">
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <animations/>
                                                 <variation key="widthClass=compact" ambiguous="YES">
@@ -59,6 +59,11 @@
                                 </view>
                                 <animations/>
                                 <blurEffect style="light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="blurTint">
+                                        <color key="value" red="0.93333333330000001" green="0.85882352939999995" blue="0.73725490199999999" alpha="0.62" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </visualEffectView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29w-cJ-rlL" userLabel="Right Slide Out">
                                 <rect key="frame" x="240" y="186" width="600" height="370"/>
@@ -115,7 +120,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FY-QV-xpK" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-91-73T" userLabel="Top Blur">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-91-73T" userLabel="Top Blur" customClass="STOVisualEffectView" customModule="STO_Buddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="186"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AEG-dH-mOQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="186"/>
@@ -124,6 +129,11 @@
                                         </view>
                                         <animations/>
                                         <blurEffect style="extraLight"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="blurTint">
+                                                <color key="value" red="0.0" green="0.49803921568627452" blue="0.53725490196078429" alpha="0.62" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </visualEffectView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-he-RWb">
                                         <rect key="frame" x="280" y="157" width="39" height="37"/>
@@ -138,11 +148,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWI-ot-zir">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="18"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Leaving Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80X-ew-Fkv">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Leaving Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80X-ew-Fkv">
                                                                 <rect key="frame" x="256" y="0.0" width="87.5" height="18"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.4392156862745098" green="0.80392156862745101" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -163,11 +173,11 @@
                                                                     <!--2015-11-25 14:04:06 +0000-->
                                                                 </date>
                                                             </datePicker>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Arriving at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ5-sr-1GS">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Arriving at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ5-sr-1GS">
                                                                 <rect key="frame" x="262" y="0.0" width="75" height="18"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" red="0.43921568630000002" green="0.80392156859999997" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -182,33 +192,33 @@
                                                             <constraint firstAttribute="trailingMargin" secondItem="ShD-Mo-z8K" secondAttribute="trailing" id="rcm-zn-5SD"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiS-7x-rnR" userLabel="Leaving">
-                                                        <rect key="frame" x="1200" y="0.0" width="600" height="18"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNr-Fg-8DG" userLabel="Leaving">
+                                                        <rect key="frame" x="600" y="0.0" width="600" height="18"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leaving at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3h-fa-2e9">
-                                                                <rect key="frame" x="8" y="0.0" width="74.5" height="18"/>
-                                                                <animations/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="KfV-0B-B39">
-                                                                <rect key="frame" x="90" y="0.0" width="501.5" height="18"/>
+                                                            <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="IWu-aR-EEm">
+                                                                <rect key="frame" x="0.0" y="18" width="592" height="0.0"/>
                                                                 <animations/>
                                                                 <date key="date" timeIntervalSinceReferenceDate="470153046.85526001">
                                                                     <!--2015-11-25 14:04:06 +0000-->
                                                                 </date>
                                                             </datePicker>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Leaving at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzD-8f-XMq">
+                                                                <rect key="frame" x="262" y="0.0" width="75" height="18"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                <color key="textColor" red="0.43921568630000002" green="0.80392156859999997" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <animations/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailingMargin" secondItem="KfV-0B-B39" secondAttribute="trailing" id="9Rv-sf-RDs"/>
-                                                            <constraint firstItem="f3h-fa-2e9" firstAttribute="centerY" secondItem="hiS-7x-rnR" secondAttribute="centerY" id="IW7-mt-zAt"/>
-                                                            <constraint firstItem="KfV-0B-B39" firstAttribute="top" secondItem="hiS-7x-rnR" secondAttribute="top" id="pqm-Wu-uwt"/>
-                                                            <constraint firstItem="KfV-0B-B39" firstAttribute="leading" secondItem="f3h-fa-2e9" secondAttribute="trailing" constant="8" id="s5T-MK-Ja5"/>
-                                                            <constraint firstAttribute="bottom" secondItem="KfV-0B-B39" secondAttribute="bottom" id="u57-kl-AlY"/>
-                                                            <constraint firstAttribute="leadingMargin" secondItem="f3h-fa-2e9" secondAttribute="leading" id="ywi-u0-gXs"/>
+                                                            <constraint firstItem="IWu-aR-EEm" firstAttribute="leading" secondItem="NNr-Fg-8DG" secondAttribute="leading" id="DW1-So-uXe"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="IWu-aR-EEm" secondAttribute="trailing" id="Dlk-yT-UUM"/>
+                                                            <constraint firstItem="IWu-aR-EEm" firstAttribute="top" secondItem="hzD-8f-XMq" secondAttribute="bottom" id="UE7-aD-hfW"/>
+                                                            <constraint firstItem="hzD-8f-XMq" firstAttribute="top" secondItem="NNr-Fg-8DG" secondAttribute="top" id="VcU-Vc-1EN"/>
+                                                            <constraint firstAttribute="bottom" secondItem="IWu-aR-EEm" secondAttribute="bottom" id="YyM-rA-dy4"/>
+                                                            <constraint firstItem="hzD-8f-XMq" firstAttribute="centerX" secondItem="NNr-Fg-8DG" secondAttribute="centerX" id="zQb-ET-RBj"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -318,7 +328,7 @@
                         <outlet property="activityView" destination="9Z9-oH-B0c" id="eZV-DQ-0Kd"/>
                         <outlet property="arrivingTimeControl" destination="ShD-Mo-z8K" id="Cms-U3-9hK"/>
                         <outlet property="headerBlurView" destination="H5r-91-73T" id="Y3S-4M-spD"/>
-                        <outlet property="leavingTimeControl" destination="KfV-0B-B39" id="SaI-UY-jGW"/>
+                        <outlet property="leavingTimeControl" destination="IWu-aR-EEm" id="GZp-WY-iC2"/>
                         <outlet property="mapView" destination="Pzk-DU-McC" id="25t-N6-3Cm"/>
                         <outlet property="rightSlideOut" destination="29w-cJ-rlL" id="zRF-KV-8zb"/>
                         <outlet property="rightSlideOutBlurView" destination="GQd-46-cA9" id="gDf-RV-ltd"/>
@@ -460,31 +470,31 @@
         <scene sceneID="lv5-04-Koe">
             <objects>
                 <tableViewController id="Tve-g9-5oM" customClass="RouteViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" id="1OA-f2-azd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" id="1OA-f2-azd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteLookupCell" id="kk5-uh-RIj" customClass="RouteLookupCell" customModule="STO_Buddy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="48"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kk5-uh-RIj" id="HPm-SE-RC9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="47.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oq-bV-13D">
                                             <rect key="frame" x="233" y="0.0" width="133" height="32.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.39215686274509803" green="0.4823529411764706" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From: Fifth Avenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bi-hw-0KJ">
-                                            <rect key="frame" x="251" y="34" width="98.5" height="13.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From: Fifth Avenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bi-hw-0KJ">
+                                            <rect key="frame" x="251" y="42" width="98.5" height="13.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -505,31 +515,31 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteStepCell" id="7wu-yg-ZMp" customClass="RouteStepCell" customModule="STO_Buddy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="120" width="600" height="48"/>
+                                <rect key="frame" x="0.0" y="128" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wu-yg-ZMp" id="E2w-Bq-xJr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="47.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" alpha="0.38" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus.png" translatesAutoresizingMaskIntoConstraints="NO" id="zcv-eb-Ine">
-                                            <rect key="frame" x="8" y="8" width="31.5" height="31.5"/>
+                                            <rect key="frame" x="8" y="8" width="39.5" height="39.5"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="zcv-eb-Ine" secondAttribute="height" id="iut-zq-B5O"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="400" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gh8-bq-Dme">
-                                            <rect key="frame" x="4.5" y="11.5" width="39.5" height="24"/>
+                                            <rect key="frame" x="8.5" y="15.5" width="39.5" height="24"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="19"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At 14:56, walk to stop Saint-René/Ernest-Gaboury Sud (Infobus: 819-778-8149), Gatineau (2 min.)." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuT-7a-Ai9">
-                                            <rect key="frame" x="47" y="0.0" width="544.5" height="47.5"/>
+                                            <rect key="frame" x="55" y="0.0" width="536.5" height="55.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.39215686274509803" green="0.4823529411764706" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -710,4 +720,5 @@
         <image name="bus-large.png" width="1200" height="1200"/>
         <image name="bus.png" width="32" height="32"/>
     </resources>
+    <color key="tintColor" red="0.011764705882352941" green="0.25882352941176473" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
 </document>

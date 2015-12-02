@@ -74,6 +74,20 @@ class RouteViewController: UITableViewController {
         return 0
     }
 
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0: 30
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: NSInteger) -> UIView? {
+        let sectionView = UILabel()
+        sectionView.text = "\u{2003}" + (self.tableView( tableView, titleForHeaderInSection: section ) ?? "")
+        sectionView.backgroundColor = UIColor( red: 0.392156862745, green: 0.482352941176, blue: 0.419607843137, alpha: 1 )
+        sectionView.textColor = UIColor( red: 0.933333333333, green: 0.858823529412, blue: 0.737254901961, alpha: 1 )
+        sectionView.font = UIFont.preferredFontForTextStyle( UIFontTextStyleHeadline )
+
+        return sectionView
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier( RouteLookupCell.name(), forIndexPath: indexPath ) as! RouteLookupCell
@@ -133,6 +147,11 @@ class RouteStepCell: UITableViewCell {
         }
         else {
             accessoryType = UITableViewCellAccessoryType.None
+            layoutIfNeeded()
+            if routeLabel.bounds.size.width < routeLabel.intrinsicContentSize().width ||
+               routeLabel.bounds.size.height < routeLabel.intrinsicContentSize().height {
+                accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            }
         }
     }
 }

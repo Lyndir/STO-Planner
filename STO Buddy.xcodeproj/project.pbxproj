@@ -14,6 +14,7 @@
 		93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */; };
 		93D39859E0B3978A1A8039AE /* STOWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */; };
 		93D399B15B2FCBB849E9D61C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D396914B88815B86C1BDD3 /* MapViewController.swift */; };
+		93D399CD677C53800E3D844A /* STOVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D397C386316E24D06914C0 /* STOVisualEffectView.swift */; };
 		93D39A3FAB9063A9F19E4999 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39AF3F812CF57DD961A2F /* Locations.swift */; };
 		93D39A8C4AFAEECC3EBC42CC /* UIControl+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3919BB49F8892394079C3 /* UIControl+Closures.swift */; };
 		93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */; };
@@ -145,6 +146,7 @@
 		93D393EA9A1A008FDEF72DF5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93D394D7B1F54230E9E385C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93D396914B88815B86C1BDD3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		93D397C386316E24D06914C0 /* STOVisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOVisualEffectView.swift; sourceTree = "<group>"; };
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		93D39D13C3C403586A09DFF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1509,6 +1511,7 @@
 				93D3919BB49F8892394079C3 /* UIControl+Closures.swift */,
 				93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */,
 				93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */,
+				93D397C386316E24D06914C0 /* STOVisualEffectView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3324,6 +3327,7 @@
 				93D39A3FAB9063A9F19E4999 /* Locations.swift in Sources */,
 				93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */,
 				93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */,
+				93D399CD677C53800E3D844A /* STOVisualEffectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
