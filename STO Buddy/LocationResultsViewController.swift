@@ -97,8 +97,8 @@ class LocationCell: UITableViewCell {
     var navigationController: STONavigationController!
     var location: Location! {
         didSet {
-            titleLabel.text = location.placemark.name
-            subtitleLabel.text = location.placemark.thoroughfare
+            titleLabel.text = "\(location.placemark.name ?? ""), \(location.placemark.locality ?? "")"
+            subtitleLabel.text = location.placemark.postalCode
         }
     }
 

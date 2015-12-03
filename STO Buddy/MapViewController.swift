@@ -77,11 +77,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     isFlippingSourceAndDestinationPlacemarks = false
                 }
                 else if sourcePlacemark == nil {
-                    mapLocationPlacemarkResolver.resolvePlacemark( {
-                                                                       (placemark: MKPlacemark) in
+                    mapLocationPlacemarkResolver.resolvePlacemark(
+                    {
+                        (placemark: MKPlacemark) in
 
-                                                                       self.sourcePlacemark = placemark
-                                                                   }, placemarkResolutionFailed: {
+                        self.sourcePlacemark = placemark
+                    }, placemarkResolutionFailed: {
                     } )
                 }
             }
@@ -164,6 +165,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         }
     }
 
+    @IBOutlet var introVisibleConstraint:  NSLayoutConstraint!
     @IBOutlet var headerBlurView:          UIVisualEffectView!
     @IBOutlet var travelTimeNowConstraint: NSLayoutConstraint!
     @IBOutlet var searchBar:               UISearchBar!
@@ -200,7 +202,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         {
             (subview: UIView!, stop: UnsafeMutablePointer<ObjCBool>, recurse: UnsafeMutablePointer<ObjCBool>) in
             if let searchField_ = subview as? UITextField {
-                searchField_.layer.backgroundColor = UIColor( white: 1, alpha: 0.5 ).CGColor
+                searchField_.layer.backgroundColor = UIColor( white: 1, alpha: 0.62 ).CGColor
                 searchField_.layer.cornerRadius = 4
 //                searchField_.attributedPlaceholder = stra( self.searchBar.placeholder,
 //                                                           [ NSForegroundColorAttributeName: self.searchBar.tintColor ] )
@@ -217,12 +219,20 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear( animated )
+
+        self.introVisibleConstraint.active = true
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear( animated )
 
         activityView.stopAnimating()
+
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration( 1, delay: 0.3, options: UIViewAnimationOptions(), animations: {
+            self.introVisibleConstraint.active = false
+            self.view.layoutIfNeeded()
+        }, completion: nil )
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -472,22 +482,23 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {
         let control = UISegmentedControl( items: [ "↱", "↴" ] )
         control.on( .ValueChanged, {
-            placemarkResolver.resolvePlacemark( {
-                                                    (placemark: MKPlacemark) in
+            placemarkResolver.resolvePlacemark(
+            {
+                (placemark: MKPlacemark) in
 
-                                                    switch control.selectedSegmentIndex {
-                                                        case 0:
-                                                            self.sourcePlacemark = placemark
+                switch control.selectedSegmentIndex {
+                    case 0:
+                        self.sourcePlacemark = placemark
 
-                                                        case 1:
-                                                            self.destinationPlacemark = placemark
+                    case 1:
+                        self.destinationPlacemark = placemark
 
-                                                        default:
-                                                            preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
-                                                    }
+                    default:
+                        preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
+                }
 
-                                                    Locations.recent().add( Location( placemark: placemark ) )
-                                                }, placemarkResolutionFailed: {
+                Locations.recent().add( Location( placemark: placemark ) )
+            }, placemarkResolutionFailed: {
                 control.selectedSegmentIndex = -1
             } )
         } )
@@ -515,7 +526,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         locationButton.layer.cornerRadius = 4
 
         // Title
-        var title = placemark.title ?? "Pin"
+        var title = "\(placemark.name ?? ""), \(placemark.locality ?? "")"
         if placemark == sourcePlacemark {
             title = "From: \(title)"
         }

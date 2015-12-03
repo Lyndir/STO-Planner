@@ -151,6 +151,7 @@ class RouteStepCell: UITableViewCell {
             if routeLabel.bounds.size.width < routeLabel.intrinsicContentSize().width ||
                routeLabel.bounds.size.height < routeLabel.intrinsicContentSize().height {
                 accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                layoutIfNeeded()
             }
         }
     }
