@@ -137,7 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
+		482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
 		93D3919BB49F8892394079C3 /* UIControl+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Closures.swift"; sourceTree = "<group>"; };
 		93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultsViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STONavigationController.swift; sourceTree = "<group>"; };
 		999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
+		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DA24B5871BD9B292002B219C /* libPearl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPearl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24BAC61BD9B2E4002B219C /* map-macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "map-macro.h"; sourceTree = "<group>"; };
 		DA24BAC71BD9B2E4002B219C /* NSArray+Indexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Indexing.h"; sourceTree = "<group>"; };
@@ -1395,6 +1395,33 @@
 		DA24BFA91BD9B2E8002B219C /* UIView+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Touches.h"; sourceTree = "<group>"; };
 		DA24BFAA1BD9B2E8002B219C /* UIView+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Touches.m"; sourceTree = "<group>"; };
 		DA418A081BFC4CE40097BBC9 /* Pearl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pearl-Bridging-Header.h"; sourceTree = "<group>"; };
+		DA5E13D31C11E1D700B4FC4D /* HTMLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLComment.h; sourceTree = "<group>"; };
+		DA5E13D41C11E1D700B4FC4D /* HTMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLDocument.h; sourceTree = "<group>"; };
+		DA5E13D51C11E1D700B4FC4D /* HTMLDocumentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLDocumentType.h; sourceTree = "<group>"; };
+		DA5E13D61C11E1D700B4FC4D /* HTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLElement.h; sourceTree = "<group>"; };
+		DA5E13D71C11E1D700B4FC4D /* HTMLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEncoding.h; sourceTree = "<group>"; };
+		DA5E13D81C11E1D700B4FC4D /* HTMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEntities.h; sourceTree = "<group>"; };
+		DA5E13D91C11E1D700B4FC4D /* HTMLNamespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNamespace.h; sourceTree = "<group>"; };
+		DA5E13DA1C11E1D700B4FC4D /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		DA5E13DB1C11E1D700B4FC4D /* HTMLOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLOrderedDictionary.h; sourceTree = "<group>"; };
+		DA5E13DC1C11E1D700B4FC4D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		DA5E13DD1C11E1D700B4FC4D /* HTMLPreprocessedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPreprocessedInputStream.h; sourceTree = "<group>"; };
+		DA5E13DE1C11E1D700B4FC4D /* HTMLQuirksMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLQuirksMode.h; sourceTree = "<group>"; };
+		DA5E13DF1C11E1D700B4FC4D /* HTMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLReader.h; sourceTree = "<group>"; };
+		DA5E13E01C11E1D700B4FC4D /* HTMLSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSelector.h; sourceTree = "<group>"; };
+		DA5E13E11C11E1D700B4FC4D /* HTMLSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSerialization.h; sourceTree = "<group>"; };
+		DA5E13E21C11E1D700B4FC4D /* HTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLString.h; sourceTree = "<group>"; };
+		DA5E13E31C11E1D700B4FC4D /* HTMLSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSupport.h; sourceTree = "<group>"; };
+		DA5E13E41C11E1D700B4FC4D /* HTMLTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTextNode.h; sourceTree = "<group>"; };
+		DA5E13E51C11E1D700B4FC4D /* HTMLTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTokenizer.h; sourceTree = "<group>"; };
+		DA5E13E61C11E1D700B4FC4D /* HTMLTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTokenizerState.h; sourceTree = "<group>"; };
+		DA5E13E71C11E1D700B4FC4D /* HTMLTreeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTreeEnumerator.h; sourceTree = "<group>"; };
+		DA5E13E81C11E1D700B4FC4D /* NSString+HTMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTMLEntities.h"; sourceTree = "<group>"; };
+		DA5E13EA1C11E1D700B4FC4D /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		DA5E13EE1C11E1D700B4FC4D /* IBANetServiceTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBANetServiceTypes.h; sourceTree = "<group>"; };
+		DA5E13EF1C11E1D700B4FC4D /* IBARevealLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLoader.h; sourceTree = "<group>"; };
+		DA5E13F01C11E1D700B4FC4D /* IBARevealLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLogger.h; sourceTree = "<group>"; };
+		DA5E13F11C11E1D700B4FC4D /* Reveal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reveal.h; sourceTree = "<group>"; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1483,10 +1510,11 @@
 		BA320521F0A02B9108034E9F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				DA5E13D01C11E1D700B4FC4D /* Headers */,
 				A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */,
 				482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DA24BAC41BD9B2E4002B219C /* Pearl */ = {
@@ -2823,14 +2851,96 @@
 			path = silk;
 			sourceTree = "<group>";
 		};
+		DA5E13D01C11E1D700B4FC4D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13D11C11E1D700B4FC4D /* Private */,
+				DA5E13EB1C11E1D700B4FC4D /* Public */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		DA5E13D11C11E1D700B4FC4D /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13D21C11E1D700B4FC4D /* HTMLReader */,
+				DA5E13E91C11E1D700B4FC4D /* JRSwizzle */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		DA5E13D21C11E1D700B4FC4D /* HTMLReader */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13D31C11E1D700B4FC4D /* HTMLComment.h */,
+				DA5E13D41C11E1D700B4FC4D /* HTMLDocument.h */,
+				DA5E13D51C11E1D700B4FC4D /* HTMLDocumentType.h */,
+				DA5E13D61C11E1D700B4FC4D /* HTMLElement.h */,
+				DA5E13D71C11E1D700B4FC4D /* HTMLEncoding.h */,
+				DA5E13D81C11E1D700B4FC4D /* HTMLEntities.h */,
+				DA5E13D91C11E1D700B4FC4D /* HTMLNamespace.h */,
+				DA5E13DA1C11E1D700B4FC4D /* HTMLNode.h */,
+				DA5E13DB1C11E1D700B4FC4D /* HTMLOrderedDictionary.h */,
+				DA5E13DC1C11E1D700B4FC4D /* HTMLParser.h */,
+				DA5E13DD1C11E1D700B4FC4D /* HTMLPreprocessedInputStream.h */,
+				DA5E13DE1C11E1D700B4FC4D /* HTMLQuirksMode.h */,
+				DA5E13DF1C11E1D700B4FC4D /* HTMLReader.h */,
+				DA5E13E01C11E1D700B4FC4D /* HTMLSelector.h */,
+				DA5E13E11C11E1D700B4FC4D /* HTMLSerialization.h */,
+				DA5E13E21C11E1D700B4FC4D /* HTMLString.h */,
+				DA5E13E31C11E1D700B4FC4D /* HTMLSupport.h */,
+				DA5E13E41C11E1D700B4FC4D /* HTMLTextNode.h */,
+				DA5E13E51C11E1D700B4FC4D /* HTMLTokenizer.h */,
+				DA5E13E61C11E1D700B4FC4D /* HTMLTokenizerState.h */,
+				DA5E13E71C11E1D700B4FC4D /* HTMLTreeEnumerator.h */,
+				DA5E13E81C11E1D700B4FC4D /* NSString+HTMLEntities.h */,
+			);
+			path = HTMLReader;
+			sourceTree = "<group>";
+		};
+		DA5E13E91C11E1D700B4FC4D /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13EA1C11E1D700B4FC4D /* JRSwizzle.h */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
+		DA5E13EB1C11E1D700B4FC4D /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13EC1C11E1D700B4FC4D /* Reveal-iOS-SDK */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		DA5E13EC1C11E1D700B4FC4D /* Reveal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13ED1C11E1D700B4FC4D /* Reveal */,
+			);
+			path = "Reveal-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		DA5E13ED1C11E1D700B4FC4D /* Reveal */ = {
+			isa = PBXGroup;
+			children = (
+				DA5E13EE1C11E1D700B4FC4D /* IBANetServiceTypes.h */,
+				DA5E13EF1C11E1D700B4FC4D /* IBARevealLoader.h */,
+				DA5E13F01C11E1D700B4FC4D /* IBARevealLogger.h */,
+				DA5E13F11C11E1D700B4FC4D /* Reveal.h */,
+			);
+			path = Reveal;
+			sourceTree = "<group>";
+		};
 		DA7EE8641BC0736800F4E5E1 /* Pearl */ = {
 			isa = PBXGroup;
 			children = (
+				DA418A081BFC4CE40097BBC9 /* Pearl-Bridging-Header.h */,
 				DAF4A6A11C0F30B900D9E4DB /* Pearl-Prefix.pch */,
 				DA24BAC41BD9B2E4002B219C /* Pearl */,
 				DA24BB061BD9B2E4002B219C /* Pearl-Crypto */,
 				DA24BB701BD9B2E4002B219C /* Pearl-UIKit */,
-				DA418A081BFC4CE40097BBC9 /* Pearl-Bridging-Header.h */,
 			);
 			path = Pearl;
 			sourceTree = "<group>";
@@ -2842,9 +2952,9 @@
 				DA993B971BB459C1007CB7A0 /* STO BuddyTests */,
 				DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */,
 				DA7EE8641BC0736800F4E5E1 /* Pearl */,
+				BA320521F0A02B9108034E9F /* Pods */,
 				DF960004C8A7B9F64C9AFFAE /* Frameworks */,
 				DA993B811BB459C1007CB7A0 /* Products */,
-				BA320521F0A02B9108034E9F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

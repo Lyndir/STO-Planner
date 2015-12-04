@@ -173,7 +173,7 @@ class RouteStepCell: UITableViewCell {
             modeImageView.image = routeStep.mode.thumbnailImage
             modeImageView.alpha = routeStep.modeContext?.startIndex == routeStep.modeContext?.endIndex ? 1: 0.38;
             modeLabel.text = routeStep.modeContext
-            routeLabel.text = routeStep.explanation
+            routeLabel.attributedText = stra( routeStep.explanation, routeLabel.textAttributes() )
         }
     }
 
@@ -207,7 +207,13 @@ class RouteStepViewController: UIViewController {
         super.viewWillAppear( animated )
 
         backgroundImage.image = routeStep.mode.backgroundImage
-        descriptionField.text = routeStep.explanation
+        descriptionField.attributedText = stra( routeStep.explanation, descriptionField.textAttributes() )
         navigationItem.title = routeStep.shortExplanation
+    }
+
+    override func viewDidLayoutSubviews() {
+        descriptionField.insetOcclusion()
+
+        super.viewDidLayoutSubviews()
     }
 }

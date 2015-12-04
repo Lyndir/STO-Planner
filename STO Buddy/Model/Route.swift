@@ -57,9 +57,9 @@ class RouteStep: CustomStringConvertible {
     let timing:      String
     let mode:        RouteStepMode
     let modeContext: String?
-    let explanation: String
+    let explanation: NSAttributedString
 
-    init(timing: String, mode: RouteStepMode, modeContext: String?, explanation: String) {
+    init(timing: String, mode: RouteStepMode, modeContext: String?, explanation: NSAttributedString) {
         self.timing = timing
         self.mode = mode
         self.modeContext = modeContext

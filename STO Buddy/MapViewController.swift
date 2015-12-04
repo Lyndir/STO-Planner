@@ -13,11 +13,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     let geoCoder        = CLGeocoder()
     let locationManager = CLLocationManager()
 
-    lazy var mapLocationPlacemarkResolver: STOPlacemarkLocationResolver
-    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationSupplier: {
+    lazy var mapLocationPlacemarkResolver: STOPlacemarkResolver
+    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: "your location", locationSupplier: {
         self.mapView.userLocation.location
     } )
 
+    weak var didChangeTravelTimeTimer: NSTimer? {
+        willSet {
+            didChangeTravelTimeTimer?.invalidate()
+        }
+    }
     var searchPlacemark: MKPlacemark? {
         willSet {
             if let searchPlacemark_ = searchPlacemark {
@@ -112,7 +117,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
     var routeLookup: RouteLookup? {
         didSet {
-            print( self.routeLookup )
             rightSlideOutViewController.routeLookup = routeLookup
 
             view.layoutIfNeeded()
@@ -174,7 +178,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     @IBOutlet var arrivingTimeControl:     UIDatePicker!
     @IBOutlet var leavingTimeControl:      UIDatePicker!
     @IBOutlet var routeLocationsStackView: UIStackView!
-    @IBOutlet var activityView:            UIActivityIndicatorView!
     @IBOutlet var mapView:                 MKMapView!
     @IBOutlet var toolBar:                 UIToolbar!
 
@@ -188,11 +191,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     override func viewDidLoad() {
         headerBlurView.layer.borderColor = UIColor.lightTextColor().CGColor
         headerBlurView.layer.borderWidth = 1
+        headerBlurView.layer.shadowOffset = CGSizeMake( 2, 2 )
         headerBlurView.layer.shadowOpacity = 0.5
-        headerBlurView.layer.shadowOffset = CGSizeMake( 0, -3 )
-
+        rightSlideOutBlurView.layer.shadowOffset = CGSizeMake( -2, 2 )
         rightSlideOutBlurView.layer.shadowOpacity = 0.5
-        headerBlurView.layer.shadowOffset = CGSizeMake( -3, 0 )
 
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -204,8 +206,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             if let searchField_ = subview as? UITextField {
                 searchField_.layer.backgroundColor = UIColor( white: 1, alpha: 0.62 ).CGColor
                 searchField_.layer.cornerRadius = 4
-//                searchField_.attributedPlaceholder = stra( self.searchBar.placeholder,
-//                                                           [ NSForegroundColorAttributeName: self.searchBar.tintColor ] )
             }
         }, recurse: true )
 
@@ -236,12 +236,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear( animated )
         resetUI()
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear( animated )
-
-        activityView.startAnimating()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -326,12 +320,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         let clRegion = CLCircularRegion( center: mapView.region.center, radius: regionNW.distanceFromLocation( regionSE ) / 2,
                                          identifier: "search" )
 
-        activityView.startAnimating()
+        let overlay = PearlOverlay.showProgressOverlayWithTitle( "Searching Address...", cancelOnTouch: {
+            self.geoCoder.cancelGeocode()
+            return true
+        } )
         searchBar.resignFirstResponder()
 
         geoCoder.geocodeAddressString( searchBar.text!.stringByAppendingString( ", Canada" ), inRegion: clRegion, completionHandler: {
             (placemarks: [CLPlacemark]?, error: NSError?) in
             if let error_ = error {
+                PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
                 print( "ERROR: Geocode: \(error_.fullDescription())" )
             }
 
@@ -351,7 +349,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             }
             self.searchPlacemark = closestSearchAnnotation
 
-            self.activityView.stopAnimating()
+            overlay.cancelOverlayAnimated( true )
         } )
     }
 
@@ -427,12 +425,18 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didChangeTravelTime(sender: AnyObject) {
-        if sender === arrivingTimeControl && travelTime.page() == 1 {
-            travelTime = STOTravelTimeArriving( time: arrivingTimeControl.date )
-        }
-        else if sender === leavingTimeControl && travelTime.page() == 2 {
-            travelTime = STOTravelTimeLeaving( time: leavingTimeControl.date )
-        }
+        didChangeTravelTimeTimer = NSTimer.scheduledTimerWithTimeInterval( 1.5, block:
+        {
+            (timer: NSTimer!) in
+            NSOperationQueue.mainQueue().addOperationWithBlock( {
+                if sender === self.arrivingTimeControl && self.travelTime.page() == 1 {
+                    self.travelTime = STOTravelTimeArriving( time: self.arrivingTimeControl.date )
+                }
+                else if sender === self.leavingTimeControl && self.travelTime.page() == 2 {
+                    self.travelTime = STOTravelTimeLeaving( time: self.leavingTimeControl.date )
+                }
+            } )
+        }, repeats: false )
     }
 
     @IBAction func didTapClear(sender: AnyObject) {
@@ -457,9 +461,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     func unsetUI() {
         self.view.layoutIfNeeded()
+        self.introVisibleConstraint.active = true
+
         self.leavingTimeControl.date = NSDate( timeIntervalSinceNow: 15 * 60 /* seconds */ )
         self.arrivingTimeControl.date = NSDate( timeIntervalSinceNow: 30 * 60 /* seconds */ )
-        self.introVisibleConstraint.active = true
     }
 
     func resetUI() {
@@ -591,12 +596,18 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
             planibusRequest = Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx",
                                                  parameters: parameters )
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for the best routes...", cancelOnTouch: {
+                self.planibusRequest?.cancel()
+                return true
+            } )
             planibusRequest?.responseString {
                 (response: Response) in
 
                 print( "STO URL:\n\(response.request?.URL)" )
-                if !response.result.isSuccess {
-                    print( "ERROR: STO Error Response:\n\(response.result.error)" )
+                if let error_ = response.result.error {
+                    overlay.cancelOverlayAnimated( true )
+                    PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
+                    print( "ERROR: STO Error Response:\n\(error_.fullDescription())" )
                     return
                 }
 
@@ -604,6 +615,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     let html  = HTMLDocument( string: result_ )
                     let error = html.firstNodeMatchingSelector( "#ErrorMessageSpan" )
                     if let error_ = error {
+                        PearlOverlay.showTemporaryOverlayWithTitle( error_.innerHTML, dismissAfter: 3 )
                         print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
                     }
 
@@ -639,10 +651,25 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                                 let stepExplanation = result.firstNodeMatchingSelector( "*[data-role=content]>p" )?.innerHTML
 
                                 if let stepMode_ = stepMode, stepTiming_ = stepTiming, stepExplanation_ = stepExplanation {
+                                    var parsedStepExplanation: NSAttributedString = stra( stepExplanation_, [:] )
+                                    do {
+                                        if let stepExplanationData = stepExplanation_.dataUsingEncoding( NSUTF8StringEncoding ) {
+                                            try parsedStepExplanation = NSAttributedString(
+                                            data: stepExplanationData,
+                                            options: [
+                                                    NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                    NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
+                                            ],
+                                            documentAttributes: nil )
+                                        }
+                                    } catch let error as NSError {
+                                        print( "ERROR: Couldn't parse STO Step explanation:\n\(error.fullDescription())" )
+                                    }
+
                                     routeSteps.append( RouteStep(
                                                        timing: stepTiming_,
                                                        mode: stepMode_, modeContext: stepModeContext,
-                                                       explanation: stepExplanation_ ) )
+                                                       explanation: parsedStepExplanation ) )
                                 }
                                 else {
                                     print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
@@ -658,7 +685,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     NSOperationQueue.mainQueue().addOperationWithBlock( {
                         self.routeLookup = RouteLookup( sourcePlacemark: sourcePlacemark_, destinationPlacemark: destinationPlacemark_,
                                                         travelTime: self.travelTime, routes: routes )
+                        overlay.cancelOverlayAnimated( true )
                     } )
+                }
+                else {
+                    overlay.cancelOverlayAnimated( true )
                 }
             }
         }
@@ -723,18 +754,25 @@ class STOPlacemarkValueResolver: STOPlacemarkResolver {
 
 class STOPlacemarkLocationResolver: STOPlacemarkResolver {
     let geoCoder:         CLGeocoder
+    let locationName:     String
     let locationSupplier: () -> (CLLocation?)
 
-    init(geoCoder: CLGeocoder, locationSupplier: () -> (CLLocation?)) {
+    init(geoCoder: CLGeocoder, locationName: String, locationSupplier: () -> (CLLocation?)) {
         self.geoCoder = geoCoder
+        self.locationName = locationName
         self.locationSupplier = locationSupplier
     }
 
     func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ()) {
         if let location_ = locationSupplier() {
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for \(locationName)...", cancelOnTouch: {
+                self.geoCoder.cancelGeocode()
+                return true
+            } )
             geoCoder.reverseGeocodeLocation( location_, completionHandler: {
                 (placemarks: [CLPlacemark]?, error: NSError?) in
                 if let error_ = error {
+                    PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
                     print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
                 }
 
@@ -744,6 +782,8 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
                 else {
                     placemarkResolutionFailed()
                 }
+
+                overlay.cancelOverlayAnimated( true )
             } )
         }
         else {
