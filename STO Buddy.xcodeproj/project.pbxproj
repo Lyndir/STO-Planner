@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39ED83F945D18A00E7424 /* Main.storyboard */; };
 		93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39B2C4D27DFF487143C9E /* RouteViewController.swift */; };
 		93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */; };
@@ -19,6 +18,7 @@
 		93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */; };
 		93D39CBCFCB6DDCC204C29A1 /* STOLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */; };
 		93D39D9272CD100521F2868A /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D393EA9A1A008FDEF72DF5 /* Route.swift */; };
+		D1DCCDD073092D7494A31FE0 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */; };
 		DA24BFAB1BD9B2E8002B219C /* NSArray+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */; };
 		DA24BFAC1BD9B2E8002B219C /* NSArray+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */; };
 		DA24BFAD1BD9B2E8002B219C /* NSBundle+PearlMutableInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */; };
@@ -137,9 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
-		6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
+		482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
 		93D3919BB49F8892394079C3 /* UIControl+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Closures.swift"; sourceTree = "<group>"; };
 		93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultsViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +149,8 @@
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STONavigationController.swift; sourceTree = "<group>"; };
+		999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = "<group>"; };
 		DA24B5871BD9B292002B219C /* libPearl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPearl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24BAC61BD9B2E4002B219C /* map-macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "map-macro.h"; sourceTree = "<group>"; };
 		DA24BAC71BD9B2E4002B219C /* NSArray+Indexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Indexing.h"; sourceTree = "<group>"; };
@@ -1394,37 +1394,7 @@
 		DA24BFA81BD9B2E8002B219C /* UIView+LayoutGone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutGone.m"; sourceTree = "<group>"; };
 		DA24BFA91BD9B2E8002B219C /* UIView+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Touches.h"; sourceTree = "<group>"; };
 		DA24BFAA1BD9B2E8002B219C /* UIView+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Touches.m"; sourceTree = "<group>"; };
-		DA24BFF91BD9BB2D002B219C /* JRSwizzle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JRSwizzle.framework; path = "Pods/../build/Debug-iphoneos/JRSwizzle.framework"; sourceTree = "<group>"; };
-		DA24C0121BD9BBA7002B219C /* HTMLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLComment.h; sourceTree = "<group>"; };
-		DA24C0131BD9BBA7002B219C /* HTMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLDocument.h; sourceTree = "<group>"; };
-		DA24C0141BD9BBA7002B219C /* HTMLDocumentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLDocumentType.h; sourceTree = "<group>"; };
-		DA24C0151BD9BBA7002B219C /* HTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLElement.h; sourceTree = "<group>"; };
-		DA24C0161BD9BBA7002B219C /* HTMLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEncoding.h; sourceTree = "<group>"; };
-		DA24C0171BD9BBA7002B219C /* HTMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLEntities.h; sourceTree = "<group>"; };
-		DA24C0181BD9BBA7002B219C /* HTMLNamespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNamespace.h; sourceTree = "<group>"; };
-		DA24C0191BD9BBA7002B219C /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
-		DA24C01A1BD9BBA7002B219C /* HTMLOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLOrderedDictionary.h; sourceTree = "<group>"; };
-		DA24C01B1BD9BBA7002B219C /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
-		DA24C01C1BD9BBA7002B219C /* HTMLPreprocessedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPreprocessedInputStream.h; sourceTree = "<group>"; };
-		DA24C01D1BD9BBA7002B219C /* HTMLQuirksMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLQuirksMode.h; sourceTree = "<group>"; };
-		DA24C01E1BD9BBA7002B219C /* HTMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLReader.h; sourceTree = "<group>"; };
-		DA24C01F1BD9BBA7002B219C /* HTMLSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSelector.h; sourceTree = "<group>"; };
-		DA24C0201BD9BBA7002B219C /* HTMLSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSerialization.h; sourceTree = "<group>"; };
-		DA24C0211BD9BBA7002B219C /* HTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLString.h; sourceTree = "<group>"; };
-		DA24C0221BD9BBA7002B219C /* HTMLSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSupport.h; sourceTree = "<group>"; };
-		DA24C0231BD9BBA7002B219C /* HTMLTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTextNode.h; sourceTree = "<group>"; };
-		DA24C0241BD9BBA7002B219C /* HTMLTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTokenizer.h; sourceTree = "<group>"; };
-		DA24C0251BD9BBA7002B219C /* HTMLTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTokenizerState.h; sourceTree = "<group>"; };
-		DA24C0261BD9BBA7002B219C /* HTMLTreeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLTreeEnumerator.h; sourceTree = "<group>"; };
-		DA24C0271BD9BBA7002B219C /* NSString+HTMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTMLEntities.h"; sourceTree = "<group>"; };
-		DA24C0291BD9BBA7002B219C /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
-		DA24C02D1BD9BBA7002B219C /* IBANetServiceTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBANetServiceTypes.h; sourceTree = "<group>"; };
-		DA24C02E1BD9BBA7002B219C /* IBARevealLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLoader.h; sourceTree = "<group>"; };
-		DA24C02F1BD9BBA7002B219C /* IBARevealLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLogger.h; sourceTree = "<group>"; };
-		DA24C0301BD9BBA7002B219C /* Reveal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reveal.h; sourceTree = "<group>"; };
 		DA418A081BFC4CE40097BBC9 /* Pearl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pearl-Bridging-Header.h"; sourceTree = "<group>"; };
-		DA5025B01BD73FD400C89134 /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_STO_Buddy.framework; path = "Pods/../build/Debug-iphoneos/Pods_STO_Buddy.framework"; sourceTree = "<group>"; };
-		DA5025B21BD7402500C89134 /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_STO_Buddy.framework; path = "Pods/../build/Debug-iphoneos/Pods_STO_Buddy.framework"; sourceTree = "<group>"; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1463,7 +1433,7 @@
 			files = (
 				DA24BFF81BD9B33B002B219C /* libPearl.a in Frameworks */,
 				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
-				18E503F435E5FEC4B2152002 /* Pods_STO_Buddy.framework in Frameworks */,
+				D1DCCDD073092D7494A31FE0 /* Pods_STO_Buddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,6 +1478,15 @@
 				DAF4A6C91C0FD56E00D9E4DB /* Launch Screen.storyboard */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		BA320521F0A02B9108034E9F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */,
+				482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		DA24BAC41BD9B2E4002B219C /* Pearl */ = {
@@ -2844,98 +2823,6 @@
 			path = silk;
 			sourceTree = "<group>";
 		};
-		DA24BFFC1BD9BBA7002B219C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C00F1BD9BBA7002B219C /* Headers */,
-				6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */,
-				2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = SOURCE_ROOT;
-		};
-		DA24C00F1BD9BBA7002B219C /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C0101BD9BBA7002B219C /* Private */,
-				DA24C02A1BD9BBA7002B219C /* Public */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		DA24C0101BD9BBA7002B219C /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C0111BD9BBA7002B219C /* HTMLReader */,
-				DA24C0281BD9BBA7002B219C /* JRSwizzle */,
-			);
-			path = Private;
-			sourceTree = "<group>";
-		};
-		DA24C0111BD9BBA7002B219C /* HTMLReader */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C0121BD9BBA7002B219C /* HTMLComment.h */,
-				DA24C0131BD9BBA7002B219C /* HTMLDocument.h */,
-				DA24C0141BD9BBA7002B219C /* HTMLDocumentType.h */,
-				DA24C0151BD9BBA7002B219C /* HTMLElement.h */,
-				DA24C0161BD9BBA7002B219C /* HTMLEncoding.h */,
-				DA24C0171BD9BBA7002B219C /* HTMLEntities.h */,
-				DA24C0181BD9BBA7002B219C /* HTMLNamespace.h */,
-				DA24C0191BD9BBA7002B219C /* HTMLNode.h */,
-				DA24C01A1BD9BBA7002B219C /* HTMLOrderedDictionary.h */,
-				DA24C01B1BD9BBA7002B219C /* HTMLParser.h */,
-				DA24C01C1BD9BBA7002B219C /* HTMLPreprocessedInputStream.h */,
-				DA24C01D1BD9BBA7002B219C /* HTMLQuirksMode.h */,
-				DA24C01E1BD9BBA7002B219C /* HTMLReader.h */,
-				DA24C01F1BD9BBA7002B219C /* HTMLSelector.h */,
-				DA24C0201BD9BBA7002B219C /* HTMLSerialization.h */,
-				DA24C0211BD9BBA7002B219C /* HTMLString.h */,
-				DA24C0221BD9BBA7002B219C /* HTMLSupport.h */,
-				DA24C0231BD9BBA7002B219C /* HTMLTextNode.h */,
-				DA24C0241BD9BBA7002B219C /* HTMLTokenizer.h */,
-				DA24C0251BD9BBA7002B219C /* HTMLTokenizerState.h */,
-				DA24C0261BD9BBA7002B219C /* HTMLTreeEnumerator.h */,
-				DA24C0271BD9BBA7002B219C /* NSString+HTMLEntities.h */,
-			);
-			path = HTMLReader;
-			sourceTree = "<group>";
-		};
-		DA24C0281BD9BBA7002B219C /* JRSwizzle */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C0291BD9BBA7002B219C /* JRSwizzle.h */,
-			);
-			path = JRSwizzle;
-			sourceTree = "<group>";
-		};
-		DA24C02A1BD9BBA7002B219C /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C02B1BD9BBA7002B219C /* Reveal-iOS-SDK */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		DA24C02B1BD9BBA7002B219C /* Reveal-iOS-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C02C1BD9BBA7002B219C /* Reveal */,
-			);
-			path = "Reveal-iOS-SDK";
-			sourceTree = "<group>";
-		};
-		DA24C02C1BD9BBA7002B219C /* Reveal */ = {
-			isa = PBXGroup;
-			children = (
-				DA24C02D1BD9BBA7002B219C /* IBANetServiceTypes.h */,
-				DA24C02E1BD9BBA7002B219C /* IBARevealLoader.h */,
-				DA24C02F1BD9BBA7002B219C /* IBARevealLogger.h */,
-				DA24C0301BD9BBA7002B219C /* Reveal.h */,
-			);
-			path = Reveal;
-			sourceTree = "<group>";
-		};
 		DA7EE8641BC0736800F4E5E1 /* Pearl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2955,9 +2842,9 @@
 				DA993B971BB459C1007CB7A0 /* STO BuddyTests */,
 				DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */,
 				DA7EE8641BC0736800F4E5E1 /* Pearl */,
-				DA24BFFC1BD9BBA7002B219C /* Pods */,
 				DF960004C8A7B9F64C9AFFAE /* Frameworks */,
 				DA993B811BB459C1007CB7A0 /* Products */,
+				BA320521F0A02B9108034E9F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3014,11 +2901,8 @@
 		DF960004C8A7B9F64C9AFFAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DA24BFF91BD9BB2D002B219C /* JRSwizzle.framework */,
-				DA5025B21BD7402500C89134 /* Pods_STO_Buddy.framework */,
-				DA5025B01BD73FD400C89134 /* Pods_STO_Buddy.framework */,
 				DA993BB11BB792D9007CB7A0 /* MapKit.framework */,
-				2427B12216130091EC2561D0 /* Pods_STO_Buddy.framework */,
+				999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3533,7 +3417,7 @@
 		};
 		DA993BA91BB459C1007CB7A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A9EB6EE4E879B032A72765C /* Pods-STO Buddy.debug.xcconfig */;
+			baseConfigurationReference = A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
@@ -3541,6 +3425,7 @@
 				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3554,7 +3439,7 @@
 		};
 		DA993BAA1BB459C1007CB7A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AD2E8AD337AD9BA70F1AACE /* Pods-STO Buddy.release.xcconfig */;
+			baseConfigurationReference = 482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
@@ -3562,6 +3447,7 @@
 				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

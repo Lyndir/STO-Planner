@@ -214,25 +214,31 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         rightSlideOutConstraint.constant = 0
         rebuildRouteLocationsStackView()
 
+        NSNotificationCenter.defaultCenter().addObserverForName( UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock:
+        {
+            (notification) in
+            self.resetUI()
+        } )
+        NSNotificationCenter.defaultCenter().addObserverForName( UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock:
+        {
+            (notification) in
+            self.unsetUI()
+        } )
+
         super.viewDidLoad()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear( animated )
 
-        self.introVisibleConstraint.active = true
+        if !animated {
+            unsetUI()
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear( animated )
-
-        activityView.stopAnimating()
-
-        self.view.layoutIfNeeded()
-        UIView.animateWithDuration( 1, delay: 0.3, options: UIViewAnimationOptions(), animations: {
-            self.introVisibleConstraint.active = false
-            self.view.layoutIfNeeded()
-        }, completion: nil )
+        resetUI()
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -406,7 +412,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         }
     }
 
-
     /* Actions */
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
@@ -421,6 +426,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             setConstraintConstantFromGesture( rightSlideOutConstraint,
                                               gestureState: sender.state, rest: 0, target: rightSlideOutTotal,
                                               current: sender.translationInView( rightSlideOut ).x )
+        }
+    }
+
+    @IBAction func didChangeTravelTime(sender: AnyObject) {
+        if sender === arrivingTimeControl && travelTime.page() == 1 {
+            travelTime = STOTravelTimeArriving( time: arrivingTimeControl.date )
+        }
+        else if sender === leavingTimeControl && travelTime.page() == 2 {
+            travelTime = STOTravelTimeLeaving( time: leavingTimeControl.date )
         }
     }
 
@@ -443,6 +457,21 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     /* Private */
+
+    func unsetUI() {
+        self.leavingTimeControl.date = NSDate( timeIntervalSinceNow: 15 * 60 /* seconds */ )
+        self.arrivingTimeControl.date = NSDate( timeIntervalSinceNow: 30 * 60 /* seconds */ )
+        self.introVisibleConstraint.active = true
+//        self.view.layoutIfNeeded()
+    }
+
+    func resetUI() {
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration( 1, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+            self.introVisibleConstraint.active = false
+            self.view.layoutIfNeeded()
+        }, completion: nil )
+    }
 
     func showAnnotations() {
         var annotations: [MKAnnotation] = [ mapView.userLocation ]
@@ -735,12 +764,12 @@ protocol STOTravelTime {
 }
 
 class STOFutureTravelTime: STOTravelTime {
-    let dateFormatter = NSDateFormatter(), timeFormatter = NSDateFormatter()
+    let planibusDateFormatter = NSDateFormatter(), planibusTimeFormatter = NSDateFormatter()
     let time: NSDate
 
     init(time: NSDate) {
-        dateFormatter.dateFormat = "yyyyMMdd"
-        timeFormatter.dateFormat = "HHmm"
+        planibusDateFormatter.dateFormat = "yyyyMMdd"
+        planibusTimeFormatter.dateFormat = "HHmm"
         self.time = time
     }
 
@@ -774,8 +803,8 @@ class STOTravelTimeArriving: STOFutureTravelTime {
 
     override func planibusParameters() -> Dictionary<String, String> {
         return [
-                "date": dateFormatter.stringFromDate( time ),
-                "hour": timeFormatter.stringFromDate( time ),
+                "date": planibusDateFormatter.stringFromDate( time ),
+                "hour": planibusTimeFormatter.stringFromDate( time ),
                 "timeType": "SpecifiedArrivalTime"
         ]
     }
@@ -788,8 +817,8 @@ class STOTravelTimeLeaving: STOFutureTravelTime {
 
     override func planibusParameters() -> Dictionary<String, String> {
         return [
-                "date": dateFormatter.stringFromDate( time ),
-                "hour": timeFormatter.stringFromDate( time ),
+                "date": planibusDateFormatter.stringFromDate( time ),
+                "hour": planibusTimeFormatter.stringFromDate( time ),
                 "timeType": "SpecifiedDepartureTime"
         ]
     }

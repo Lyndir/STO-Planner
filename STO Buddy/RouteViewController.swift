@@ -108,15 +108,54 @@ class RouteLookupCell: UITableViewCell {
         return "RouteLookupCell"
     }
 
+    let timeFormatter     = NSDateFormatter()
+    let dateTimeFormatter = NSDateFormatter()
+
     @IBOutlet var titleLabel:    UILabel!
     @IBOutlet var subtitleLabel: UILabel!
+    @IBOutlet var arrivingLabel: UILabel!
+    @IBOutlet var leavingLabel:  UILabel!
 
     var routeLookup: RouteLookup! {
         didSet {
             let source = routeLookup.sourcePlacemark, destination = routeLookup.destinationPlacemark
             titleLabel.text = destination.thoroughfare ?? destination.name ?? ""
             subtitleLabel.text = "From: \(source.thoroughfare ?? source.name ?? "")"
+            leavingLabel.hidden = true
+            arrivingLabel.hidden = true
+
+            if routeLookup.travelTime is STOTravelTimeLeavingNow {
+                leavingLabel.hidden = false
+                leavingLabel.text = "Leaving Now"
+            }
+            else if let futureTime = routeLookup.travelTime as? STOFutureTravelTime {
+                let timeFormat: String
+                if NSCalendar.currentCalendar().isDateInToday( futureTime.time ) {
+                    timeFormat = timeFormatter.stringFromDate( futureTime.time )
+                }
+                else {
+                    timeFormat = dateTimeFormatter.stringFromDate( futureTime.time )
+                }
+
+                if futureTime is STOTravelTimeArriving {
+                    arrivingLabel.hidden = false
+                    arrivingLabel.text = "Arriving:\n\(timeFormat)"
+                }
+                else if futureTime is STOTravelTimeLeaving {
+                    leavingLabel.hidden = false
+                    leavingLabel.text = "Leaving: \(timeFormat)"
+                }
+            }
         }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        timeFormatter.dateStyle = .NoStyle
+        timeFormatter.timeStyle = .ShortStyle
+        dateTimeFormatter.dateStyle = .ShortStyle
+        dateTimeFormatter.timeStyle = .ShortStyle
     }
 }
 

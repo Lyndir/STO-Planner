@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (3.0.1)
-  - HTMLReader (0.9)
+  - Alamofire (3.1.3)
+  - HTMLReader (0.9.3)
   - JRSwizzle (1.0)
-  - Reveal-iOS-SDK (1.6.0)
+  - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire`)
@@ -16,13 +16,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 0f816eedf8d6b7c9a656697e50462145506e48f9
+    :commit: 268a22bff9d660ecd1af260906aa2eb72d261894
     :git: https://github.com/Alamofire/Alamofire
 
 SPEC CHECKSUMS:
-  Alamofire: 2457e1b2e6c46bb05c3a598c542b7bfd08893775
-  HTMLReader: d93d3db9fe26c28c2479bcc906d3e7453377a902
+  Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
+  HTMLReader: 01de6ebb3b5f0f9dc4f6f165fdac0a15b3648167
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
-  Reveal-iOS-SDK: 6afacafd60f66f2822c09c43ae60562881bfab6e
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
 
 COCOAPODS: 0.39.0
