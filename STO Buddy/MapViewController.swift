@@ -224,16 +224,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             (notification) in
             self.unsetUI()
         } )
+        unsetUI()
 
         super.viewDidLoad()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear( animated )
-
-        if !animated {
-            unsetUI()
-        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -459,10 +456,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     /* Private */
 
     func unsetUI() {
+        self.view.layoutIfNeeded()
         self.leavingTimeControl.date = NSDate( timeIntervalSinceNow: 15 * 60 /* seconds */ )
         self.arrivingTimeControl.date = NSDate( timeIntervalSinceNow: 30 * 60 /* seconds */ )
         self.introVisibleConstraint.active = true
-//        self.view.layoutIfNeeded()
     }
 
     func resetUI() {
