@@ -9,7 +9,6 @@
         <!--View Controller-->
         <scene sceneID="cOm-Qu-gpo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F9z-RH-A8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="3jV-cr-K8X" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bpL-0s-5Rd"/>
@@ -80,6 +79,7 @@
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9z-RH-A8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="1041"/>
         </scene>

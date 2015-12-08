@@ -5,20 +5,44 @@
 
 import UIKit
 
-class LocationResultsViewController: UITableViewController {
-    let favoriteLocations: Locations = Locations.starred()
-    let recentLocations:   Locations = Locations.recent()
+class LocationResultsViewController: UITableViewController, LocationsObserver {
+    var locationItems = [ [ Location ] ]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
+        Locations.observers.addObserver( self )
+    }
+
+    /* Actions */
 
     @IBAction func didTapDismiss(sender: UIBarButtonItem) {
         navigationController?.dismissViewControllerAnimated( true, completion: nil )
     }
 
     @IBAction func didTapClear(sender: UIBarButtonItem) {
-        recentLocations.clear()
+        Locations.recent.clear()
     }
 
+    /* LocationsObserver */
+
+    func locationsChanged(locations: Locations, byLocation location: Location) {
+        let oldLocationItems = locationItems
+        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
+        tableView?.reloadSectionsFromArray( oldLocationItems, toArray: locationItems )
+    }
+
+    func locationsCleared(locations: Locations) {
+        let oldLocationItems = locationItems
+        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
+        tableView?.reloadSectionsFromArray( oldLocationItems, toArray: locationItems )
+    }
+
+    /* UITableViewDataSource */
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return locationItems.count
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -33,47 +57,26 @@ class LocationResultsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-            case 0:
-                return favoriteLocations.count
-            case 1:
-                return recentLocations.count
-            default:
-                preconditionFailure( "Unexpected section: \(section)" )
-        }
+        return locationItems[section].count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let location: Location
-        switch indexPath.section {
-            case 0:
-                location = favoriteLocations[indexPath.row]
-            case 1:
-                location = recentLocations[indexPath.row]
-            default:
-                preconditionFailure( "Unexpected section: \(indexPath.section)" )
-        }
-
-        let cell = tableView.dequeueReusableCellWithIdentifier( LocationCell.name(), forIndexPath: indexPath ) as! LocationCell
+        let cell         = tableView.dequeueReusableCellWithIdentifier( LocationCell.name(), forIndexPath: indexPath ) as! LocationCell
+        let locationItem = locationItems[indexPath.section][indexPath.row]
         if let navigationController_ = self.navigationController as? STONavigationController {
             cell.navigationController = navigationController_
-            cell.location = location
+            cell.location = locationItem
         }
 
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let navigationController_ = self.navigationController as? STONavigationController {
-            switch indexPath.section {
-                case 0:
-                    navigationController_.mapViewController.searchPlacemark = favoriteLocations[indexPath.row].placemark
-                case 1:
-                    navigationController_.mapViewController.searchPlacemark = recentLocations[indexPath.row].placemark
-                default:
-                    preconditionFailure( "Unexpected section: \(indexPath.section)" )
-            }
+    /* UITableViewDelegate */
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let locationItem = locationItems[indexPath.section][indexPath.row]
+        if let navigationController_ = self.navigationController as? STONavigationController {
+            navigationController_.mapViewController.searchPlacemark = locationItem.placemark
             navigationController_.dismissViewControllerAnimated( true, completion: nil )
         }
 
@@ -81,7 +84,7 @@ class LocationResultsViewController: UITableViewController {
     }
 }
 
-class LocationCell: UITableViewCell {
+class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     class func name() -> String {
         return "LocationCell"
     }
@@ -92,34 +95,43 @@ class LocationCell: UITableViewCell {
     @IBOutlet var extrasMenuHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var sourceDestinationControl:   UISegmentedControl!
 
-    var extraMenuShowing = false
-
+    var mark:                 LocationMark?
+    var extraMenuShowing = false {
+        didSet {
+            updateExtrasMenu()
+        }
+    }
     var navigationController: STONavigationController!
-    var location: Location! {
+    var location:             Location! {
         didSet {
             titleLabel.text = "\(location.placemark.name ?? ""), \(location.placemark.locality ?? "")"
             subtitleLabel.text = location.placemark.postalCode
+            updateExtrasMenu()
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        Locations.observers.addObserver( self )
+        LocationMark.observers.addObserver( self )
+
+        extrasMenuControl.clipsToBounds = true
+        extrasMenuControl.layer.cornerRadius = 4
         extrasMenuControl.on( .ValueChanged, {
-            switch self.extrasMenuControl.selectedSegmentIndex {
-                case 0: // Disclosure button
-                    self.extraMenuShowing = !self.extraMenuShowing
-                case 1: // Home
-                    LocationMark.Home.setLocation( self.location )
-                case 2: // Work
-                    LocationMark.Work.setLocation( self.location )
-                case 3: // Play
-                    LocationMark.Play.setLocation( self.location )
-                default:
-                    preconditionFailure( "Unsupported extras segment index: \(self.extrasMenuControl.selectedSegmentIndex)" )
+            if self.extrasMenuControl.selectedSegmentIndex == 0 {
+                // Toggle button
+                self.extraMenuShowing = !self.extraMenuShowing
             }
-            self.updateExtrasMenu()
+            else if self.extrasMenuControl.selectedSegmentIndex == 1 {
+                // Favorite button
+                Locations.starred.toggle( self.location )
+            }
+            else {
+                LocationMark( rawValue: self.extrasMenuControl.selectedSegmentIndex - 2 )?.setLocation( self.location )
+            }
         } )
+        sourceDestinationControl.layer.cornerRadius = 4
         sourceDestinationControl.on( .ValueChanged, {
             switch self.sourceDestinationControl.selectedSegmentIndex {
                 case 0:
@@ -136,6 +148,35 @@ class LocationCell: UITableViewCell {
         } )
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        mark = nil
+        extraMenuShowing = false
+    }
+
+    /* LocationsObserver */
+
+    func locationsChanged(locations: Locations, byLocation location: Location) {
+        if (location == self.location) {
+            updateExtrasMenu()
+        }
+    }
+
+    func locationsCleared(locations: Locations) {
+        updateExtrasMenu()
+    }
+
+    /* LocationMarkObserver */
+
+    func locationChangedForMark(mark: LocationMark, toLocation location: Location) {
+        if (mark == self.mark) {
+            updateExtrasMenu()
+        }
+    }
+
+    /* Private */
+
     func updateExtrasMenu() {
         layoutIfNeeded()
         UIView.animateWithDuration( 0.3, animations: {
@@ -143,13 +184,21 @@ class LocationCell: UITableViewCell {
             self.layoutIfNeeded()
         } )
 
-        extrasMenuControl.setTitle( extraMenuShowing ? "➡︎": "⬅︎", forSegmentAtIndex: 0 )
-        extrasMenuControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        mark = markForLocation()
+        let starred        = Locations.starred.contains( self.location )
+        let firstItemTitle = extraMenuShowing ? "➡︎": mark?.title ?? (starred ? "★": "⬅︎")
+        extrasMenuControl.setTitle( firstItemTitle, forSegmentAtIndex: 0 )
+        extrasMenuControl.setTitle( starred ? "★": "☆︎", forSegmentAtIndex: 1 )
+        extrasMenuControl.selectedSegmentIndex = mark == nil ? UISegmentedControlNoSegment: mark!.rawValue + 2
+    }
+
+    func markForLocation() -> LocationMark? {
         for mark in iterateEnum( LocationMark ) {
             if mark.matchesLocation( location ) {
-                extrasMenuControl.selectedSegmentIndex = mark.rawValue + 1
-                break
+                return mark
             }
         }
+
+        return nil
     }
 }

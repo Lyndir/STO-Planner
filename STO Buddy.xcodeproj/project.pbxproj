@@ -16,6 +16,8 @@
 		93D39A3FAB9063A9F19E4999 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39AF3F812CF57DD961A2F /* Locations.swift */; };
 		93D39A8C4AFAEECC3EBC42CC /* UIControl+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3919BB49F8892394079C3 /* UIControl+Closures.swift */; };
 		93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */; };
+		93D39B0E0AD96AE0D3389E6E /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D398549E642F5D73C81DF7 /* Observers.swift */; };
+		93D39C72AA361F76E337B997 /* NSMutableSet+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */; };
 		93D39CBCFCB6DDCC204C29A1 /* STOLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */; };
 		93D39D9272CD100521F2868A /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D393EA9A1A008FDEF72DF5 /* Route.swift */; };
 		D1DCCDD073092D7494A31FE0 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */; };
@@ -140,11 +142,14 @@
 		482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
 		93D3919BB49F8892394079C3 /* UIControl+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Closures.swift"; sourceTree = "<group>"; };
+		93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Pearl.m"; sourceTree = "<group>"; };
 		93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultsViewController.swift; sourceTree = "<group>"; };
 		93D393EA9A1A008FDEF72DF5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93D394D7B1F54230E9E385C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93D396914B88815B86C1BDD3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		93D396EAF29381BEBEE808CB /* NSMutableSet+Pearl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Pearl.h"; sourceTree = "<group>"; };
 		93D397C386316E24D06914C0 /* STOVisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOVisualEffectView.swift; sourceTree = "<group>"; };
+		93D398549E642F5D73C81DF7 /* Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOLaunchViewController.swift; sourceTree = "<group>"; };
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
@@ -1422,6 +1427,7 @@
 		DA5E13EF1C11E1D700B4FC4D /* IBARevealLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLoader.h; sourceTree = "<group>"; };
 		DA5E13F01C11E1D700B4FC4D /* IBARevealLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLogger.h; sourceTree = "<group>"; };
 		DA5E13F11C11E1D700B4FC4D /* Reveal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reveal.h; sourceTree = "<group>"; };
+		DA5E13F21C15387000B4FC4D /* STO Buddy-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STO Buddy-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1486,6 +1492,7 @@
 			children = (
 				93D393EA9A1A008FDEF72DF5 /* Route.swift */,
 				93D39AF3F812CF57DD961A2F /* Locations.swift */,
+				93D398549E642F5D73C81DF7 /* Observers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1581,6 +1588,8 @@
 				DA24BB001BD9B2E4002B219C /* PearlTween.m */,
 				DA24BB011BD9B2E4002B219C /* README */,
 				DA24BB021BD9B2E4002B219C /* Resources */,
+				93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */,
+				93D396EAF29381BEBEE808CB /* NSMutableSet+Pearl.h */,
 			);
 			path = Pearl;
 			sourceTree = "<group>";
@@ -2972,6 +2981,7 @@
 		DA993B821BB459C1007CB7A0 /* STO Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				DA5E13F21C15387000B4FC4D /* STO Buddy-Bridging-Header.h */,
 				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
 				DAF4A6981C0971D200D9E4DB /* bus-large.png */,
 				DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */,
@@ -3318,6 +3328,8 @@
 				93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */,
 				93D399CD677C53800E3D844A /* STOVisualEffectView.swift in Sources */,
 				93D39CBCFCB6DDCC204C29A1 /* STOLaunchViewController.swift in Sources */,
+				93D39C72AA361F76E337B997 /* NSMutableSet+Pearl.m in Sources */,
+				93D39B0E0AD96AE0D3389E6E /* Observers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3383,6 +3395,7 @@
 				GCC_PREFIX_HEADER = "Pearl/Pearl-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pearl/$(TARGET_NAME)-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -3396,6 +3409,7 @@
 				GCC_PREFIX_HEADER = "Pearl/Pearl-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pearl/$(TARGET_NAME)-Bridging-Header.h";
 			};
 			name = Release;
 		};

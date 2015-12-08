@@ -6,72 +6,114 @@
 import Foundation
 import MapKit
 
+public protocol LocationsObserver: class {
+    func locationsChanged(locations: Locations, byLocation location: Location)
+
+    func locationsCleared(locations: Locations)
+}
+
 public class Locations: SequenceType {
-    let key:   String
-    var state: [Dictionary<String, AnyObject>]
+    public static var observers = Observers<LocationsObserver>()
+    public static var  recent    = Locations( key: "locations.recent" )
+    public static var  starred   = Locations( key: "locations.starred" )
 
-    public class func recent() -> Locations {
-        return Locations( key: "locations.recent" )
-    }
-
-    public class func starred() -> Locations {
-        return Locations( key: "locations.starred" )
-    }
+    let key:           String
+    var locationDicts: [[String:NSObject]]
 
     private init(key: String) {
         self.key = key
-        self.state = NSUserDefaults.standardUserDefaults().arrayForKey( key ) as? [[String:AnyObject]]
-        ?? [ [ String: AnyObject ] ]()
+        self.locationDicts = NSUserDefaults.standardUserDefaults().arrayForKey( key ) as? [[String:NSObject]]
+        ?? [ [ String: NSObject ] ]()
     }
 
     public func generate() -> AnyGenerator<Location> {
-        var stateGenerator = state.generate()
+        var stateGenerator = locationDicts.generate()
         return anyGenerator( {
-            let locationState = stateGenerator.next()
-            return locationState == nil ? nil: Location( dict: locationState! )
+            if let locationDict = stateGenerator.next() {
+                if self === Locations.recent && Locations.starred.locationDicts.contains( {
+                    return locationDict == $0
+                } ) {
+                    return nil
+                }
+
+                return Location( dict: locationDict )
+            }
+
+            return nil
         } )
     }
 
     public var count: Int {
-        return state.count
+        return locationDicts.count
     }
 
     public subscript(index: Int) -> Location {
-        return Location( dict: state[index] )
+        return Location( dict: locationDicts[index] )
     }
 
     func add(location: Location) {
-        state = state.filter( { !location.matchesDict( $0 ) } )
-        state.append( location.toDict() )
-        NSUserDefaults.standardUserDefaults().setObject( state, forKey: key )
+        locationDicts = locationDicts.filter( { !location.matchesDict( $0 ) } )
+        locationDicts.append( location.toDict() )
+        NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
+
+        Locations.observers.fireObservers {
+            $0.locationsChanged( self, byLocation: location )
+        }
+    }
+
+    func toggle(location: Location) {
+        let locationDictsCount = locationDicts.count
+        locationDicts = locationDicts.filter( { !location.matchesDict( $0 ) } )
+        if locationDictsCount == locationDicts.count {
+            locationDicts.append( location.toDict() )
+        }
+        NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
+
+        Locations.observers.fireObservers {
+            $0.locationsChanged( self, byLocation: location )
+        }
+    }
+
+    func contains(location: Location) -> Bool {
+        for locationDict in locationDicts {
+            if (location.matchesDict( locationDict )) {
+                return true;
+            }
+        }
+
+        return false
     }
 
     func clear() {
-        state = [ [ String: AnyObject ] ]()
-        NSUserDefaults.standardUserDefaults().setObject( state, forKey: key )
+        locationDicts = [ [ String: NSObject ] ]()
+        NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
+
+        Locations.observers.fireObservers {
+            $0.locationsCleared( self )
+        }
     }
 }
 
-public class Location {
+public class Location: NSObject {
     let placemark: MKPlacemark
 
     init(placemark: MKPlacemark) {
         self.placemark = placemark
     }
 
-    init(dict: [String:AnyObject]) {
-        self.placemark = MKPlacemark( coordinate: CLLocationCoordinate2D( latitude: dict["coordinate.latitude"]!.doubleValue!,
-                                                                          longitude: dict["coordinate.longitude"]!.doubleValue! ),
-                                      addressDictionary: dict["addressDictionary"] as! [String:AnyObject]? )
+    init(dict: [String:NSObject]) {
+        self.placemark = MKPlacemark( coordinate: CLLocationCoordinate2D( latitude: (dict["coordinate.latitude"] as! CLLocationDegrees),
+                                                                          longitude: (dict["coordinate.longitude"]! as! CLLocationDegrees) ),
+                                      addressDictionary: dict["addressDictionary"] as! [String:NSObject]? )
     }
 
-    func toDict() -> [String:AnyObject] {
+    func toDict() -> [String:NSObject] {
         return [ "coordinate.latitude": placemark.coordinate.latitude,
                  "coordinate.longitude": placemark.coordinate.longitude,
                  "addressDictionary": placemark.addressDictionary! ]
     }
 
-    func matchesDict(dict: [String:AnyObject]) -> Bool {
+    func matchesDict(dict: [String:NSObject]) -> Bool {
         if let latitude_ = dict["coordinate.latitude"] as? CLLocationDegrees,
         longitude_ = dict["coordinate.longitude"] as? CLLocationDegrees {
             return latitude_ == self.placemark.coordinate.latitude && longitude_ == self.placemark.coordinate.longitude
@@ -79,19 +121,57 @@ public class Location {
 
         return false
     }
+
+    public override var hash: Int {
+        if let myLocation = placemark.location {
+            return myLocation.coordinate.longitude.hashValue &+ myLocation.coordinate.latitude.hashValue &* 31
+        }
+
+        return 0
+    }
+
+    public override func isEqual(obj: AnyObject?) -> Bool {
+        if let myLocation = placemark.location, objLocation = (obj as? Location)?.placemark.location {
+            return myLocation.coordinate.longitude == objLocation.coordinate.longitude &&
+                   myLocation.coordinate.latitude == objLocation.coordinate.latitude
+        }
+
+        return false
+    }
 }
 
-enum LocationMark: Int {
+public protocol LocationMarkObserver: class {
+    func locationChangedForMark(mark: LocationMark, toLocation location: Location)
+}
+
+public enum LocationMark: Int {
+    public static var observers = Observers<LocationMarkObserver>()
+
     case Home
     case Work
     case Play
 
+    var title: String {
+        switch self {
+            case .Home:
+                return "🏠"
+            case .Work:
+                return "🏢"
+            case .Play:
+                return "🌲"
+        }
+    }
+
     func setLocation(location: Location) {
         NSUserDefaults.standardUserDefaults().setObject( location.toDict(), forKey: "locationMarks.\(self)" )
+
+        LocationMark.observers.fireObservers {
+            $0.locationChangedForMark( self, toLocation: location )
+        }
     }
 
     func getLocation() -> Location? {
-        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" )  as? [String : AnyObject] {
+        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" ) as? [String:NSObject] {
             return Location( dict: locationDict )
         }
 
@@ -99,7 +179,7 @@ enum LocationMark: Int {
     }
 
     func matchesLocation(location: Location) -> Bool {
-        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" ) as? [String : AnyObject]  {
+        if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self)" ) as? [String:NSObject] {
             return location.matchesDict( locationDict )
         }
 

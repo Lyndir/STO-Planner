@@ -24,3 +24,22 @@ func iterateEnum<T:Hashable>(_: T.Type) -> AnyGenerator<T> {
         return next.hashValue == i++ ? next: nil
     }
 }
+
+struct WeakReference<T> {
+    private weak var _value: AnyObject?
+}
+
+extension WeakReference where T:AnyObject {
+    init(_ value : T) {
+        self.value = value
+    }
+    
+    var value: T? {
+        get {
+            return _value as! T?
+        }
+        set {
+            _value = newValue
+        }
+    }
+}

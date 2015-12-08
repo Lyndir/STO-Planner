@@ -34,9 +34,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="602" height="370.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSt-dm-u5P">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSt-dm-u5P">
                                             <rect key="frame" x="-238" y="-185" width="0.0" height="0.0"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="CQ2-8M-LAH">
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CQ2-8M-LAH">
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <animations/>
                                                 <variation key="widthClass=compact" ambiguous="YES">
@@ -459,14 +459,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-Q0-Jxf">
-                                            <rect key="frame" x="451" y="8" width="133" height="29"/>
+                                            <rect key="frame" x="173" y="8" width="314" height="29"/>
                                             <animations/>
-                                            <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.94327950477600098" green="0.98936665058135986" blue="0.99987876415252686" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             <segments>
                                                 <segment title="⬅︎" width="44"/>
+                                                <segment title="★" width="44"/>
                                                 <segment title="🏠" width="44"/>
                                                 <segment title="🏢" width="44"/>
                                                 <segment title="🌲" width="44"/>
+                                                <segment title="" width="44"/>
+                                                <segment title="" width="44"/>
                                             </segments>
                                         </segmentedControl>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-Kj-fZ1">
@@ -488,17 +491,17 @@
                                         <constraint firstItem="lcp-Fa-oLT" firstAttribute="top" secondItem="XTh-CK-WR2" secondAttribute="top" constant="2" id="KRh-Q9-Zyv"/>
                                         <constraint firstItem="zqy-Va-VV9" firstAttribute="top" secondItem="lcp-Fa-oLT" secondAttribute="bottom" id="LXQ-5V-46V"/>
                                         <constraint firstAttribute="bottom" secondItem="zqy-Va-VV9" secondAttribute="bottom" constant="2" id="SRl-jk-u9F"/>
-                                        <constraint firstItem="Xkh-Q0-Jxf" firstAttribute="leading" secondItem="JUr-Kj-fZ1" secondAttribute="leading" constant="-44" id="X1h-YA-B0e"/>
-                                        <constraint firstItem="JUr-Kj-fZ1" firstAttribute="leading" secondItem="Xkh-Q0-Jxf" secondAttribute="trailing" priority="500" constant="8" id="YzX-fJ-kE7"/>
-                                        <constraint firstAttribute="bottom" secondItem="lcp-Fa-oLT" secondAttribute="bottom" id="d5p-Fj-Qf8"/>
+                                        <constraint firstItem="Xkh-Q0-Jxf" firstAttribute="leading" secondItem="JUr-Kj-fZ1" secondAttribute="leading" constant="-42" id="X1h-YA-B0e"/>
+                                        <constraint firstItem="JUr-Kj-fZ1" firstAttribute="leading" secondItem="Xkh-Q0-Jxf" secondAttribute="trailing" priority="749" constant="8" id="YzX-fJ-kE7"/>
                                         <constraint firstItem="JUr-Kj-fZ1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xkh-Q0-Jxf" secondAttribute="trailing" id="dj3-hK-goO"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="JUr-Kj-fZ1" secondAttribute="trailing" constant="8" id="j26-xU-qh6"/>
+                                        <constraint firstItem="Xkh-Q0-Jxf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XTh-CK-WR2" secondAttribute="leadingMargin" id="hdM-tp-30Z"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="JUr-Kj-fZ1" secondAttribute="trailing" priority="748" constant="8" id="j26-xU-qh6"/>
                                         <constraint firstItem="zqy-Va-VV9" firstAttribute="leading" secondItem="lcp-Fa-oLT" secondAttribute="leading" id="sUb-kc-Qhz"/>
                                         <constraint firstItem="zqy-Va-VV9" firstAttribute="trailing" secondItem="lcp-Fa-oLT" secondAttribute="trailing" id="vLh-ks-Xzs"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="d5p-Fj-Qf8"/>
+                                            <exclude reference="X1h-YA-B0e"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

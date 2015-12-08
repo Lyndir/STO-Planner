@@ -507,7 +507,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             destinationPlacemark = location.placemark
         }
 
-        Locations.recent().add( location )
+        Locations.recent.add( location )
     }
 
     func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {
@@ -528,7 +528,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                         preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
                 }
 
-                Locations.recent().add( Location( placemark: placemark ) )
+                Locations.recent.add( Location( placemark: placemark ) )
             }, placemarkResolutionFailed: {
                 control.selectedSegmentIndex = -1
             } )
