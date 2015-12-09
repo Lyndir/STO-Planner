@@ -252,22 +252,28 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     /* MKMapViewDelegate */
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let searchPlacemark_ = searchPlacemark
-        where searchPlacemark_ === annotation {
-            let identifier                           = "SearchAnnotation"
+        if let placemark = annotation as? MKPlacemark
+        where placemark == self.searchPlacemark || placemark == self.sourcePlacemark || placemark == self.destinationPlacemark {
+            let identifier                           = "LocationAnnotation"
             var annotationView: MKPinAnnotationView! =
             mapView.dequeueReusableAnnotationViewWithIdentifier( identifier ) as? MKPinAnnotationView
             if annotationView == nil {
-                annotationView = MKPinAnnotationView( annotation: searchPlacemark_, reuseIdentifier: identifier )
+                annotationView = MKPinAnnotationView( annotation: placemark, reuseIdentifier: identifier )
             }
             else {
-                annotationView.annotation = searchPlacemark_
+                annotationView.annotation = placemark
             }
 
-            annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
             annotationView.animatesDrop = true
-            addSourceOrDestinationCallout( annotationView,
-                                           placemarkResolver: STOPlacemarkValueResolver( placemark: searchPlacemark_ ) )
+            if placemark == self.sourcePlacemark {
+                annotationView.pinTintColor = MKPinAnnotationView.greenPinColor()
+            } else if placemark == self.destinationPlacemark {
+                annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
+            } else {
+                annotationView.pinTintColor = MKPinAnnotationView.purplePinColor()
+            }
+
+            addSourceOrDestinationCallout( annotationView, placemarkResolver: STOPlacemarkValueResolver( placemark: placemark ) )
 
             return annotationView
         }
@@ -507,7 +513,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             destinationPlacemark = location.placemark
         }
 
-        Locations.recent.add( location )
+        Locations.recent.insert( location )
     }
 
     func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {
@@ -528,7 +534,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                         preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
                 }
 
-                Locations.recent.add( Location( placemark: placemark ) )
+                Locations.recent.insert( Location( placemark: placemark ) )
             }, placemarkResolutionFailed: {
                 control.selectedSegmentIndex = -1
             } )

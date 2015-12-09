@@ -12,7 +12,7 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
         super.viewDidLoad()
 
         locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
-        Locations.observers.addObserver( self )
+        Locations.observers.add( self )
     }
 
     /* Actions */
@@ -113,8 +113,8 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        Locations.observers.addObserver( self )
-        LocationMark.observers.addObserver( self )
+        Locations.observers.add( self )
+        LocationMark.observers.add( self )
 
         extrasMenuControl.clipsToBounds = true
         extrasMenuControl.layer.cornerRadius = 4
@@ -124,11 +124,16 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
                 self.extraMenuShowing = !self.extraMenuShowing
             }
             else if self.extrasMenuControl.selectedSegmentIndex == 1 {
+                // Trash
+                Locations.starred.remove( self.location )
+                Locations.recent.remove( self.location )
+            }
+            else if self.extrasMenuControl.selectedSegmentIndex == 2 {
                 // Favorite button
                 Locations.starred.toggle( self.location )
             }
             else {
-                LocationMark( rawValue: self.extrasMenuControl.selectedSegmentIndex - 2 )?.setLocation( self.location )
+                LocationMark( rawValue: self.extrasMenuControl.selectedSegmentIndex - 3 )?.setLocation( self.location )
             }
         } )
         sourceDestinationControl.layer.cornerRadius = 4
@@ -169,8 +174,8 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
 
     /* LocationMarkObserver */
 
-    func locationChangedForMark(mark: LocationMark, toLocation location: Location) {
-        if (mark == self.mark) {
+    func locationChangedForMark(mark: LocationMark, toLocation location: Location?) {
+        if mark == self.mark || location == self.location {
             updateExtrasMenu()
         }
     }
@@ -188,8 +193,8 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
         let starred        = Locations.starred.contains( self.location )
         let firstItemTitle = extraMenuShowing ? "➡︎": mark?.title ?? (starred ? "★": "⬅︎")
         extrasMenuControl.setTitle( firstItemTitle, forSegmentAtIndex: 0 )
-        extrasMenuControl.setTitle( starred ? "★": "☆︎", forSegmentAtIndex: 1 )
-        extrasMenuControl.selectedSegmentIndex = mark == nil ? UISegmentedControlNoSegment: mark!.rawValue + 2
+        extrasMenuControl.setTitle( starred ? "★": "☆︎", forSegmentAtIndex: 2 )
+        extrasMenuControl.selectedSegmentIndex = mark == nil ? UISegmentedControlNoSegment: mark!.rawValue + 3
     }
 
     func markForLocation() -> LocationMark? {
