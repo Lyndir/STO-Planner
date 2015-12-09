@@ -435,8 +435,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcp-Fa-oLT">
-                                            <rect key="frame" x="16" y="2" width="471" height="26"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcp-Fa-oLT">
+                                            <rect key="frame" x="16" y="2" width="479" height="26"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -445,15 +445,15 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqy-Va-VV9">
-                                            <rect key="frame" x="16" y="28" width="471" height="13.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqy-Va-VV9">
+                                            <rect key="frame" x="16" y="28" width="479" height="13.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-Q0-Jxf">
-                                            <rect key="frame" x="173" y="8" width="314" height="29"/>
+                                        <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Xkh-Q0-Jxf">
+                                            <rect key="frame" x="226" y="8" width="269" height="29"/>
                                             <animations/>
                                             <color key="backgroundColor" red="0.94327950477600098" green="0.98936665058135986" blue="0.99987876415252686" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             <segments>
@@ -468,8 +468,8 @@
                                                 <rect key="frame" x="71" y="8" width="224" height="29"/>
                                             </variation>
                                         </segmentedControl>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-Kj-fZ1">
-                                            <rect key="frame" x="495" y="8" width="89" height="29"/>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-Kj-fZ1">
+                                            <rect key="frame" x="503" y="8" width="89" height="29"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <segments>
