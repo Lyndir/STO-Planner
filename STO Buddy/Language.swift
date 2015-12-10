@@ -25,15 +25,30 @@ func iterateEnum<T:Hashable>(_: T.Type) -> AnyGenerator<T> {
     }
 }
 
+extension GeneratorType {
+    public subscript(index: Int) -> Element? {
+        var lastValue: Element?, advancingSelf = self
+        
+        for (var current = index; current >= 0; --current) {
+            lastValue = advancingSelf.next()
+            if lastValue == nil {
+                break
+            }
+        }
+
+        return lastValue
+    }
+}
+
 struct WeakReference<T> {
     private weak var _value: AnyObject?
 }
 
 extension WeakReference where T:AnyObject {
-    init(_ value : T) {
+    init(_ value: T) {
         self.value = value
     }
-    
+
     var value: T? {
         get {
             return _value as! T?

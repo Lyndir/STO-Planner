@@ -47,7 +47,7 @@ public class Locations: NSObject, SequenceType {
         return locationDicts.count
     }
 
-    public subscript(index: Int) -> Location {
+    public subscript(index: Int) -> Location? {
         return Location( dict: locationDicts[index] )
     }
 

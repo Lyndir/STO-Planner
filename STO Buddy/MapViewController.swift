@@ -13,7 +13,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     let geoCoder        = CLGeocoder()
     let locationManager = CLLocationManager()
 
-    lazy var mapLocationPlacemarkResolver: STOPlacemarkResolver
+    lazy var mapLocationPlacemarkResolver: STOPlacemarkLocationResolver
     = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: "your location", locationSupplier: {
         self.mapView.userLocation.location
     } )
@@ -44,18 +44,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 mapView.removeAnnotation( sourcePlacemark_ )
             }
             if let newValue_ = newValue {
-                if newValue_ == destinationPlacemark && !isFlippingSourceAndDestinationPlacemarks {
+                if newValue_ == destinationPlacemark {
                     isFlippingSourceAndDestinationPlacemarks = true
-                    destinationPlacemark = sourcePlacemark
+                    let flip = sourcePlacemark
+                    sourcePlacemark = nil
+                    destinationPlacemark = flip
                     isFlippingSourceAndDestinationPlacemarks = false
                 }
-                else if destinationPlacemark == nil {
-                    mapLocationPlacemarkResolver.resolvePlacemark( {
-                                                                       (placemark: MKPlacemark) in
-
-                                                                       self.destinationPlacemark = placemark
-                                                                   }, placemarkResolutionFailed: {
-                    } )
+                else if !isFlippingSourceAndDestinationPlacemarks && destinationPlacemark == nil {
+                    mapLocationPlacemarkResolver.resolvePlacemark( { self.destinationPlacemark = $0 } )
                 }
             }
         }
@@ -76,19 +73,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 mapView.removeAnnotation( destinationPlacemark_ )
             }
             if let newValue_ = newValue {
-                if newValue_ == sourcePlacemark && !isFlippingSourceAndDestinationPlacemarks {
+                if newValue_ == sourcePlacemark {
                     isFlippingSourceAndDestinationPlacemarks = true
-                    sourcePlacemark = destinationPlacemark
+                    let flip = destinationPlacemark
+                    destinationPlacemark = nil
+                    sourcePlacemark = flip
                     isFlippingSourceAndDestinationPlacemarks = false
                 }
-                else if sourcePlacemark == nil {
-                    mapLocationPlacemarkResolver.resolvePlacemark(
-                    {
-                        (placemark: MKPlacemark) in
-
-                        self.sourcePlacemark = placemark
-                    }, placemarkResolutionFailed: {
-                    } )
+                else if !isFlippingSourceAndDestinationPlacemarks && sourcePlacemark == nil {
+                    mapLocationPlacemarkResolver.resolvePlacemark( { self.sourcePlacemark = $0 } )
                 }
             }
         }
@@ -257,6 +250,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             let identifier                           = "LocationAnnotation"
             var annotationView: MKPinAnnotationView! =
             mapView.dequeueReusableAnnotationViewWithIdentifier( identifier ) as? MKPinAnnotationView
+
             if annotationView == nil {
                 annotationView = MKPinAnnotationView( annotation: placemark, reuseIdentifier: identifier )
             }
@@ -264,16 +258,20 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 annotationView.annotation = placemark
             }
 
+            let control = addLocationControl( annotationView, placemarkResolver: STOPlacemarkValueResolver( placemark: placemark ) )
+
             annotationView.animatesDrop = true
             if placemark == self.sourcePlacemark {
                 annotationView.pinTintColor = MKPinAnnotationView.greenPinColor()
-            } else if placemark == self.destinationPlacemark {
+                control.select( .Source )
+            }
+            else if placemark == self.destinationPlacemark {
                 annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
-            } else {
+                control.select( .Destination )
+            }
+            else {
                 annotationView.pinTintColor = MKPinAnnotationView.purplePinColor()
             }
-
-            addSourceOrDestinationCallout( annotationView, placemarkResolver: STOPlacemarkValueResolver( placemark: placemark ) )
 
             return annotationView
         }
@@ -298,7 +296,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         for annotationView in views {
             if annotationView.annotation === mapView.userLocation {
-                addSourceOrDestinationCallout( annotationView, placemarkResolver: mapLocationPlacemarkResolver )
+                addLocationControl( annotationView, placemarkResolver: mapLocationPlacemarkResolver )
             }
         }
     }
@@ -516,25 +514,21 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         Locations.recent.insert( location )
     }
 
-    func addSourceOrDestinationCallout(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) {
-        let control = UISegmentedControl( items: [ "↱", "↴" ] )
-        control.on( .ValueChanged, {
+    func addLocationControl(annotationView: MKAnnotationView, placemarkResolver: STOPlacemarkResolver) -> STOLocationControl {
+        let control = STOLocationControl( handler: {
+            (control: STOLocationControl, segment: LocationControlSegment) in
+
             placemarkResolver.resolvePlacemark(
             {
-                (placemark: MKPlacemark) in
+                switch segment {
+                    case .Source:
+                        self.sourcePlacemark = $0
 
-                switch control.selectedSegmentIndex {
-                    case 0:
-                        self.sourcePlacemark = placemark
-
-                    case 1:
-                        self.destinationPlacemark = placemark
-
-                    default:
-                        preconditionFailure( "Unexpected segment for source/destination control: \(control.selectedSegmentIndex)" )
+                    case .Destination:
+                        self.destinationPlacemark = $0
                 }
 
-                Locations.recent.insert( Location( placemark: placemark ) )
+                Locations.recent.insert( Location( placemark: $0 ) )
             }, placemarkResolutionFailed: {
                 control.selectedSegmentIndex = -1
             } )
@@ -542,6 +536,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
         annotationView.rightCalloutAccessoryView = control
         annotationView.canShowCallout = true
+
+        return control
     }
 
     func rebuildRouteLocationsStackView() {
@@ -753,7 +749,8 @@ class STOPlacemarkValueResolver: STOPlacemarkResolver {
         self.placemark = placemark
     }
 
-    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ()) {
+    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> () = {
+    }) {
         placemarkResolved( placemark )
     }
 }
@@ -769,7 +766,8 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
         self.locationSupplier = locationSupplier
     }
 
-    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ()) {
+    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> () = {
+    }) {
         if let location_ = locationSupplier() {
             let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for \(locationName)...", cancelOnTouch: {
                 self.geoCoder.cancelGeocode()
@@ -777,6 +775,7 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
             } )
             geoCoder.reverseGeocodeLocation( location_, completionHandler: {
                 (placemarks: [CLPlacemark]?, error: NSError?) in
+
                 if let error_ = error {
                     PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
                     print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
