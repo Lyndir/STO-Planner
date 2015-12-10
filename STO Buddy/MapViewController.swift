@@ -60,7 +60,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             rebuildRouteLocationsStackView()
 
             if let sourcePlacemark_ = sourcePlacemark {
+                var restoreSelection = false
+                if sourcePlacemark_ == searchPlacemark {
+                    restoreSelection = mapView.selectedAnnotations.contains( { $0 === searchPlacemark } )
+                    searchPlacemark = nil
+                }
                 mapView.addAnnotation( sourcePlacemark_ )
+                if restoreSelection {
+                    mapView.selectAnnotation( sourcePlacemark_, animated: false )
+                }
                 showAnnotations()
             }
 
@@ -89,7 +97,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             rebuildRouteLocationsStackView()
 
             if let destinationPlacemark_ = destinationPlacemark {
+                var restoreSelection = false
+                if destinationPlacemark_ == searchPlacemark {
+                    restoreSelection = mapView.selectedAnnotations.contains( { $0 === searchPlacemark } )
+                    searchPlacemark = nil
+                }
                 mapView.addAnnotation( destinationPlacemark_ )
+                if restoreSelection {
+                    mapView.selectAnnotation( destinationPlacemark_, animated: false )
+                }
                 showAnnotations()
             }
 
@@ -184,9 +200,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     override func viewDidLoad() {
         headerBlurView.layer.borderColor = UIColor.lightTextColor().CGColor
         headerBlurView.layer.borderWidth = 1
-        headerBlurView.layer.shadowOffset = CGSizeMake( 2, 2 )
+        headerBlurView.layer.shadowOffset = CGSizeMake( 1, 1 )
         headerBlurView.layer.shadowOpacity = 0.5
-        rightSlideOutBlurView.layer.shadowOffset = CGSizeMake( -2, 2 )
+        rightSlideOutBlurView.layer.shadowOffset = CGSizeMake( -1, 1 )
         rightSlideOutBlurView.layer.shadowOpacity = 0.5
 
         locationManager.delegate = self
@@ -351,7 +367,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     }
                 }
             }
-            self.searchPlacemark = closestSearchAnnotation
+            if let closestSearchAnnotation_ = closestSearchAnnotation {
+                self.searchPlacemark = closestSearchAnnotation_
+                self.mapView.selectAnnotation( closestSearchAnnotation_, animated: true )
+            }
 
             overlay.cancelOverlayAnimated( true )
         } )
@@ -510,6 +529,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         else {
             destinationPlacemark = location.placemark
         }
+        mapView.selectAnnotation( location.placemark, animated: true )
 
         Locations.recent.insert( location )
     }
@@ -527,6 +547,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     case .Destination:
                         self.destinationPlacemark = $0
                 }
+                self.mapView.selectAnnotation( $0, animated: true )
 
                 Locations.recent.insert( Location( placemark: $0 ) )
             }, placemarkResolutionFailed: {
@@ -587,6 +608,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         routeLookup = nil
 
         if let sourcePlacemark_ = sourcePlacemark, destinationPlacemark_ = destinationPlacemark {
+            searchPlacemark = nil
+
             var parameters = [
                     "origin": "external_geolocation_name=origin;external_geolocation_latitude_coordinate=\(sourcePlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(sourcePlacemark_.coordinate.longitude)",
                     "destination": "external_geolocation_name=destination;external_geolocation_latitude_coordinate=\(destinationPlacemark_.coordinate.latitude);external_geolocation_longitude_coordinate=\(destinationPlacemark_.coordinate.longitude)",
