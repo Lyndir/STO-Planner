@@ -1,11 +1,16 @@
 PODS:
   - Alamofire (3.1.3)
+  - Crashlytics (3.4.1):
+    - Fabric (~> 1.6.0)
+  - Fabric (1.6.1)
   - HTMLReader (0.9.3)
   - JRSwizzle (1.0)
   - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire`)
+  - Crashlytics
+  - Fabric
   - HTMLReader
   - JRSwizzle
   - Reveal-iOS-SDK
@@ -21,6 +26,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
+  Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
+  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
   HTMLReader: 01de6ebb3b5f0f9dc4f6f165fdac0a15b3648167
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33

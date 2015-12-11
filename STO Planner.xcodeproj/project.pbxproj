@@ -3007,6 +3007,7 @@
 				4389D5855DCDD43AD7752915 /* Copy Pods Resources */,
 				D96DF154AE4756853D6D51FB /* Embed Pods Frameworks */,
 				DA681A361C1B2B10000E992C /* Scripts/updatePlist */,
+				DA681A371C1B2DD5000E992C /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -3135,6 +3136,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "exec Scripts/updatePlist";
+			showEnvVarsInLog = 0;
+		};
+		DA681A371C1B2DD5000E992C /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if ! [ \"${CONFIGURATION}\" = 'DEBUG' ]; then\n\"${PODS_ROOT}/Fabric/run\" '0d10c90776f5ef5acd01ddbeaca9a6cba4814560' '410fb41450e3a2e50fa8357682d812ecd3e1846f2141a99bdb9d3a6a981ad69c'\nfi";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

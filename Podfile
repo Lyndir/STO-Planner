@@ -6,4 +6,7 @@ target 'STO Planner' do
     pod 'HTMLReader'
     pod 'JRSwizzle'
     pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
