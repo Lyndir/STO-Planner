@@ -108,14 +108,14 @@ public class Locations: NSObject, SequenceType {
 }
 
 public class Location: NSObject {
-    let placemark: MKPlacemark
+    let placemark: STOPlacemark
 
-    init(placemark: MKPlacemark) {
+    init(placemark: STOPlacemark) {
         self.placemark = placemark
     }
 
     init(dict: [String:NSObject]) {
-        self.placemark = MKPlacemark( coordinate: CLLocationCoordinate2D( latitude: (dict["coordinate.latitude"] as! CLLocationDegrees),
+        self.placemark = STOPlacemark( coordinate: CLLocationCoordinate2D( latitude: (dict["coordinate.latitude"] as! CLLocationDegrees),
                                                                           longitude: (dict["coordinate.longitude"]! as! CLLocationDegrees) ),
                                       addressDictionary: dict["addressDictionary"] as! [String:NSObject]? )
     }

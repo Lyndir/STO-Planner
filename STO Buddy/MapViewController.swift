@@ -23,7 +23,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             didChangeTravelTimeTimer?.invalidate()
         }
     }
-    var searchPlacemark: MKPlacemark? {
+    var searchPlacemark: STOPlacemark? {
         willSet {
             if let searchPlacemark_ = searchPlacemark {
                 mapView.removeAnnotation( searchPlacemark_ )
@@ -32,13 +32,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         didSet {
             if let searchPlacemark_ = searchPlacemark {
                 mapView.addAnnotation( searchPlacemark_ )
-                triggerLocation( Location( placemark: searchPlacemark_ ) )
-                showAnnotations()
             }
         }
     }
     var isFlippingSourceAndDestinationPlacemarks = false
-    var sourcePlacemark: MKPlacemark? {
+    var sourcePlacemark: STOPlacemark? {
         willSet {
             if let sourcePlacemark_ = sourcePlacemark {
                 mapView.removeAnnotation( sourcePlacemark_ )
@@ -75,7 +73,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             buildLocationsRoute()
         }
     }
-    var destinationPlacemark: MKPlacemark? {
+    var destinationPlacemark: STOPlacemark? {
         willSet {
             if let destinationPlacemark_ = destinationPlacemark {
                 mapView.removeAnnotation( destinationPlacemark_ )
@@ -134,10 +132,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     self.rightSlideOutConstraint.constant = 0
                 }
                 else {
-                    self.rightSlideOutConstraint.constant = -self.rightSlideOut.bounds.size.width
+                    self.rightSlideOutConstraint.constant = min( self.rightSlideOutConstraint.constant, -22 )
                 }
 
                 self.view.layoutIfNeeded()
+            } )
+
+            self.sourcePlacemark?.routeLookup = routeLookup
+            self.destinationPlacemark?.routeLookup = routeLookup
+            self.mapView.selectedAnnotations.forEach( {
+                mapView.deselectAnnotation( $0, animated: false )
+                mapView.selectAnnotation( $0, animated: false )
             } )
 
             if let routeLookup_ = self.routeLookup {
@@ -261,7 +266,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     /* MKMapViewDelegate */
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let placemark = annotation as? MKPlacemark
+        if let placemark = annotation as? STOPlacemark
         where placemark == self.searchPlacemark || placemark == self.sourcePlacemark || placemark == self.destinationPlacemark {
             let identifier                           = "LocationAnnotation"
             var annotationView: MKPinAnnotationView! =
@@ -353,7 +358,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 print( "ERROR: Geocode: \(error_.fullDescription())" )
             }
 
-            var closestSearchAnnotation: MKPlacemark?
+            var closestSearchAnnotation: STOPlacemark?
             if let placemarks_ = placemarks
             where placemarks_.count > 0 {
                 var closest = CLLocationDistance.infinity
@@ -362,14 +367,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                         let distance = placemarkLocation_.distanceFromLocation( userLocation_ )
                         if distance < closest {
                             closest = distance
-                            closestSearchAnnotation = MKPlacemark( placemark: placemark )
+                            closestSearchAnnotation = STOPlacemark( placemark: placemark )
                         }
                     }
                 }
             }
             if let closestSearchAnnotation_ = closestSearchAnnotation {
-                self.searchPlacemark = closestSearchAnnotation_
-                self.mapView.selectAnnotation( closestSearchAnnotation_, animated: true )
+                self.setAndTriggerSearchPlacemark( closestSearchAnnotation_ )
             }
 
             overlay.cancelOverlayAnimated( true )
@@ -432,17 +436,52 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     /* Actions */
 
+    @IBAction func didLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.view == mapView {
+            switch sender.state {
+                case .Possible, .Changed:
+                    ()
+
+                case .Began:
+                    geoCoder.reverseGeocodeLocation(
+                    CLLocation( coordinate: mapView.convertPoint( sender.locationInView( mapView ), toCoordinateFromView: mapView ),
+                                altitude: 0, horizontalAccuracy: 0, verticalAccuracy: 0, timestamp: NSDate() ),
+                    completionHandler: {
+                        (placemarks: [CLPlacemark]?, error: NSError?) in
+
+                        if let error_ = error {
+                            PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
+                            print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
+                        }
+
+                        if let firstPlacemark = placemarks?.first {
+                            self.searchPlacemark = STOPlacemark( placemark: firstPlacemark )
+                        }
+                    } )
+
+                case .Cancelled, .Failed:
+                    searchPlacemark = nil
+
+                case .Ended:
+                    if let searchPlacemark_ = searchPlacemark {
+                        triggerLocation( Location( placemark: searchPlacemark_ ) )
+                    }
+            }
+        }
+    }
+
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
-        let rightSlideOutTotal = -rightSlideOut.bounds.size.width
+        let rightSlideOutExpanded  = -rightSlideOut.bounds.size.width
+        let rightSlideOutCollapsed : CGFloat = routeLookup == nil ? 0: -22
 
         if (sender == rightSlideOutPanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
-                                              gestureState: sender.state, rest: rightSlideOutTotal, target: 0,
-                                              current: rightSlideOutTotal + sender.translationInView( rightSlideOut ).x )
+                                              gestureState: sender.state, rest: rightSlideOutExpanded, target: rightSlideOutCollapsed,
+                                              current: rightSlideOutExpanded + sender.translationInView( rightSlideOut ).x )
         }
         else if (sender == screenEdgePanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
-                                              gestureState: sender.state, rest: 0, target: rightSlideOutTotal,
+                                              gestureState: sender.state, rest: rightSlideOutCollapsed, target: rightSlideOutExpanded,
                                               current: sender.translationInView( rightSlideOut ).x )
         }
     }
@@ -517,6 +556,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         var mapInsets = mapView.occludedInsets()
         mapInsets.right = 0
         mapView.setVisibleMapRect( annotationsRect, edgePadding: mapInsets, animated: true );
+    }
+
+    func setAndTriggerSearchPlacemark(placemark: STOPlacemark) {
+        searchPlacemark = placemark
+        if let searchPlacemark_ = searchPlacemark {
+            triggerLocation( Location( placemark: searchPlacemark_ ) )
+        }
     }
 
     func triggerLocation(location: Location) {
@@ -762,17 +808,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 }
 
 protocol STOPlacemarkResolver {
-    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> ())
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> ())
 }
 
 class STOPlacemarkValueResolver: STOPlacemarkResolver {
-    let placemark: MKPlacemark
+    let placemark: STOPlacemark
 
-    init(placemark: MKPlacemark) {
+    init(placemark: STOPlacemark) {
         self.placemark = placemark
     }
 
-    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> () = {
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> () = {
     }) {
         placemarkResolved( placemark )
     }
@@ -789,7 +835,7 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
         self.locationSupplier = locationSupplier
     }
 
-    func resolvePlacemark(placemarkResolved: (MKPlacemark) -> (), placemarkResolutionFailed: () -> () = {
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> () = {
     }) {
         if let location_ = locationSupplier() {
             let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for \(locationName)...", cancelOnTouch: {
@@ -805,7 +851,7 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
                 }
 
                 if let firstPlacemark = placemarks?.first {
-                    placemarkResolved( MKPlacemark( placemark: firstPlacemark ) )
+                    placemarkResolved( STOPlacemark( placemark: firstPlacemark ) )
                 }
                 else {
                     placemarkResolutionFailed()

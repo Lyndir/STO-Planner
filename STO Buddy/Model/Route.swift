@@ -35,9 +35,9 @@ class RouteLookup: CustomStringConvertible {
 
 class Route: CustomStringConvertible {
     let title: String
-    let steps: Array<RouteStep>
+    let steps: [ RouteStep ]
 
-    init(title: String, steps: Array<RouteStep>) {
+    init(title: String, steps: [ RouteStep ]) {
         self.title = title
         self.steps = steps
     }
@@ -75,9 +75,9 @@ class RouteStep: CustomStringConvertible {
     }
 }
 
-enum RouteStepMode: Int {
-    case Walk
-    case Bus
+enum RouteStepMode : String {
+    case Walk = "🚶"
+    case Bus = "🚍"
 
     var thumbnailImage: UIImage {
         return UIImage( named: "\(self)".lowercaseString )!
@@ -89,7 +89,7 @@ enum RouteStepMode: Int {
 
     func descriptionWithContext(context: String?) -> String {
         if let context_ = context {
-            return "\(self) \(context_)"
+            return "\(rawValue) \(context_)"
         }
 
         return String( self )

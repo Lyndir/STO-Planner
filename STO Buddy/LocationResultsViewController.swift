@@ -76,7 +76,7 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let locationItem = locationItems[indexPath.section][indexPath.row]
         if let navigationController_ = self.navigationController as? STONavigationController {
-            navigationController_.mapViewController.searchPlacemark = locationItem.placemark
+            navigationController_.mapViewController.setAndTriggerSearchPlacemark( locationItem.placemark )
             navigationController_.dismissViewControllerAnimated( true, completion: nil )
         }
 
