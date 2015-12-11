@@ -8,15 +8,15 @@
     "9A146A9C166FFEFA467F1227A2358265CC82239D" : 0,
     "4DDCFFD91B41F00326AD14553BD66CFD366ABD91" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "548D4E8C-21FA-4026-9BF2-FD87D9ACC37C",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "598D7870-F317-4167-AC1C-D1534035D87B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "2A70319CE0F91B35406CA7D970AE7CB4957B0A75" : "",
     "9A146A9C166FFEFA467F1227A2358265CC82239D" : "STO%20Planner\/",
-    "4DDCFFD91B41F00326AD14553BD66CFD366ABD91" : "STO%20Buddy\/Pearl\/"
+    "4DDCFFD91B41F00326AD14553BD66CFD366ABD91" : "STO%20Planner\/Pearl\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "STO Planner",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "STO Planner.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "STO Planner.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Lyndir\/Lyndir.git",
