@@ -128,13 +128,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
             view.layoutIfNeeded()
             UIView.animateWithDuration( 0.3, animations: {
-                self.revealRightSlideOutConstraint.active = self.routeLookup != nil
-//                if self.routeLookup == nil {
-//                    self.rightSlideOutConstraint.constant = 0
-//                }
-//                else {
-//                    self.rightSlideOutConstraint.constant = min( self.rightSlideOutConstraint.constant, -22 )
-//                }
+                self.rightSlideOutRevealConstraint.active = self.routeLookup != nil
 
                 self.view.layoutIfNeeded()
             } )
@@ -184,25 +178,27 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         }
     }
 
-    @IBOutlet var introVisibleConstraint:  NSLayoutConstraint!
-    @IBOutlet var headerBlurView:          UIVisualEffectView!
-    @IBOutlet var travelTimeNowConstraint: NSLayoutConstraint!
-    @IBOutlet var searchBar:               UISearchBar!
-    @IBOutlet var travelTimePicker:        UIScrollView!
-    @IBOutlet var travelTimePager:         UIPageControl!
-    @IBOutlet var arrivingTimeControl:     UIDatePicker!
-    @IBOutlet var leavingTimeControl:      UIDatePicker!
-    @IBOutlet var routeLocationsStackView: UIStackView!
-    @IBOutlet var mapView:                 MKMapView!
-    @IBOutlet var toolBar:                 UIToolbar!
+    @IBOutlet var introVisibleConstraint:    NSLayoutConstraint!
+    @IBOutlet var introLogoHiddenConstraint: NSLayoutConstraint!
+    @IBOutlet var headerBlurView:            UIVisualEffectView!
+    @IBOutlet var travelTimeNowConstraint:   NSLayoutConstraint!
+    @IBOutlet var searchBar:                 UISearchBar!
+    @IBOutlet var travelTimePicker:          UIScrollView!
+    @IBOutlet var travelTimePager:           UIPageControl!
+    @IBOutlet var arrivingTimeControl:       UIDatePicker!
+    @IBOutlet var leavingTimeControl:        UIDatePicker!
+    @IBOutlet var routeLocationsStackView:   UIStackView!
+    @IBOutlet var mapView:                    MKMapView!
+    @IBOutlet var toolBar:                    UIToolbar!
 
-    @IBOutlet var rightSlideOutBlurView:       UIVisualEffectView!
-    @IBOutlet var rightSlideOut:               UIView!
-    @IBOutlet var rightSlideOutViewController: RouteViewController!
-    @IBOutlet var rightSlideOutConstraint:     NSLayoutConstraint!
-    @IBOutlet var revealRightSlideOutConstraint:     NSLayoutConstraint!
-    @IBOutlet var screenEdgePanRecognizer:     UIScreenEdgePanGestureRecognizer!
-    @IBOutlet var rightSlideOutPanRecognizer:  UIPanGestureRecognizer!
+    @IBOutlet var rightSlideOutBlurView:         UIVisualEffectView!
+    @IBOutlet var rightSlideOut:                 UIView!
+    @IBOutlet var rightSlideOutViewController:   RouteViewController!
+    @IBOutlet var rightSlideOutConstraint:       NSLayoutConstraint!
+    @IBOutlet var rightSlideOutInsetConstraint:  NSLayoutConstraint!
+    @IBOutlet var rightSlideOutRevealConstraint: NSLayoutConstraint!
+    @IBOutlet var screenEdgePanRecognizer:       UIScreenEdgePanGestureRecognizer!
+    @IBOutlet var rightSlideOutPanRecognizer:    UIPanGestureRecognizer!
 
     override func viewDidLoad() {
         headerBlurView.layer.borderColor = UIColor.lightTextColor().CGColor
@@ -473,8 +469,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
-        let rightSlideOutExpanded  = -rightSlideOut.bounds.size.width
-        let rightSlideOutCollapsed : CGFloat = 0 //routeLookup == nil ? 0: -22
+        let rightSlideOutExpanded           = -(mapView.frame.size.width + self.rightSlideOutInsetConstraint.constant)
+        let rightSlideOutCollapsed: CGFloat = 0
 
         if (sender == rightSlideOutPanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
@@ -526,6 +522,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     func unsetUI() {
         self.view.layoutIfNeeded()
         self.introVisibleConstraint.active = true
+        self.introLogoHiddenConstraint.active = false
 
         self.leavingTimeControl.date = NSDate( timeIntervalSinceNow: 15 * 60 /* seconds */ )
         self.arrivingTimeControl.date = NSDate( timeIntervalSinceNow: 30 * 60 /* seconds */ )
@@ -535,6 +532,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         self.view.layoutIfNeeded()
         UIView.animateWithDuration( 1, delay: 0.5, options: UIViewAnimationOptions(), animations: {
             self.introVisibleConstraint.active = false
+            self.introLogoHiddenConstraint.active = true
             self.view.layoutIfNeeded()
         }, completion: nil )
     }

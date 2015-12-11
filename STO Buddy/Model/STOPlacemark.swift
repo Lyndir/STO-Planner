@@ -27,11 +27,9 @@ class STOPlacemark: MKPlacemark {
     }
 
     override var subtitle: String? {
-        if routeLookup?.destinationPlacemark == self {
-            if let firstRoute = routeLookup?.routes.first,
-            firstStep = firstRoute.steps.filter( { $0.mode == .Bus } ).first ?? firstRoute.steps.first {
-                return "(\(firstStep.shortExplanation)) \(firstRoute.title)"
-            }
+        if let firstRoute = routeLookup?.routes.first,
+        firstStep = firstRoute.steps.filter( { $0.mode == .Bus } ).first ?? firstRoute.steps.first {
+            return "\(firstStep.shortExplanation): \(firstRoute.title)"
         }
 
         return nil

@@ -92,6 +92,6 @@ enum RouteStepMode : String {
             return "\(rawValue) \(context_)"
         }
 
-        return String( self )
+        return rawValue
     }
 }
