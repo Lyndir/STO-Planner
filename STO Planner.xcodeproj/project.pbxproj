@@ -3460,7 +3460,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pearl/Pearl-Crypto/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Planner";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.sto-planner";
 				PRODUCT_NAME = "STO Planner";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -3482,7 +3482,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pearl/Pearl-Crypto/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Planner";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.sto-planner";
 				PRODUCT_NAME = "STO Planner";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
