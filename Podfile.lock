@@ -8,21 +8,12 @@ PODS:
   - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire`)
+  - Alamofire
   - Crashlytics
   - Fabric
   - HTMLReader
   - JRSwizzle
   - Reveal-iOS-SDK
-
-EXTERNAL SOURCES:
-  Alamofire:
-    :git: https://github.com/Alamofire/Alamofire
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 268a22bff9d660ecd1af260906aa2eb72d261894
-    :git: https://github.com/Alamofire/Alamofire
 
 SPEC CHECKSUMS:
   Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
