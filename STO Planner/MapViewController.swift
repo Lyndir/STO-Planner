@@ -225,17 +225,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
         rightSlideOutConstraint.constant = 0
         rebuildRouteLocationsStackView()
-
-        NSNotificationCenter.defaultCenter().addObserverForName( UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock:
-        {
-            (notification) in
-            self.resetUI()
-        } )
-        NSNotificationCenter.defaultCenter().addObserverForName( UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock:
-        {
-            (notification) in
-            self.unsetUI()
-        } )
         unsetUI()
 
         super.viewDidLoad()
