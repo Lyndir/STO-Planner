@@ -110,23 +110,6 @@
 		DAF4A6CA1C0FD56E00D9E4DB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6C91C0FD56E00D9E4DB /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DA993B951BB459C1007CB7A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
-			remoteInfo = "STO Planner";
-		};
-		DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
-			remoteInfo = "STO Planner";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		DA24B5851BD9B292002B219C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -1437,8 +1420,6 @@
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA993B8F1BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA993B941BB459C1007CB7A0 /* STO Planner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO Planner.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO Planner.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993BB11BB792D9007CB7A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
 		DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@1x.png"; sourceTree = "<group>"; };
@@ -1468,20 +1449,6 @@
 				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
 				D1DCCDD073092D7494A31FE0 /* Pods_STO_Planner.framework in Frameworks */,
 				5D93B1B5CC0129C298901393 /* Pods_STO_Planner.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA993B911BB459C1007CB7A0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA993B9C1BB459C1007CB7A0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2972,8 +2939,6 @@
 			isa = PBXGroup;
 			children = (
 				DA993B801BB459C1007CB7A0 /* STO Planner.app */,
-				DA993B941BB459C1007CB7A0 /* STO Planner.xctest */,
-				DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */,
 				DA24B5871BD9B292002B219C /* libPearl.a */,
 			);
 			name = Products;
@@ -3051,42 +3016,6 @@
 			productReference = DA993B801BB459C1007CB7A0 /* STO Planner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DA993B931BB459C1007CB7A0 /* STO PlannerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerTests" */;
-			buildPhases = (
-				DA993B901BB459C1007CB7A0 /* Sources */,
-				DA993B911BB459C1007CB7A0 /* Frameworks */,
-				DA993B921BB459C1007CB7A0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DA993B961BB459C1007CB7A0 /* PBXTargetDependency */,
-			);
-			name = "STO PlannerTests";
-			productName = "STO PlannerTests";
-			productReference = DA993B941BB459C1007CB7A0 /* STO Planner.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DA993B9E1BB459C1007CB7A0 /* STO PlannerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerUITests" */;
-			buildPhases = (
-				DA993B9B1BB459C1007CB7A0 /* Sources */,
-				DA993B9C1BB459C1007CB7A0 /* Frameworks */,
-				DA993B9D1BB459C1007CB7A0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */,
-			);
-			name = "STO PlannerUITests";
-			productName = "STO PlannerUITests";
-			productReference = DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3102,14 +3031,6 @@
 					DA993B7F1BB459C1007CB7A0 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = HL3Q45LX9N;
-					};
-					DA993B931BB459C1007CB7A0 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = DA993B7F1BB459C1007CB7A0;
-					};
-					DA993B9E1BB459C1007CB7A0 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = DA993B7F1BB459C1007CB7A0;
 					};
 				};
 			};
@@ -3128,8 +3049,6 @@
 			projectRoot = "";
 			targets = (
 				DA993B7F1BB459C1007CB7A0 /* STO Planner */,
-				DA993B931BB459C1007CB7A0 /* STO PlannerTests */,
-				DA993B9E1BB459C1007CB7A0 /* STO PlannerUITests */,
 				DA24B5861BD9B292002B219C /* Pearl */,
 			);
 		};
@@ -3151,20 +3070,6 @@
 				93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */,
 				DAF4A69A1C0971D200D9E4DB /* bus-large.png in Resources */,
 				DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA993B921BB459C1007CB7A0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA993B9D1BB459C1007CB7A0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3319,34 +3224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA993B901BB459C1007CB7A0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA993B9B1BB459C1007CB7A0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DA993B961BB459C1007CB7A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA993B7F1BB459C1007CB7A0 /* STO Planner */;
-			targetProxy = DA993B951BB459C1007CB7A0 /* PBXContainerItemProxy */;
-		};
-		DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA993B7F1BB459C1007CB7A0 /* STO Planner */;
-			targetProxy = DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		93D39ED83F945D18A00E7424 /* Main.storyboard */ = {
@@ -3569,54 +3447,6 @@
 			};
 			name = Release;
 		};
-		DA993BAC1BB459C1007CB7A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "STO PlannerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerTests";
-				PRODUCT_NAME = "STO Planner";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Planner.app/STO Planner";
-			};
-			name = Debug;
-		};
-		DA993BAD1BB459C1007CB7A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "STO PlannerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerTests";
-				PRODUCT_NAME = "STO Planner";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Planner.app/STO Planner";
-			};
-			name = Release;
-		};
-		DA993BAF1BB459C1007CB7A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "STO PlannerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerUITests";
-				PRODUCT_NAME = "STO Planner";
-				TEST_TARGET_NAME = "STO Planner";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		DA993BB01BB459C1007CB7A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "STO PlannerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerUITests";
-				PRODUCT_NAME = "STO Planner";
-				TEST_TARGET_NAME = "STO Planner";
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3643,24 +3473,6 @@
 			buildConfigurations = (
 				DA993BA91BB459C1007CB7A0 /* Debug */,
 				DA993BAA1BB459C1007CB7A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA993BAC1BB459C1007CB7A0 /* Debug */,
-				DA993BAD1BB459C1007CB7A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA993BAF1BB459C1007CB7A0 /* Debug */,
-				DA993BB01BB459C1007CB7A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
