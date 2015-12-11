@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:STO Buddy.xcodeproj">
+      location = "self:STO Planner.xcodeproj">
    </FileRef>
 </Workspace>

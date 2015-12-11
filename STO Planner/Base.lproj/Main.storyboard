@@ -11,7 +11,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -28,7 +28,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Pdu-vO-YeU" appends="YES" id="IaQ-dT-7TQ"/>
                                 </connections>
                             </mapView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQd-46-cA9" userLabel="Right Slide Out Blur" customClass="STOVisualEffectView" customModule="STO_Buddy" customModuleProvider="target">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQd-46-cA9" userLabel="Right Slide Out Blur" customClass="STOVisualEffectView" customModule="STO_Planner" customModuleProvider="target">
                                 <rect key="frame" x="238" y="185" width="602" height="370.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OSC-82-Pi6">
                                     <rect key="frame" x="0.0" y="0.0" width="602" height="370.5"/>
@@ -107,7 +107,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FY-QV-xpK" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="185.5"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-91-73T" userLabel="Top Blur" customClass="STOVisualEffectView" customModule="STO_Buddy" customModuleProvider="target">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-91-73T" userLabel="Top Blur" customClass="STOVisualEffectView" customModule="STO_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="185.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AEG-dH-mOQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="185.5"/>
@@ -415,13 +415,13 @@
         <!--Saved Locations-->
         <scene sceneID="XgI-6p-93y">
             <objects>
-                <tableViewController id="HVR-yW-qWD" customClass="LocationResultsViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="HVR-yW-qWD" customClass="LocationResultsViewController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8oV-3Z-s8z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" id="nYt-N4-iJ8" customClass="LocationCell" customModule="STO_Buddy" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" id="nYt-N4-iJ8" customClass="LocationCell" customModule="STO_Planner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="122" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nYt-N4-iJ8" id="XTh-CK-WR2">
@@ -518,13 +518,13 @@
         <!--Route View Controller-->
         <scene sceneID="lv5-04-Koe">
             <objects>
-                <tableViewController id="Tve-g9-5oM" customClass="RouteViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Tve-g9-5oM" customClass="RouteViewController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" id="1OA-f2-azd">
                         <rect key="frame" x="0.0" y="44" width="600" height="326.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteLookupCell" id="kk5-uh-RIj" customClass="RouteLookupCell" customModule="STO_Buddy" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteLookupCell" id="kk5-uh-RIj" customClass="RouteLookupCell" customModule="STO_Planner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kk5-uh-RIj" id="HPm-SE-RC9">
@@ -580,7 +580,7 @@
                                     <outlet property="titleLabel" destination="2oq-bV-13D" id="wyc-4p-6bu"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteStepCell" id="7wu-yg-ZMp" customClass="RouteStepCell" customModule="STO_Buddy" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteStepCell" id="7wu-yg-ZMp" customClass="RouteStepCell" customModule="STO_Planner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="84" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wu-yg-ZMp" id="E2w-Bq-xJr">
@@ -642,7 +642,7 @@
         <!--Bus 400-->
         <scene sceneID="UIG-0b-nUQ">
             <objects>
-                <viewController id="Yh6-y6-VP1" customClass="RouteStepViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yh6-y6-VP1" customClass="RouteStepViewController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UyO-be-k5I"/>
                         <viewControllerLayoutGuide type="bottom" id="CPH-9u-2Fa"/>
@@ -710,7 +710,7 @@
         <!--Web View Controller-->
         <scene sceneID="N1U-oR-1xn">
             <objects>
-                <viewController id="U31-GJ-gY0" customClass="STOWebViewController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U31-GJ-gY0" customClass="STOWebViewController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <webView key="view" contentMode="scaleToFill" id="yCJ-tN-Gyh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -741,7 +741,7 @@
         <!--Navigation Controller-->
         <scene sceneID="PRW-Qe-NoC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1jw-fy-ibr" customClass="STONavigationController" customModule="STO_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1jw-fy-ibr" customClass="STONavigationController" customModule="STO_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5EV-sS-un0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

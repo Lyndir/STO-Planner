@@ -1,6 +1,6 @@
 //
 //  Language.swift
-//  STO Buddy
+//  STO Planner
 //
 //  Created by Maarten Billemont on 2015-10-15.
 //  Copyright © 2015 Maarten Billemont. All rights reserved.

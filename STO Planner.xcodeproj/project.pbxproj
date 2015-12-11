@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D93B1B5CC0129C298901393 /* Pods_STO_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69755334FA860F049AA0AED2 /* Pods_STO_Planner.framework */; };
 		93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39ED83F945D18A00E7424 /* Main.storyboard */; };
 		93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39B2C4D27DFF487143C9E /* RouteViewController.swift */; };
 		93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */; };
@@ -22,7 +23,7 @@
 		93D39C72AA361F76E337B997 /* NSMutableSet+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */; };
 		93D39CBCFCB6DDCC204C29A1 /* STOLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */; };
 		93D39D9272CD100521F2868A /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D393EA9A1A008FDEF72DF5 /* Route.swift */; };
-		D1DCCDD073092D7494A31FE0 /* Pods_STO_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */; };
+		D1DCCDD073092D7494A31FE0 /* Pods_STO_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999E0179D3F6BEB5C0C0892E /* Pods_STO_Planner.framework */; };
 		DA24BFAB1BD9B2E8002B219C /* NSArray+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */; };
 		DA24BFAC1BD9B2E8002B219C /* NSArray+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */; };
 		DA24BFAD1BD9B2E8002B219C /* NSBundle+PearlMutableInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */; };
@@ -60,8 +61,6 @@
 		DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */; };
 		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
 		DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */; };
-		DA993B991BB459C1007CB7A0 /* STO_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */; };
-		DA993BA41BB459C1007CB7A0 /* STO_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */; };
 		DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA993BB11BB792D9007CB7A0 /* MapKit.framework */; };
 		DAF4A68D1C07A6DD00D9E4DB /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */; };
 		DAF4A68E1C07A6DD00D9E4DB /* bus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */; };
@@ -117,14 +116,14 @@
 			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
-			remoteInfo = "STO Buddy";
+			remoteInfo = "STO Planner";
 		};
 		DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA993B781BB459C1007CB7A0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA993B7F1BB459C1007CB7A0;
-			remoteInfo = "STO Buddy";
+			remoteInfo = "STO Planner";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -141,7 +140,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		482D41DF47D790AB32161379 /* Pods-STO Planner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Planner.release.xcconfig"; path = "Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner.release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		69755334FA860F049AA0AED2 /* Pods_STO_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOWebViewController.swift; sourceTree = "<group>"; };
 		93D3919BB49F8892394079C3 /* UIControl+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Closures.swift"; sourceTree = "<group>"; };
 		93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Pearl.m"; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STONavigationController.swift; sourceTree = "<group>"; };
-		999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy.debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		999E0179D3F6BEB5C0C0892E /* Pods_STO_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Planner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Planner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner.debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DA24B5871BD9B292002B219C /* libPearl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPearl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24BAC61BD9B2E4002B219C /* map-macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "map-macro.h"; sourceTree = "<group>"; };
 		DA24BAC71BD9B2E4002B219C /* NSArray+Indexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Indexing.h"; sourceTree = "<group>"; };
@@ -1431,18 +1431,14 @@
 		DA5E13EF1C11E1D700B4FC4D /* IBARevealLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLoader.h; sourceTree = "<group>"; };
 		DA5E13F01C11E1D700B4FC4D /* IBARevealLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLogger.h; sourceTree = "<group>"; };
 		DA5E13F11C11E1D700B4FC4D /* Reveal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reveal.h; sourceTree = "<group>"; };
-		DA5E13F21C15387000B4FC4D /* STO Buddy-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STO Buddy-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STO Planner-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		DA993B801BB459C1007CB7A0 /* STO Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993B801BB459C1007CB7A0 /* STO Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA993B8F1BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO BuddyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STO_BuddyTests.swift; sourceTree = "<group>"; };
-		DA993B9A1BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STO_BuddyUITests.swift; sourceTree = "<group>"; };
-		DA993BA51BB459C1007CB7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA993B941BB459C1007CB7A0 /* STO Planner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO Planner.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STO Planner.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993BB11BB792D9007CB7A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
 		DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@1x.png"; sourceTree = "<group>"; };
@@ -1470,7 +1466,8 @@
 			files = (
 				DA24BFF81BD9B33B002B219C /* libPearl.a in Frameworks */,
 				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
-				D1DCCDD073092D7494A31FE0 /* Pods_STO_Buddy.framework in Frameworks */,
+				D1DCCDD073092D7494A31FE0 /* Pods_STO_Planner.framework in Frameworks */,
+				5D93B1B5CC0129C298901393 /* Pods_STO_Planner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,8 +1521,8 @@
 			isa = PBXGroup;
 			children = (
 				DA5E13D01C11E1D700B4FC4D /* Headers */,
-				A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */,
-				482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */,
+				A6CBF1A96DE8654C7767CEB6 /* Pods-STO Planner.debug.xcconfig */,
+				482D41DF47D790AB32161379 /* Pods-STO Planner.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2963,9 +2960,7 @@
 		DA993B771BB459C1007CB7A0 = {
 			isa = PBXGroup;
 			children = (
-				DA993B821BB459C1007CB7A0 /* STO Buddy */,
-				DA993B971BB459C1007CB7A0 /* STO BuddyTests */,
-				DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */,
+				DA993B821BB459C1007CB7A0 /* STO Planner */,
 				DA7EE8641BC0736800F4E5E1 /* Pearl */,
 				BA320521F0A02B9108034E9F /* Pods */,
 				DF960004C8A7B9F64C9AFFAE /* Frameworks */,
@@ -2976,18 +2971,18 @@
 		DA993B811BB459C1007CB7A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA993B801BB459C1007CB7A0 /* STO Buddy.app */,
-				DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */,
-				DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */,
+				DA993B801BB459C1007CB7A0 /* STO Planner.app */,
+				DA993B941BB459C1007CB7A0 /* STO Planner.xctest */,
+				DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */,
 				DA24B5871BD9B292002B219C /* libPearl.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DA993B821BB459C1007CB7A0 /* STO Buddy */ = {
+		DA993B821BB459C1007CB7A0 /* STO Planner */ = {
 			isa = PBXGroup;
 			children = (
-				DA5E13F21C15387000B4FC4D /* STO Buddy-Bridging-Header.h */,
+				DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */,
 				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
 				DAF4A6981C0971D200D9E4DB /* bus-large.png */,
 				DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */,
@@ -3003,32 +2998,15 @@
 				93D391D0C79E129BEE752D1D /* Model */,
 				93D3947B5028DBCDF2E8B1EA /* View */,
 			);
-			path = "STO Buddy";
-			sourceTree = "<group>";
-		};
-		DA993B971BB459C1007CB7A0 /* STO BuddyTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA993B981BB459C1007CB7A0 /* STO_BuddyTests.swift */,
-				DA993B9A1BB459C1007CB7A0 /* Info.plist */,
-			);
-			path = "STO BuddyTests";
-			sourceTree = "<group>";
-		};
-		DA993BA21BB459C1007CB7A0 /* STO BuddyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DA993BA31BB459C1007CB7A0 /* STO_BuddyUITests.swift */,
-				DA993BA51BB459C1007CB7A0 /* Info.plist */,
-			);
-			path = "STO BuddyUITests";
+			path = "STO Planner";
 			sourceTree = "<group>";
 		};
 		DF960004C8A7B9F64C9AFFAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				DA993BB11BB792D9007CB7A0 /* MapKit.framework */,
-				999E0179D3F6BEB5C0C0892E /* Pods_STO_Buddy.framework */,
+				999E0179D3F6BEB5C0C0892E /* Pods_STO_Planner.framework */,
+				69755334FA860F049AA0AED2 /* Pods_STO_Planner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3053,9 +3031,9 @@
 			productReference = DA24B5871BD9B292002B219C /* libPearl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		DA993B7F1BB459C1007CB7A0 /* STO Buddy */ = {
+		DA993B7F1BB459C1007CB7A0 /* STO Planner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Buddy" */;
+			buildConfigurationList = DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Planner" */;
 			buildPhases = (
 				7118855B7A464AF04AF5A6E0 /* Check Pods Manifest.lock */,
 				DA993B7C1BB459C1007CB7A0 /* Sources */,
@@ -3068,14 +3046,14 @@
 			);
 			dependencies = (
 			);
-			name = "STO Buddy";
-			productName = "STO Buddy";
-			productReference = DA993B801BB459C1007CB7A0 /* STO Buddy.app */;
+			name = "STO Planner";
+			productName = "STO Planner";
+			productReference = DA993B801BB459C1007CB7A0 /* STO Planner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DA993B931BB459C1007CB7A0 /* STO BuddyTests */ = {
+		DA993B931BB459C1007CB7A0 /* STO PlannerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyTests" */;
+			buildConfigurationList = DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerTests" */;
 			buildPhases = (
 				DA993B901BB459C1007CB7A0 /* Sources */,
 				DA993B911BB459C1007CB7A0 /* Frameworks */,
@@ -3086,14 +3064,14 @@
 			dependencies = (
 				DA993B961BB459C1007CB7A0 /* PBXTargetDependency */,
 			);
-			name = "STO BuddyTests";
-			productName = "STO BuddyTests";
-			productReference = DA993B941BB459C1007CB7A0 /* STO BuddyTests.xctest */;
+			name = "STO PlannerTests";
+			productName = "STO PlannerTests";
+			productReference = DA993B941BB459C1007CB7A0 /* STO Planner.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DA993B9E1BB459C1007CB7A0 /* STO BuddyUITests */ = {
+		DA993B9E1BB459C1007CB7A0 /* STO PlannerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyUITests" */;
+			buildConfigurationList = DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerUITests" */;
 			buildPhases = (
 				DA993B9B1BB459C1007CB7A0 /* Sources */,
 				DA993B9C1BB459C1007CB7A0 /* Frameworks */,
@@ -3104,9 +3082,9 @@
 			dependencies = (
 				DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */,
 			);
-			name = "STO BuddyUITests";
-			productName = "STO BuddyUITests";
-			productReference = DA993B9F1BB459C1007CB7A0 /* STO BuddyUITests.xctest */;
+			name = "STO PlannerUITests";
+			productName = "STO PlannerUITests";
+			productReference = DA993B9F1BB459C1007CB7A0 /* STO Planner.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -3135,7 +3113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Buddy" */;
+			buildConfigurationList = DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Planner" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3149,9 +3127,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA993B7F1BB459C1007CB7A0 /* STO Buddy */,
-				DA993B931BB459C1007CB7A0 /* STO BuddyTests */,
-				DA993B9E1BB459C1007CB7A0 /* STO BuddyUITests */,
+				DA993B7F1BB459C1007CB7A0 /* STO Planner */,
+				DA993B931BB459C1007CB7A0 /* STO PlannerTests */,
+				DA993B9E1BB459C1007CB7A0 /* STO PlannerUITests */,
 				DA24B5861BD9B292002B219C /* Pearl */,
 			);
 		};
@@ -3205,7 +3183,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7118855B7A464AF04AF5A6E0 /* Check Pods Manifest.lock */ = {
@@ -3235,7 +3213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Buddy/Pods-STO Buddy-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3345,7 +3323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA993B991BB459C1007CB7A0 /* STO_BuddyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3353,7 +3330,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA993BA41BB459C1007CB7A0 /* STO_BuddyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3362,12 +3338,12 @@
 /* Begin PBXTargetDependency section */
 		DA993B961BB459C1007CB7A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA993B7F1BB459C1007CB7A0 /* STO Buddy */;
+			target = DA993B7F1BB459C1007CB7A0 /* STO Planner */;
 			targetProxy = DA993B951BB459C1007CB7A0 /* PBXContainerItemProxy */;
 		};
 		DA993BA11BB459C1007CB7A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA993B7F1BB459C1007CB7A0 /* STO Buddy */;
+			target = DA993B7F1BB459C1007CB7A0 /* STO Planner */;
 			targetProxy = DA993BA01BB459C1007CB7A0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3549,21 +3525,22 @@
 		};
 		DA993BA91BB459C1007CB7A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6CBF1A96DE8654C7767CEB6 /* Pods-STO Buddy.debug.xcconfig */;
+			baseConfigurationReference = A6CBF1A96DE8654C7767CEB6 /* Pods-STO Planner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
+				GCC_PREFIX_HEADER = "STO Planner/STO Planner-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				INFOPLIST_FILE = "STO Planner/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pearl/Pearl-Crypto/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Planner";
+				PRODUCT_NAME = "STO Planner";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
@@ -3571,21 +3548,22 @@
 		};
 		DA993BAA1BB459C1007CB7A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 482D41DF47D790AB32161379 /* Pods-STO Buddy.release.xcconfig */;
+			baseConfigurationReference = 482D41DF47D790AB32161379 /* Pods-STO Planner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = "STO Buddy/STO Buddy-Prefix.pch";
+				GCC_PREFIX_HEADER = "STO Planner/STO Planner-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				INFOPLIST_FILE = "STO Buddy/Info.plist";
+				INFOPLIST_FILE = "STO Planner/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pearl/Pearl-Crypto/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-Planner";
+				PRODUCT_NAME = "STO Planner";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
@@ -3595,11 +3573,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "STO BuddyTests/Info.plist";
+				INFOPLIST_FILE = "STO PlannerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Buddy.app/STO Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerTests";
+				PRODUCT_NAME = "STO Planner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Planner.app/STO Planner";
 			};
 			name = Debug;
 		};
@@ -3607,22 +3585,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "STO BuddyTests/Info.plist";
+				INFOPLIST_FILE = "STO PlannerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Buddy.app/STO Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerTests";
+				PRODUCT_NAME = "STO Planner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STO Planner.app/STO Planner";
 			};
 			name = Release;
 		};
 		DA993BAF1BB459C1007CB7A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "STO BuddyUITests/Info.plist";
+				INFOPLIST_FILE = "STO PlannerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "STO Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerUITests";
+				PRODUCT_NAME = "STO Planner";
+				TEST_TARGET_NAME = "STO Planner";
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -3630,11 +3608,11 @@
 		DA993BB01BB459C1007CB7A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "STO BuddyUITests/Info.plist";
+				INFOPLIST_FILE = "STO PlannerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-BuddyUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "STO Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lyndir.STO-PlannerUITests";
+				PRODUCT_NAME = "STO Planner";
+				TEST_TARGET_NAME = "STO Planner";
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;
@@ -3651,7 +3629,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Buddy" */ = {
+		DA993B7B1BB459C1007CB7A0 /* Build configuration list for PBXProject "STO Planner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA993BA61BB459C1007CB7A0 /* Debug */,
@@ -3660,7 +3638,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Buddy" */ = {
+		DA993BA81BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO Planner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA993BA91BB459C1007CB7A0 /* Debug */,
@@ -3669,7 +3647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyTests" */ = {
+		DA993BAB1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA993BAC1BB459C1007CB7A0 /* Debug */,
@@ -3678,7 +3656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO BuddyUITests" */ = {
+		DA993BAE1BB459C1007CB7A0 /* Build configuration list for PBXNativeTarget "STO PlannerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA993BAF1BB459C1007CB7A0 /* Debug */,

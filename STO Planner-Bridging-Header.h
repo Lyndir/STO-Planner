@@ -15,7 +15,7 @@
  */
 
 //
-//  STO Buddy-Bridging-Header.h
+//  STO Planner-Bridging-Header.h
 //
 
 #import "Pearl-Bridging-Header.h"
