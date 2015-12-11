@@ -3006,6 +3006,7 @@
 				DA993B7E1BB459C1007CB7A0 /* Resources */,
 				4389D5855DCDD43AD7752915 /* Copy Pods Resources */,
 				D96DF154AE4756853D6D51FB /* Embed Pods Frameworks */,
+				DA681A361C1B2B10000E992C /* Scripts/updatePlist */,
 			);
 			buildRules = (
 			);
@@ -3119,6 +3120,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA681A361C1B2B10000E992C /* Scripts/updatePlist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Scripts/updatePlist;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exec Scripts/updatePlist";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
