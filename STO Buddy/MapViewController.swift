@@ -128,12 +128,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
             view.layoutIfNeeded()
             UIView.animateWithDuration( 0.3, animations: {
-                if self.routeLookup == nil {
-                    self.rightSlideOutConstraint.constant = 0
-                }
-                else {
-                    self.rightSlideOutConstraint.constant = min( self.rightSlideOutConstraint.constant, -22 )
-                }
+                self.revealRightSlideOutConstraint.active = self.routeLookup != nil
+//                if self.routeLookup == nil {
+//                    self.rightSlideOutConstraint.constant = 0
+//                }
+//                else {
+//                    self.rightSlideOutConstraint.constant = min( self.rightSlideOutConstraint.constant, -22 )
+//                }
 
                 self.view.layoutIfNeeded()
             } )
@@ -199,6 +200,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     @IBOutlet var rightSlideOut:               UIView!
     @IBOutlet var rightSlideOutViewController: RouteViewController!
     @IBOutlet var rightSlideOutConstraint:     NSLayoutConstraint!
+    @IBOutlet var revealRightSlideOutConstraint:     NSLayoutConstraint!
     @IBOutlet var screenEdgePanRecognizer:     UIScreenEdgePanGestureRecognizer!
     @IBOutlet var rightSlideOutPanRecognizer:  UIPanGestureRecognizer!
 
@@ -472,7 +474,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
         let rightSlideOutExpanded  = -rightSlideOut.bounds.size.width
-        let rightSlideOutCollapsed : CGFloat = routeLookup == nil ? 0: -22
+        let rightSlideOutCollapsed : CGFloat = 0 //routeLookup == nil ? 0: -22
 
         if (sender == rightSlideOutPanRecognizer) {
             setConstraintConstantFromGesture( rightSlideOutConstraint,
