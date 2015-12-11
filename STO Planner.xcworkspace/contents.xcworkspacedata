@@ -2,15 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:simulator-gappe.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:simulator-park.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:simulator-uqo.gpx">
-   </FileRef>
-   <FileRef
       location = "group:STO Planner.xcodeproj">
    </FileRef>
    <FileRef

@@ -58,6 +58,9 @@
 		DA24BFD01BD9B2E8002B219C /* PearlRSAKey.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BB6C1BD9B2E4002B219C /* PearlRSAKey.m */; };
 		DA24BFD11BD9B2E8002B219C /* PearlSCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BB6E1BD9B2E4002B219C /* PearlSCrypt.m */; };
 		DA24BFF81BD9B33B002B219C /* libPearl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA24B5871BD9B292002B219C /* libPearl.a */; };
+		DA681A3E1C1B4B95000E992C /* simulator-gappe.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA681A381C1B4B87000E992C /* simulator-gappe.gpx */; };
+		DA681A3F1C1B4B95000E992C /* simulator-park.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA681A391C1B4B87000E992C /* simulator-park.gpx */; };
+		DA681A401C1B4B95000E992C /* simulator-uqo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */; };
 		DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */; };
 		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
 		DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */; };
@@ -1415,6 +1418,9 @@
 		DA5E13F01C11E1D700B4FC4D /* IBARevealLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBARevealLogger.h; sourceTree = "<group>"; };
 		DA5E13F11C11E1D700B4FC4D /* Reveal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reveal.h; sourceTree = "<group>"; };
 		DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STO Planner-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		DA681A381C1B4B87000E992C /* simulator-gappe.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "simulator-gappe.gpx"; path = "../simulator-gappe.gpx"; sourceTree = "<group>"; };
+		DA681A391C1B4B87000E992C /* simulator-park.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "simulator-park.gpx"; path = "../simulator-park.gpx"; sourceTree = "<group>"; };
+		DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "simulator-uqo.gpx"; path = "../simulator-uqo.gpx"; sourceTree = "<group>"; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1458,9 +1464,9 @@
 		93D391D0C79E129BEE752D1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93D393EA9A1A008FDEF72DF5 /* Route.swift */,
 				93D39AF3F812CF57DD961A2F /* Locations.swift */,
 				93D398549E642F5D73C81DF7 /* Observers.swift */,
+				93D393EA9A1A008FDEF72DF5 /* Route.swift */,
 				93D3926DB6BEAEEA3D47A708 /* STOPlacemark.swift */,
 			);
 			path = Model;
@@ -1469,17 +1475,17 @@
 		93D3947B5028DBCDF2E8B1EA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93D39ED83F945D18A00E7424 /* Main.storyboard */,
+				DAF4A6C91C0FD56E00D9E4DB /* Launch Screen.storyboard */,
+				93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */,
 				93D396914B88815B86C1BDD3 /* MapViewController.swift */,
 				93D39B2C4D27DFF487143C9E /* RouteViewController.swift */,
+				93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */,
+				93D399B8216D50C2A1A391A0 /* STOLocationControl.swift */,
+				93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */,
+				93D397C386316E24D06914C0 /* STOVisualEffectView.swift */,
 				93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */,
 				93D3919BB49F8892394079C3 /* UIControl+Closures.swift */,
-				93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */,
-				93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */,
-				93D397C386316E24D06914C0 /* STOVisualEffectView.swift */,
-				93D3986F9B3AF8C0C092897C /* STOLaunchViewController.swift */,
-				DAF4A6C91C0FD56E00D9E4DB /* Launch Screen.storyboard */,
-				93D399B8216D50C2A1A391A0 /* STOLocationControl.swift */,
+				93D39ED83F945D18A00E7424 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1487,9 +1493,9 @@
 		BA320521F0A02B9108034E9F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DA5E13D01C11E1D700B4FC4D /* Headers */,
 				A6CBF1A96DE8654C7767CEB6 /* Pods-STO Planner.debug.xcconfig */,
 				482D41DF47D790AB32161379 /* Pods-STO Planner.release.xcconfig */,
+				DA5E13D01C11E1D700B4FC4D /* Headers */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1497,69 +1503,69 @@
 		DA24BAC41BD9B2E4002B219C /* Pearl */ = {
 			isa = PBXGroup;
 			children = (
-				DA24BAC51BD9B2E4002B219C /* include */,
+				DA24BB011BD9B2E4002B219C /* README */,
 				DA24BAC71BD9B2E4002B219C /* NSArray+Indexing.h */,
-				DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */,
 				DA24BAC91BD9B2E4002B219C /* NSArray+Pearl.h */,
-				DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */,
 				DA24BACB1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.h */,
-				DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */,
 				DA24BACD1BD9B2E4002B219C /* NSDateFormatter+RFC3339.h */,
-				DA24BACE1BD9B2E4002B219C /* NSDateFormatter+RFC3339.m */,
 				DA24BACF1BD9B2E4002B219C /* NSDictionary+Indexing.h */,
-				DA24BAD01BD9B2E4002B219C /* NSDictionary+Indexing.m */,
 				DA24BAD11BD9B2E4002B219C /* NSError+PearlFullDescription.h */,
-				DA24BAD21BD9B2E4002B219C /* NSError+PearlFullDescription.m */,
 				DA24BAD31BD9B2E4002B219C /* NSManagedObject+Pearl.h */,
-				DA24BAD41BD9B2E4002B219C /* NSManagedObject+Pearl.m */,
+				93D396EAF29381BEBEE808CB /* NSMutableSet+Pearl.h */,
 				DA24BAD51BD9B2E4002B219C /* NSNotificationCenter+PearlEasyCleanup.h */,
 				DA24BAD61BD9B2E4002B219C /* NSObject+PearlExport.h */,
-				DA24BAD71BD9B2E4002B219C /* NSObject+PearlExport.m */,
 				DA24BAD81BD9B2E4002B219C /* NSObject+PearlKVO.h */,
-				DA24BAD91BD9B2E4002B219C /* NSObject+PearlKVO.m */,
 				DA24BADA1BD9B2E4002B219C /* NSPersistentStore+PearlMigration.h */,
-				DA24BADB1BD9B2E4002B219C /* NSPersistentStore+PearlMigration.m */,
 				DA24BADC1BD9B2E4002B219C /* NSString+PearlNSArrayFormat.h */,
-				DA24BADD1BD9B2E4002B219C /* NSString+PearlNSArrayFormat.m */,
 				DA24BADE1BD9B2E4002B219C /* NSString+PearlSEL.h */,
-				DA24BADF1BD9B2E4002B219C /* NSString+PearlSEL.m */,
 				DA24BAE01BD9B2E4002B219C /* NSTimer+PearlBlock.h */,
-				DA24BAE11BD9B2E4002B219C /* NSTimer+PearlBlock.m */,
 				DA24BAE21BD9B2E4002B219C /* Pearl.h */,
-				DA24BAE31BD9B2E4002B219C /* Pearl.m */,
 				DA24BAE41BD9B2E4002B219C /* PearlAbstractStrings.h */,
-				DA24BAE51BD9B2E4002B219C /* PearlAbstractStrings.m */,
 				DA24BAE61BD9B2E4002B219C /* PearlCodeUtils.h */,
-				DA24BAE71BD9B2E4002B219C /* PearlCodeUtils.m */,
 				DA24BAE81BD9B2E4002B219C /* PearlConfig.h */,
-				DA24BAE91BD9B2E4002B219C /* PearlConfig.m */,
 				DA24BAEA1BD9B2E4002B219C /* PearlDeviceUtils.h */,
-				DA24BAEB1BD9B2E4002B219C /* PearlDeviceUtils.m */,
 				DA24BAEC1BD9B2E4002B219C /* PearlInfoPlist.h */,
-				DA24BAED1BD9B2E4002B219C /* PearlInfoPlist.m */,
 				DA24BAEE1BD9B2E4002B219C /* PearlLazy.h */,
-				DA24BAEF1BD9B2E4002B219C /* PearlLazy.m */,
 				DA24BAF01BD9B2E4002B219C /* PearlLogger.h */,
-				DA24BAF11BD9B2E4002B219C /* PearlLogger.m */,
 				DA24BAF21BD9B2E4002B219C /* PearlMathUtils.h */,
-				DA24BAF31BD9B2E4002B219C /* PearlMathUtils.m */,
 				DA24BAF41BD9B2E4002B219C /* PearlObjectUtils.h */,
-				DA24BAF51BD9B2E4002B219C /* PearlObjectUtils.m */,
 				DA24BAF61BD9B2E4002B219C /* PearlProfiler.h */,
-				DA24BAF71BD9B2E4002B219C /* PearlProfiler.m */,
 				DA24BAF81BD9B2E4002B219C /* PearlQueue.h */,
-				DA24BAF91BD9B2E4002B219C /* PearlQueue.m */,
 				DA24BAFA1BD9B2E4002B219C /* PearlResettable.h */,
 				DA24BAFB1BD9B2E4002B219C /* PearlStrings.h */,
-				DA24BAFC1BD9B2E4002B219C /* PearlStrings.m */,
 				DA24BAFD1BD9B2E4002B219C /* PearlStringUtils.h */,
-				DA24BAFE1BD9B2E4002B219C /* PearlStringUtils.m */,
 				DA24BAFF1BD9B2E4002B219C /* PearlTween.h */,
-				DA24BB001BD9B2E4002B219C /* PearlTween.m */,
-				DA24BB011BD9B2E4002B219C /* README */,
-				DA24BB021BD9B2E4002B219C /* Resources */,
+				DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */,
+				DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */,
+				DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */,
+				DA24BACE1BD9B2E4002B219C /* NSDateFormatter+RFC3339.m */,
+				DA24BAD01BD9B2E4002B219C /* NSDictionary+Indexing.m */,
+				DA24BAD21BD9B2E4002B219C /* NSError+PearlFullDescription.m */,
+				DA24BAD41BD9B2E4002B219C /* NSManagedObject+Pearl.m */,
 				93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */,
-				93D396EAF29381BEBEE808CB /* NSMutableSet+Pearl.h */,
+				DA24BAD71BD9B2E4002B219C /* NSObject+PearlExport.m */,
+				DA24BAD91BD9B2E4002B219C /* NSObject+PearlKVO.m */,
+				DA24BADB1BD9B2E4002B219C /* NSPersistentStore+PearlMigration.m */,
+				DA24BADD1BD9B2E4002B219C /* NSString+PearlNSArrayFormat.m */,
+				DA24BADF1BD9B2E4002B219C /* NSString+PearlSEL.m */,
+				DA24BAE11BD9B2E4002B219C /* NSTimer+PearlBlock.m */,
+				DA24BAE31BD9B2E4002B219C /* Pearl.m */,
+				DA24BAE51BD9B2E4002B219C /* PearlAbstractStrings.m */,
+				DA24BAE71BD9B2E4002B219C /* PearlCodeUtils.m */,
+				DA24BAE91BD9B2E4002B219C /* PearlConfig.m */,
+				DA24BAEB1BD9B2E4002B219C /* PearlDeviceUtils.m */,
+				DA24BAED1BD9B2E4002B219C /* PearlInfoPlist.m */,
+				DA24BAEF1BD9B2E4002B219C /* PearlLazy.m */,
+				DA24BAF11BD9B2E4002B219C /* PearlLogger.m */,
+				DA24BAF31BD9B2E4002B219C /* PearlMathUtils.m */,
+				DA24BAF51BD9B2E4002B219C /* PearlObjectUtils.m */,
+				DA24BAF71BD9B2E4002B219C /* PearlProfiler.m */,
+				DA24BAF91BD9B2E4002B219C /* PearlQueue.m */,
+				DA24BAFC1BD9B2E4002B219C /* PearlStrings.m */,
+				DA24BAFE1BD9B2E4002B219C /* PearlStringUtils.m */,
+				DA24BB001BD9B2E4002B219C /* PearlTween.m */,
+				DA24BAC51BD9B2E4002B219C /* include */,
+				DA24BB021BD9B2E4002B219C /* Resources */,
 			);
 			path = Pearl;
 			sourceTree = "<group>";
@@ -1583,18 +1589,18 @@
 		DA24BB061BD9B2E4002B219C /* Pearl-Crypto */ = {
 			isa = PBXGroup;
 			children = (
-				DA24BB071BD9B2E4002B219C /* lib */,
-				DA24BB651BD9B2E4002B219C /* Pearl-Crypto.h */,
-				DA24BB661BD9B2E4002B219C /* Pearl-Crypto.m */,
-				DA24BB671BD9B2E4002B219C /* PearlCryptUtils.h */,
-				DA24BB681BD9B2E4002B219C /* PearlCryptUtils.m */,
-				DA24BB691BD9B2E4002B219C /* PearlKeyChain.h */,
-				DA24BB6A1BD9B2E4002B219C /* PearlKeyChain.m */,
-				DA24BB6B1BD9B2E4002B219C /* PearlRSAKey.h */,
-				DA24BB6C1BD9B2E4002B219C /* PearlRSAKey.m */,
-				DA24BB6D1BD9B2E4002B219C /* PearlSCrypt.h */,
-				DA24BB6E1BD9B2E4002B219C /* PearlSCrypt.m */,
 				DA24BB6F1BD9B2E4002B219C /* README */,
+				DA24BB651BD9B2E4002B219C /* Pearl-Crypto.h */,
+				DA24BB671BD9B2E4002B219C /* PearlCryptUtils.h */,
+				DA24BB691BD9B2E4002B219C /* PearlKeyChain.h */,
+				DA24BB6B1BD9B2E4002B219C /* PearlRSAKey.h */,
+				DA24BB6D1BD9B2E4002B219C /* PearlSCrypt.h */,
+				DA24BB661BD9B2E4002B219C /* Pearl-Crypto.m */,
+				DA24BB681BD9B2E4002B219C /* PearlCryptUtils.m */,
+				DA24BB6A1BD9B2E4002B219C /* PearlKeyChain.m */,
+				DA24BB6C1BD9B2E4002B219C /* PearlRSAKey.m */,
+				DA24BB6E1BD9B2E4002B219C /* PearlSCrypt.m */,
+				DA24BB071BD9B2E4002B219C /* lib */,
 			);
 			path = "Pearl-Crypto";
 			sourceTree = "<group>";
@@ -1626,8 +1632,8 @@
 			isa = PBXGroup;
 			children = (
 				DA24BB0A1BD9B2E4002B219C /* aes.h */,
-				DA24BB0B1BD9B2E4002B219C /* asn1.h */,
 				DA24BB0C1BD9B2E4002B219C /* asn1_mac.h */,
+				DA24BB0B1BD9B2E4002B219C /* asn1.h */,
 				DA24BB0D1BD9B2E4002B219C /* asn1t.h */,
 				DA24BB0E1BD9B2E4002B219C /* bio.h */,
 				DA24BB0F1BD9B2E4002B219C /* blowfish.h */,
@@ -1638,11 +1644,11 @@
 				DA24BB141BD9B2E4002B219C /* cmac.h */,
 				DA24BB151BD9B2E4002B219C /* cms.h */,
 				DA24BB161BD9B2E4002B219C /* comp.h */,
-				DA24BB171BD9B2E4002B219C /* conf.h */,
 				DA24BB181BD9B2E4002B219C /* conf_api.h */,
+				DA24BB171BD9B2E4002B219C /* conf.h */,
 				DA24BB191BD9B2E4002B219C /* crypto.h */,
-				DA24BB1A1BD9B2E4002B219C /* des.h */,
 				DA24BB1B1BD9B2E4002B219C /* des_old.h */,
+				DA24BB1A1BD9B2E4002B219C /* des.h */,
 				DA24BB1C1BD9B2E4002B219C /* dh.h */,
 				DA24BB1D1BD9B2E4002B219C /* dsa.h */,
 				DA24BB1E1BD9B2E4002B219C /* dso.h */,
@@ -1672,8 +1678,8 @@
 				DA24BB361BD9B2E4002B219C /* ossl_typ.h */,
 				DA24BB371BD9B2E4002B219C /* pem.h */,
 				DA24BB381BD9B2E4002B219C /* pem2.h */,
-				DA24BB391BD9B2E4002B219C /* pkcs12.h */,
 				DA24BB3A1BD9B2E4002B219C /* pkcs7.h */,
+				DA24BB391BD9B2E4002B219C /* pkcs12.h */,
 				DA24BB3B1BD9B2E4002B219C /* pqueue.h */,
 				DA24BB3C1BD9B2E4002B219C /* rand.h */,
 				DA24BB3D1BD9B2E4002B219C /* rc2.h */,
@@ -1687,18 +1693,18 @@
 				DA24BB451BD9B2E4002B219C /* srtp.h */,
 				DA24BB461BD9B2E4002B219C /* ssl.h */,
 				DA24BB471BD9B2E4002B219C /* ssl2.h */,
-				DA24BB481BD9B2E4002B219C /* ssl23.h */,
 				DA24BB491BD9B2E4002B219C /* ssl3.h */,
+				DA24BB481BD9B2E4002B219C /* ssl23.h */,
 				DA24BB4A1BD9B2E4002B219C /* stack.h */,
 				DA24BB4B1BD9B2E4002B219C /* symhacks.h */,
 				DA24BB4C1BD9B2E4002B219C /* tls1.h */,
 				DA24BB4D1BD9B2E4002B219C /* ts.h */,
 				DA24BB4E1BD9B2E4002B219C /* txt_db.h */,
-				DA24BB4F1BD9B2E4002B219C /* ui.h */,
 				DA24BB501BD9B2E4002B219C /* ui_compat.h */,
+				DA24BB4F1BD9B2E4002B219C /* ui.h */,
 				DA24BB511BD9B2E4002B219C /* whrlpool.h */,
-				DA24BB521BD9B2E4002B219C /* x509.h */,
 				DA24BB531BD9B2E4002B219C /* x509_vfy.h */,
+				DA24BB521BD9B2E4002B219C /* x509.h */,
 				DA24BB541BD9B2E4002B219C /* x509v3.h */,
 			);
 			path = openssl;
@@ -1711,8 +1717,8 @@
 				DA24BB571BD9B2E4002B219C /* crypto_scrypt.h */,
 				DA24BB581BD9B2E4002B219C /* memlimit.h */,
 				DA24BB591BD9B2E4002B219C /* readpass.h */,
-				DA24BB5A1BD9B2E4002B219C /* scryptenc.h */,
 				DA24BB5B1BD9B2E4002B219C /* scryptenc_cpuperf.h */,
+				DA24BB5A1BD9B2E4002B219C /* scryptenc.h */,
 				DA24BB5C1BD9B2E4002B219C /* sha256.h */,
 				DA24BB5D1BD9B2E4002B219C /* sysendian.h */,
 				DA24BB5E1BD9B2E4002B219C /* warnp.h */,
@@ -2947,6 +2953,9 @@
 		DA993B821BB459C1007CB7A0 /* STO Planner */ = {
 			isa = PBXGroup;
 			children = (
+				DA681A381C1B4B87000E992C /* simulator-gappe.gpx */,
+				DA681A391C1B4B87000E992C /* simulator-park.gpx */,
+				DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */,
 				DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */,
 				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
 				DAF4A6981C0971D200D9E4DB /* bus-large.png */,
@@ -3062,13 +3071,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF4A68F1C07A6DD00D9E4DB /* walk@3x.png in Resources */,
+				DA681A3F1C1B4B95000E992C /* simulator-park.gpx in Resources */,
 				DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */,
+				DA681A3E1C1B4B95000E992C /* simulator-gappe.gpx in Resources */,
 				DAF4A68E1C07A6DD00D9E4DB /* bus@1x.png in Resources */,
 				DAF4A6901C07A6DD00D9E4DB /* walk@1x.png in Resources */,
 				DAF4A68D1C07A6DD00D9E4DB /* bus@2x.png in Resources */,
 				DAF4A69B1C0971D200D9E4DB /* walk-large.png in Resources */,
 				DAF4A6CA1C0FD56E00D9E4DB /* Launch Screen.storyboard in Resources */,
 				DAF4A6921C07A6DD00D9E4DB /* bus@3x.png in Resources */,
+				DA681A401C1B4B95000E992C /* simulator-uqo.gpx in Resources */,
 				93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */,
 				DAF4A69A1C0971D200D9E4DB /* bus-large.png in Resources */,
 				DAF4A6911C07A6DD00D9E4DB /* walk@2x.png in Resources */,
@@ -3395,7 +3407,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3439,7 +3451,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "STO Planner/STO Planner-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = "STO Planner/Info.plist";
@@ -3462,7 +3473,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "STO Planner/STO Planner-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = "STO Planner/Info.plist";
