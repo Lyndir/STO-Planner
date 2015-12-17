@@ -120,13 +120,13 @@ class RouteLookupCell: UITableViewCell {
         didSet {
             let source = routeLookup.sourcePlacemark, destination = routeLookup.destinationPlacemark
             titleLabel.text = destination.thoroughfare ?? destination.name ?? ""
-            subtitleLabel.text = "From: \(source.thoroughfare ?? source.name ?? "")"
+            subtitleLabel.text = strl( "From: %@", source.thoroughfare ?? source.name ?? "" )
             leavingLabel.hidden = true
             arrivingLabel.hidden = true
 
             if routeLookup.travelTime is STOTravelTimeLeavingNow {
                 leavingLabel.hidden = false
-                leavingLabel.text = "Leaving Now"
+                leavingLabel.text = strl( "Leaving Now" )
             }
             else if let futureTime = routeLookup.travelTime as? STOFutureTravelTime {
                 let timeFormat: String
@@ -139,11 +139,11 @@ class RouteLookupCell: UITableViewCell {
 
                 if futureTime is STOTravelTimeArriving {
                     arrivingLabel.hidden = false
-                    arrivingLabel.text = "Arriving:\n\(timeFormat)"
+                    arrivingLabel.text = strl( "Arriving:\n%@", timeFormat )
                 }
                 else if futureTime is STOTravelTimeLeaving {
                     leavingLabel.hidden = false
-                    leavingLabel.text = "Leaving: \(timeFormat)"
+                    leavingLabel.text = strl( "Leaving: %@", timeFormat )
                 }
             }
         }

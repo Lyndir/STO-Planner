@@ -18,19 +18,19 @@ class STOWebViewController: UIViewController, UIWebViewDelegate {
     }
 
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        NSLog("error: %@", error!)
+        err( "didFailLoadWithError: %@", error?.fullDescription() )
     }
 
     func webViewDidFinishLoad(webView: UIWebView) {
-        NSLog( "finishLoad" )
+        dbg( "finishLoad" )
     }
 
     func webViewDidStartLoad(webView: UIWebView) {
-        NSLog( "startLoad" )
+        dbg( "startLoad" )
     }
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        NSLog( "shouldStartLoadWithRequest: %@", request )
+        dbg( "shouldStartLoadWithRequest: %@, navigationType: %@", request, navigationType.description )
         return true
     }
 

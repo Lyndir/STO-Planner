@@ -1389,6 +1389,7 @@
 		DA24BFA81BD9B2E8002B219C /* UIView+LayoutGone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutGone.m"; sourceTree = "<group>"; };
 		DA24BFA91BD9B2E8002B219C /* UIView+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Touches.h"; sourceTree = "<group>"; };
 		DA24BFAA1BD9B2E8002B219C /* UIView+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Touches.m"; sourceTree = "<group>"; };
+		DA4184C91C206849005401B0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		DA418A081BFC4CE40097BBC9 /* Pearl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pearl-Bridging-Header.h"; sourceTree = "<group>"; };
 		DA5E13D31C11E1D700B4FC4D /* HTMLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLComment.h; sourceTree = "<group>"; };
 		DA5E13D41C11E1D700B4FC4D /* HTMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLDocument.h; sourceTree = "<group>"; };
@@ -3275,6 +3276,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				93D394D7B1F54230E9E385C3 /* Base */,
+				DA4184C91C206849005401B0 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

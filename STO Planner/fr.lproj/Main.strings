@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "STO Planner"; ObjectID = "QkL-fi-udm"; */
+"QkL-fi-udm.text" = "STO Planner";
+
+/* Class = "UILabel"; text = "Your daily travel companion."; ObjectID = "eA8-YH-Wfq"; */
+"eA8-YH-Wfq.text" = "Your daily travel companion.";
+
+/* Class = "UILabel"; text = "by lhunath (Maarten Billemont)"; ObjectID = "bqg-OV-6Ck"; */
+"bqg-OV-6Ck.text" = "by lhunath (Maarten Billemont)";
+
+/* Class = "UILabel"; text = "Where do you want to go today?"; ObjectID = "zLn-5a-FmR"; */
+"zLn-5a-FmR.text" = "Where do you want to go today?";
+
+/* Class = "UISearchBar"; placeholder = "Address"; ObjectID = "MkW-jz-XZ5"; */
+"MkW-jz-XZ5.placeholder" = "Address";
+
+/* Class = "UILabel"; text = "Leaving Now"; ObjectID = "80X-ew-Fkv"; */
+"80X-ew-Fkv.text" = "Leaving Now";
+
+/* Class = "UILabel"; text = "Arriving at:"; ObjectID = "eZ5-sr-1GS"; */
+"eZ5-sr-1GS.text" = "Arriving at:";
+
+/* Class = "UILabel"; text = "Leaving at:"; ObjectID = "hzD-8f-XMq"; */
+"hzD-8f-XMq.text" = "Leaving at:";
+
+/* Class = "UINavigationItem"; title = "Saved Locations"; ObjectID = "cr2-cw-5yu"; */
+"cr2-cw-5yu.title" = "Saved Locations";
+
+/* Class = "UINavigationItem"; prompt = "Pick a favorite (★'ed) location or a recent destination."; ObjectID = "cr2-cw-5yu"; */
+"cr2-cw-5yu.prompt" = "Pick a favorite (★'ed) location or a recent destination.";

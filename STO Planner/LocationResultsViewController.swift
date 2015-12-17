@@ -48,9 +48,9 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
             case 0:
-                return "Favorite Locations"
+                return strl( "Favorite Locations" )
             case 1:
-                return "Recent Locations"
+                return strl( "Recent Locations" )
             default:
                 preconditionFailure( "Unexpected section: \(section)" )
         }
@@ -95,16 +95,16 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     @IBOutlet var extrasMenuHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var sourceDestinationControl:   UISegmentedControl!
 
-    var mark:                 LocationMark?
+    var mark: LocationMark?
     var extraMenuShowing = false {
         didSet {
             updateExtrasMenu()
         }
     }
     var navigationController: STONavigationController!
-    var location:             Location! {
+    var location: Location! {
         didSet {
-            titleLabel.text = "\(location.placemark.name ?? ""), \(location.placemark.locality ?? "")"
+            titleLabel.text = strl( "%@, %@", location.placemark.name ?? "", location.placemark.locality ?? "" )
             subtitleLabel.text = location.placemark.postalCode
             updateExtrasMenu()
         }

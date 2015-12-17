@@ -14,7 +14,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     let locationManager = CLLocationManager()
 
     lazy var mapLocationPlacemarkResolver: STOPlacemarkLocationResolver
-    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: "your location", locationSupplier: {
+    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: strl( "your location" ), locationSupplier: {
         self.mapView.userLocation.location
     } )
 
@@ -188,8 +188,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     @IBOutlet var arrivingTimeControl:       UIDatePicker!
     @IBOutlet var leavingTimeControl:        UIDatePicker!
     @IBOutlet var routeLocationsStackView:   UIStackView!
-    @IBOutlet var mapView:                    MKMapView!
-    @IBOutlet var toolBar:                    UIToolbar!
+    @IBOutlet var mapView:                   MKMapView!
+    @IBOutlet var toolBar:                   UIToolbar!
 
     @IBOutlet var rightSlideOutBlurView:         UIVisualEffectView!
     @IBOutlet var rightSlideOut:                 UIView!
@@ -297,7 +297,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             return renderer
         }
 
-        assert( false, "Unsupported overlay: \(overlay)" )
+        wrn( "Unsupported overlay: %@", overlay )
         return MKOverlayRenderer( overlay: overlay )
     }
 
@@ -332,7 +332,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         let clRegion = CLCircularRegion( center: mapView.region.center, radius: regionNW.distanceFromLocation( regionSE ) / 2,
                                          identifier: "search" )
 
-        let overlay = PearlOverlay.showProgressOverlayWithTitle( "Searching Address...", cancelOnTouch: {
+        let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Searching Address..." ), cancelOnTouch: {
             self.geoCoder.cancelGeocode()
             return true
         } )
@@ -342,7 +342,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
             (placemarks: [CLPlacemark]?, error: NSError?) in
             if let error_ = error {
                 PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
-                print( "ERROR: Geocode: \(error_.fullDescription())" )
+                err( "ERROR: Geocode: %@", error_.fullDescription() )
             }
 
             var closestSearchAnnotation: STOPlacemark?
@@ -438,7 +438,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
                         if let error_ = error {
                             PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
-                            print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
+                            err( "ERROR: Reverse Geocode: %@", error_.fullDescription() )
                         }
 
                         if let firstPlacemark = placemarks?.first {
@@ -615,12 +615,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         locationButton.layer.cornerRadius = 4
 
         // Title
-        var title = "\(placemark.name ?? ""), \(placemark.locality ?? "")"
+        var title = strl( "%@, %@", placemark.name ?? "", placemark.locality ?? "" )
         if placemark == sourcePlacemark {
-            title = "From: \(title)"
+            title = strl( "From: %@", title )
         }
         else if placemark == destinationPlacemark {
-            title = "To: \(title)"
+            title = strl( "To: %@", title )
         }
         locationButton.setTitle( title, forState: .Normal )
         locationButton.titleLabel!.lineBreakMode = .ByTruncatingTail
@@ -656,18 +656,18 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
             planibusRequest = Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx",
                                                  parameters: parameters )
-            let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for the best routes...", cancelOnTouch: {
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Looking for the best routes..." ), cancelOnTouch: {
                 self.planibusRequest?.cancel()
                 return true
             } )
             planibusRequest?.responseString {
                 (response: Response) in
 
-                print( "STO URL:\n\(response.request?.URL)" )
+                dbg( "STO URL:\n%@", response.request?.URL )
                 if let error_ = response.result.error {
                     overlay.cancelOverlayAnimated( true )
                     PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
-                    print( "ERROR: STO Error Response:\n\(error_.fullDescription())" )
+                    err( "ERROR: STO Error Response:\n%@", error_.fullDescription() )
                     return
                 }
 
@@ -676,7 +676,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     let error = html.firstNodeMatchingSelector( "#ErrorMessageSpan" )
                     if let error_ = error {
                         PearlOverlay.showTemporaryOverlayWithTitle( error_.innerHTML, dismissAfter: 3 )
-                        print( "ERROR: STO Error Message:\n\(error_.innerHTML)" )
+                        err( "ERROR: STO Error Message:\n%@", error_.innerHTML )
                     }
 
                     let routeResults = html.firstNodeMatchingSelector( "#TravelPlanLinkListView" )
@@ -723,7 +723,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                                             documentAttributes: nil )
                                         }
                                     } catch let error as NSError {
-                                        print( "ERROR: Couldn't parse STO Step explanation:\n\(error.fullDescription())" )
+                                        err( "ERROR: Couldn't parse STO Step explanation:\n%@", error.fullDescription() )
                                     }
 
                                     routeSteps.append( RouteStep(
@@ -732,7 +732,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                                                        explanation: parsedStepExplanation ) )
                                 }
                                 else {
-                                    print( "ERROR: Couldn't parse STO Step:\n\(result.serializedFragment)" )
+                                    err( "ERROR: Couldn't parse STO Step:\n%@", result.serializedFragment )
                                 }
                             }
 
@@ -827,7 +827,7 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
     func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> () = {
     }) {
         if let location_ = locationSupplier() {
-            let overlay = PearlOverlay.showProgressOverlayWithTitle( "Looking for \(locationName)...", cancelOnTouch: {
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Looking for %@...", locationName ), cancelOnTouch: {
                 self.geoCoder.cancelGeocode()
                 return true
             } )
@@ -836,7 +836,7 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
 
                 if let error_ = error {
                     PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
-                    print( "ERROR: Reverse Geocode: \(error_.fullDescription())" )
+                    err( "ERROR: Reverse Geocode: %@", error.fullDescription() )
                 }
 
                 if let firstPlacemark = placemarks?.first {
