@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D93B1B5CC0129C298901393 /* Pods_STO_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69755334FA860F049AA0AED2 /* Pods_STO_Planner.framework */; };
 		93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39ED83F945D18A00E7424 /* Main.storyboard */; };
 		93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39B2C4D27DFF487143C9E /* RouteViewController.swift */; };
 		93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */; };
@@ -1455,7 +1454,6 @@
 				DA24BFF81BD9B33B002B219C /* libPearl.a in Frameworks */,
 				DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */,
 				D1DCCDD073092D7494A31FE0 /* Pods_STO_Planner.framework in Frameworks */,
-				5D93B1B5CC0129C298901393 /* Pods_STO_Planner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3034,7 +3032,7 @@
 		DA993B781BB459C1007CB7A0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Maarten Billemont";
 				TargetAttributes = {
 					DA24B5861BD9B292002B219C = {
