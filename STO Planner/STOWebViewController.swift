@@ -30,7 +30,7 @@ class STOWebViewController: UIViewController, UIWebViewDelegate {
     }
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        dbg( "shouldStartLoadWithRequest: %@, navigationType: %@", request, navigationType.description )
+        dbg( "shouldStartLoadWithRequest: %@, navigationType: %d", request, navigationType.rawValue )
         return true
     }
 

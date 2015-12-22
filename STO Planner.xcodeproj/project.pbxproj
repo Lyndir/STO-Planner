@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		93D392C1B5FB4B701CE8BF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D39ED83F945D18A00E7424 /* Main.storyboard */; };
 		93D39476709EC03EB2D9DD35 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39B2C4D27DFF487143C9E /* RouteViewController.swift */; };
+		93D39499FAB846ABA5E9DD2A /* PearlStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39C2CB03F0DD8BC50D323 /* PearlStringUtils.swift */; };
 		93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */; };
 		93D39859E0B3978A1A8039AE /* STOWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D39163C29AFDA5A32C6D64 /* STOWebViewController.swift */; };
 		93D399B15B2FCBB849E9D61C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D396914B88815B86C1BDD3 /* MapViewController.swift */; };
@@ -25,7 +26,6 @@
 		D1DCCDD073092D7494A31FE0 /* Pods_STO_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999E0179D3F6BEB5C0C0892E /* Pods_STO_Planner.framework */; };
 		DA24BFAB1BD9B2E8002B219C /* NSArray+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */; };
 		DA24BFAC1BD9B2E8002B219C /* NSArray+Pearl.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */; };
-		DA24BFAD1BD9B2E8002B219C /* NSBundle+PearlMutableInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */; };
 		DA24BFAE1BD9B2E8002B219C /* NSDateFormatter+RFC3339.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BACE1BD9B2E4002B219C /* NSDateFormatter+RFC3339.m */; };
 		DA24BFAF1BD9B2E8002B219C /* NSDictionary+Indexing.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAD01BD9B2E4002B219C /* NSDictionary+Indexing.m */; };
 		DA24BFB01BD9B2E8002B219C /* NSError+PearlFullDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAD21BD9B2E4002B219C /* NSError+PearlFullDescription.m */; };
@@ -61,6 +61,8 @@
 		DA681A3F1C1B4B95000E992C /* simulator-park.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA681A391C1B4B87000E992C /* simulator-park.gpx */; };
 		DA681A401C1B4B95000E992C /* simulator-uqo.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */; };
 		DA7EEDA31BCFF24A00F4E5E1 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */; };
+		DA88F7651C248540008A8C23 /* PearlLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D393C2B983F4C5E5163B03 /* PearlLogger.swift */; };
+		DA88F7681C265352008A8C23 /* STOConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DA88F7671C265352008A8C23 /* STOConfig.m */; };
 		DA993B841BB459C1007CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA993B831BB459C1007CB7A0 /* AppDelegate.swift */; };
 		DA993B8B1BB459C1007CB7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */; };
 		DA993BB21BB792D9007CB7A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA993BB11BB792D9007CB7A0 /* MapKit.framework */; };
@@ -132,6 +134,7 @@
 		93D39220D479E95F51DEDA6A /* NSMutableSet+Pearl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Pearl.m"; sourceTree = "<group>"; };
 		93D3926DB6BEAEEA3D47A708 /* STOPlacemark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOPlacemark.swift; sourceTree = "<group>"; };
 		93D39274AFB0D027C8E94EAF /* LocationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultsViewController.swift; sourceTree = "<group>"; };
+		93D393C2B983F4C5E5163B03 /* PearlLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PearlLogger.swift; sourceTree = "<group>"; };
 		93D393EA9A1A008FDEF72DF5 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93D394D7B1F54230E9E385C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93D396914B88815B86C1BDD3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		93D399B8216D50C2A1A391A0 /* STOLocationControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STOLocationControl.swift; sourceTree = "<group>"; };
 		93D39AF3F812CF57DD961A2F /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		93D39B2C4D27DFF487143C9E /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		93D39C2CB03F0DD8BC50D323 /* PearlStringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PearlStringUtils.swift; sourceTree = "<group>"; };
 		93D39D8D5C9D0ECB38D53D5E /* STONavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STONavigationController.swift; sourceTree = "<group>"; };
 		999E0179D3F6BEB5C0C0892E /* Pods_STO_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STO_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6CBF1A96DE8654C7767CEB6 /* Pods-STO Planner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STO Planner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STO Planner/Pods-STO Planner.debug.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -151,8 +155,6 @@
 		DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Indexing.m"; sourceTree = "<group>"; };
 		DA24BAC91BD9B2E4002B219C /* NSArray+Pearl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Pearl.h"; sourceTree = "<group>"; };
 		DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Pearl.m"; sourceTree = "<group>"; };
-		DA24BACB1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+PearlMutableInfo.h"; sourceTree = "<group>"; };
-		DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+PearlMutableInfo.m"; sourceTree = "<group>"; };
 		DA24BACD1BD9B2E4002B219C /* NSDateFormatter+RFC3339.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+RFC3339.h"; sourceTree = "<group>"; };
 		DA24BACE1BD9B2E4002B219C /* NSDateFormatter+RFC3339.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+RFC3339.m"; sourceTree = "<group>"; };
 		DA24BACF1BD9B2E4002B219C /* NSDictionary+Indexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Indexing.h"; sourceTree = "<group>"; };
@@ -1422,6 +1424,8 @@
 		DA681A391C1B4B87000E992C /* simulator-park.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "simulator-park.gpx"; path = "../simulator-park.gpx"; sourceTree = "<group>"; };
 		DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "simulator-uqo.gpx"; path = "../simulator-uqo.gpx"; sourceTree = "<group>"; };
 		DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		DA88F7661C265352008A8C23 /* STOConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STOConfig.h; sourceTree = "<group>"; };
+		DA88F7671C265352008A8C23 /* STOConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STOConfig.m; sourceTree = "<group>"; };
 		DA993B801BB459C1007CB7A0 /* STO Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STO Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA993B831BB459C1007CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1505,7 +1509,6 @@
 				DA24BB011BD9B2E4002B219C /* README */,
 				DA24BAC71BD9B2E4002B219C /* NSArray+Indexing.h */,
 				DA24BAC91BD9B2E4002B219C /* NSArray+Pearl.h */,
-				DA24BACB1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.h */,
 				DA24BACD1BD9B2E4002B219C /* NSDateFormatter+RFC3339.h */,
 				DA24BACF1BD9B2E4002B219C /* NSDictionary+Indexing.h */,
 				DA24BAD11BD9B2E4002B219C /* NSError+PearlFullDescription.h */,
@@ -1536,7 +1539,6 @@
 				DA24BAFF1BD9B2E4002B219C /* PearlTween.h */,
 				DA24BAC81BD9B2E4002B219C /* NSArray+Indexing.m */,
 				DA24BACA1BD9B2E4002B219C /* NSArray+Pearl.m */,
-				DA24BACC1BD9B2E4002B219C /* NSBundle+PearlMutableInfo.m */,
 				DA24BACE1BD9B2E4002B219C /* NSDateFormatter+RFC3339.m */,
 				DA24BAD01BD9B2E4002B219C /* NSDictionary+Indexing.m */,
 				DA24BAD21BD9B2E4002B219C /* NSError+PearlFullDescription.m */,
@@ -1565,6 +1567,8 @@
 				DA24BB001BD9B2E4002B219C /* PearlTween.m */,
 				DA24BAC51BD9B2E4002B219C /* include */,
 				DA24BB021BD9B2E4002B219C /* Resources */,
+				93D393C2B983F4C5E5163B03 /* PearlLogger.swift */,
+				93D39C2CB03F0DD8BC50D323 /* PearlStringUtils.swift */,
 			);
 			path = Pearl;
 			sourceTree = "<group>";
@@ -2952,24 +2956,26 @@
 		DA993B821BB459C1007CB7A0 /* STO Planner */ = {
 			isa = PBXGroup;
 			children = (
-				DA681A381C1B4B87000E992C /* simulator-gappe.gpx */,
-				DA681A391C1B4B87000E992C /* simulator-park.gpx */,
-				DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */,
-				DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */,
-				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
+				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
+				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
 				DAF4A6981C0971D200D9E4DB /* bus-large.png */,
 				DAF4A6881C07A6DD00D9E4DB /* bus@1x.png */,
 				DAF4A6871C07A6DD00D9E4DB /* bus@2x.png */,
 				DAF4A68C1C07A6DD00D9E4DB /* bus@3x.png */,
+				DA993B8F1BB459C1007CB7A0 /* Info.plist */,
+				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
+				93D391D0C79E129BEE752D1D /* Model */,
+				DA681A381C1B4B87000E992C /* simulator-gappe.gpx */,
+				DA681A391C1B4B87000E992C /* simulator-park.gpx */,
+				DA681A3A1C1B4B87000E992C /* simulator-uqo.gpx */,
+				DA5E13F21C15387000B4FC4D /* STO Planner-Bridging-Header.h */,
+				DA88F7661C265352008A8C23 /* STOConfig.h */,
+				DA88F7671C265352008A8C23 /* STOConfig.m */,
+				93D3947B5028DBCDF2E8B1EA /* View */,
 				DAF4A6991C0971D200D9E4DB /* walk-large.png */,
 				DAF4A68A1C07A6DD00D9E4DB /* walk@1x.png */,
 				DAF4A68B1C07A6DD00D9E4DB /* walk@2x.png */,
 				DAF4A6891C07A6DD00D9E4DB /* walk@3x.png */,
-				DA993B831BB459C1007CB7A0 /* AppDelegate.swift */,
-				DA7EEDA21BCFF24A00F4E5E1 /* Language.swift */,
-				DA993B8A1BB459C1007CB7A0 /* Assets.xcassets */,
-				93D391D0C79E129BEE752D1D /* Model */,
-				93D3947B5028DBCDF2E8B1EA /* View */,
 			);
 			path = "STO Planner";
 			sourceTree = "<group>";
@@ -3204,7 +3210,6 @@
 				DAF4A6C61C0F31CC00D9E4DB /* UIView+LayoutGone.m in Sources */,
 				DA24BFAB1BD9B2E8002B219C /* NSArray+Indexing.m in Sources */,
 				DA24BFC61BD9B2E8002B219C /* PearlTween.m in Sources */,
-				DA24BFAD1BD9B2E8002B219C /* NSBundle+PearlMutableInfo.m in Sources */,
 				DA24BFBA1BD9B2E8002B219C /* PearlCodeUtils.m in Sources */,
 				DA24BFCE1BD9B2E8002B219C /* PearlCryptUtils.m in Sources */,
 				DA24BFC01BD9B2E8002B219C /* PearlMathUtils.m in Sources */,
@@ -3256,6 +3261,7 @@
 				93D39A8C4AFAEECC3EBC42CC /* UIControl+Closures.swift in Sources */,
 				93D39D9272CD100521F2868A /* Route.swift in Sources */,
 				93D39A3FAB9063A9F19E4999 /* Locations.swift in Sources */,
+				DA88F7651C248540008A8C23 /* PearlLogger.swift in Sources */,
 				93D39AAF605FDEE8BB53514E /* STONavigationController.swift in Sources */,
 				93D39720D6733F56549819F1 /* LocationResultsViewController.swift in Sources */,
 				93D399CD677C53800E3D844A /* STOVisualEffectView.swift in Sources */,
@@ -3263,7 +3269,9 @@
 				93D39C72AA361F76E337B997 /* NSMutableSet+Pearl.m in Sources */,
 				93D39B0E0AD96AE0D3389E6E /* Observers.swift in Sources */,
 				93D39C016879FD13B01D0A7C /* STOLocationControl.swift in Sources */,
+				DA88F7681C265352008A8C23 /* STOConfig.m in Sources */,
 				93D399F940CC0D67459A4C91 /* STOPlacemark.swift in Sources */,
+				93D39499FAB846ABA5E9DD2A /* PearlStringUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3359,6 +3367,7 @@
 					PEARL,
 					PEARL_UIKIT,
 					PEARL_CRYPTO,
+					PEARL_WITH_MESSAGEUI,
 				);
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -3419,6 +3428,7 @@
 					PEARL,
 					PEARL_UIKIT,
 					PEARL_CRYPTO,
+					PEARL_WITH_MESSAGEUI,
 				);
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;

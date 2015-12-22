@@ -14,9 +14,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     let locationManager = CLLocationManager()
 
     lazy var mapLocationPlacemarkResolver: STOPlacemarkLocationResolver
-    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: strl( "your location" ), locationSupplier: {
-        self.mapView.userLocation.location
-    } )
+    = STOPlacemarkLocationResolver( geoCoder: self.geoCoder, locationName: strl( "Your location" ),
+                                    locationSupplier: { self.mapView.userLocation.location } )
 
     weak var didChangeTravelTimeTimer: NSTimer? {
         willSet {
@@ -49,8 +48,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     destinationPlacemark = flip
                     isFlippingSourceAndDestinationPlacemarks = false
                 }
-                else if !isFlippingSourceAndDestinationPlacemarks && destinationPlacemark == nil {
-                    mapLocationPlacemarkResolver.resolvePlacemark( { self.destinationPlacemark = $0 } )
+                else if let placemarkResolver = destinationPlacemark == nil ? mapLocationPlacemarkResolver: destinationPlacemark?.resolver
+                where !isFlippingSourceAndDestinationPlacemarks {
+                    placemarkResolver.resolvePlacemark( { self.destinationPlacemark = $0 }, placemarkResolutionFailed: { _ in } )
                 }
             }
         }
@@ -86,8 +86,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                     sourcePlacemark = flip
                     isFlippingSourceAndDestinationPlacemarks = false
                 }
-                else if !isFlippingSourceAndDestinationPlacemarks && sourcePlacemark == nil {
-                    mapLocationPlacemarkResolver.resolvePlacemark( { self.sourcePlacemark = $0 } )
+                else if let placemarkResolver = sourcePlacemark == nil ? mapLocationPlacemarkResolver: sourcePlacemark?.resolver
+                where !isFlippingSourceAndDestinationPlacemarks {
+                    placemarkResolver.resolvePlacemark( { self.sourcePlacemark = $0 }, placemarkResolutionFailed: { _ in } )
                 }
             }
         }
@@ -169,7 +170,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 leavingTimeControl.date = leavingTravelTime.at()
             }
 
-            buildLocationsRoute()
+            didChangeTravelTimeTimer = NSTimer.scheduledTimerWithTimeInterval( 1.5, block: {
+                _ in
+                self.buildLocationsRoute()
+            }, repeats: false )
         }
     }
     var planibusRequest: Request? {
@@ -332,13 +336,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         let clRegion = CLCircularRegion( center: mapView.region.center, radius: regionNW.distanceFromLocation( regionSE ) / 2,
                                          identifier: "search" )
 
-        let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Searching Address..." ), cancelOnTouch: {
+        let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Searching Address" ), cancelOnTouch: {
             self.geoCoder.cancelGeocode()
             return true
         } )
         searchBar.resignFirstResponder()
 
-        geoCoder.geocodeAddressString( searchBar.text!.stringByAppendingString( ", Canada" ), inRegion: clRegion, completionHandler: {
+        geoCoder.geocodeAddressString( searchBar.text!.stringByAppendingString( ", Gatineau/Ottawa, Canada" ), inRegion: clRegion, completionHandler: {
             (placemarks: [CLPlacemark]?, error: NSError?) in
             if let error_ = error {
                 PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
@@ -404,20 +408,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     /* UIScrollViewDelegate */
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let scrollPage = Int( scrollView.contentOffset.x / scrollView.frame.size.width + 0.5 )
         if scrollView == self.travelTimePicker {
-            if travelTime.page() != scrollPage {
-                switch scrollPage {
-                    case 0:
-                        travelTime = STOTravelTimeLeavingNow()
-                    case 1:
-                        travelTime = STOTravelTimeArriving( time: self.arrivingTimeControl.date )
-                    case 2:
-                        travelTime = STOTravelTimeLeaving( time: self.leavingTimeControl.date )
-                    default:
-                        preconditionFailure( "Unexpected travel time page: \(scrollPage)" )
-                }
-            }
+            updateTravelTime()
         }
     }
 
@@ -474,18 +466,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didChangeTravelTime(sender: AnyObject) {
-        didChangeTravelTimeTimer = NSTimer.scheduledTimerWithTimeInterval( 1.5, block:
-        {
-            (timer: NSTimer!) in
-            NSOperationQueue.mainQueue().addOperationWithBlock( {
-                if sender === self.arrivingTimeControl && self.travelTime.page() == 1 {
-                    self.travelTime = STOTravelTimeArriving( time: self.arrivingTimeControl.date )
-                }
-                else if sender === self.leavingTimeControl && self.travelTime.page() == 2 {
-                    self.travelTime = STOTravelTimeLeaving( time: self.leavingTimeControl.date )
-                }
-            } )
-        }, repeats: false )
+        updateTravelTime()
     }
 
     @IBAction func didTapClear(sender: AnyObject) {
@@ -497,6 +478,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     @IBAction func didTapReload(sender: AnyObject) {
+        if let placemarkResolver = sourcePlacemark?.resolver {
+            placemarkResolver.resolvePlacemark( { self.sourcePlacemark = $0 }, placemarkResolutionFailed: { _ in } )
+        }
+        if let placemarkResolver = destinationPlacemark?.resolver {
+            placemarkResolver.resolvePlacemark( { self.destinationPlacemark = $0 }, placemarkResolutionFailed: { _ in } )
+        }
+
         buildLocationsRoute()
     }
 
@@ -507,6 +495,22 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     /* Private */
+
+    func updateTravelTime() {
+        let travelTimePage = Int( self.travelTimePicker.contentOffset.x /
+                                  self.travelTimePicker.frame.size.width + 0.5 )
+
+        switch travelTimePage {
+            case 0:
+                self.travelTime = STOTravelTimeLeavingNow()
+            case 1:
+                self.travelTime = STOTravelTimeArriving( time: self.arrivingTimeControl.date )
+            case 2:
+                self.travelTime = STOTravelTimeLeaving( time: self.leavingTimeControl.date )
+            default:
+                preconditionFailure( "Unexpected travel time page: \(travelTimePage)" )
+        }
+    }
 
     func unsetUI() {
         self.view.layoutIfNeeded()
@@ -586,6 +590,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
                 Locations.recent.insert( Location( placemark: $0 ) )
             }, placemarkResolutionFailed: {
+                _ in
                 control.selectedSegmentIndex = -1
             } )
         } )
@@ -609,21 +614,43 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         }
     }
 
-    func createRouteLocationButtonWithPlacemark(placemark: MKPlacemark) -> UIButton {
-        let locationButton = UIButton( type: .System )
-        locationButton.backgroundColor = UIColor.lightTextColor()
-        locationButton.layer.cornerRadius = 4
-
+    func createRouteLocationButtonWithPlacemark(placemark: STOPlacemark) -> UIButton {
         // Title
-        var title = strl( "%@, %@", placemark.name ?? "", placemark.locality ?? "" )
+        let labelLabel = UILabel(), titleLabel = UILabel(), actionLabel = UILabel()
+        labelLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionLabel.translatesAutoresizingMaskIntoConstraints = false
+        labelLabel.font = UIFont( name: "HelveticaNeue-Light", size: 15 )
+        labelLabel.textColor = view.tintColor
+        labelLabel.textAlignment = .Left
         if placemark == sourcePlacemark {
-            title = strl( "From: %@", title )
+            labelLabel.text = strl( "From:" )
         }
         else if placemark == destinationPlacemark {
-            title = strl( "To: %@", title )
+            labelLabel.text = strl( "To:" )
         }
-        locationButton.setTitle( title, forState: .Normal )
-        locationButton.titleLabel!.lineBreakMode = .ByTruncatingTail
+        titleLabel.font = UIFont( name: "HelveticaNeue-Light", size: 15 )
+        titleLabel.numberOfLines = 1
+        titleLabel.lineBreakMode = .ByTruncatingTail
+        titleLabel.allowsDefaultTighteningForTruncation = true
+        titleLabel.text = placemark.title
+        titleLabel.textColor = view.tintColor
+        titleLabel.textAlignment = .Center
+        actionLabel.font = UIFont( name: "HelveticaNeue-Light", size: 15 )
+        actionLabel.text = "⨯"
+        actionLabel.textColor = view.tintColor
+        actionLabel.textAlignment = .Right
+
+        let locationButton = UIButton( type: .System )
+        locationButton.translatesAutoresizingMaskIntoConstraints = false
+        locationButton.backgroundColor = UIColor.lightTextColor()
+        locationButton.layer.cornerRadius = 4
+        locationButton.addSubview( labelLabel )
+        locationButton.addSubview( titleLabel )
+        locationButton.addSubview( actionLabel )
+        locationButton.addConstraintsWithVisualFormats( [ "H:|-[label(60@500)][title][action(60@500)]-|", "V:|[label]|", "V:|[title]|", "V:|[action]|" ],
+                                                        options: NSLayoutFormatOptions(), metrics: nil, views:
+                                                        [ "label": labelLabel, "title": titleLabel, "action": actionLabel ] );
 
         // Action
         locationButton.on( .TouchUpInside, {
@@ -639,8 +666,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
     }
 
     func buildLocationsRoute() {
-        routeOverlay = nil
         routeLookup = nil
+        routeOverlay = nil
+        didChangeTravelTimeTimer = nil
 
         if let sourcePlacemark_ = sourcePlacemark, destinationPlacemark_ = destinationPlacemark {
             searchPlacemark = nil
@@ -656,7 +684,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 
             planibusRequest = Alamofire.request( .GET, "http://planibus.sto.ca/HastinfoWebMobile/TravelPlansResults.aspx",
                                                  parameters: parameters )
-            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Looking for the best routes..." ), cancelOnTouch: {
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Looking for the best routes" ), cancelOnTouch: {
                 self.planibusRequest?.cancel()
                 return true
             } )
@@ -664,7 +692,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
                 (response: Response) in
 
                 dbg( "STO URL:\n%@", response.request?.URL )
-                if let error_ = response.result.error {
+                if let error_ = response.result.error
+                where error_.code != NSURLErrorCancelled {
                     overlay.cancelOverlayAnimated( true )
                     PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
                     err( "ERROR: STO Error Response:\n%@", error_.fullDescription() )
@@ -797,7 +826,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
 }
 
 protocol STOPlacemarkResolver {
-    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> ())
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: (NSError?) -> ())
 }
 
 class STOPlacemarkValueResolver: STOPlacemarkResolver {
@@ -807,8 +836,7 @@ class STOPlacemarkValueResolver: STOPlacemarkResolver {
         self.placemark = placemark
     }
 
-    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> () = {
-    }) {
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: (NSError?) -> ()) {
         placemarkResolved( placemark )
     }
 }
@@ -824,10 +852,9 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
         self.locationSupplier = locationSupplier
     }
 
-    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: () -> () = {
-    }) {
+    func resolvePlacemark(placemarkResolved: (STOPlacemark) -> (), placemarkResolutionFailed: (NSError?) -> ()) {
         if let location_ = locationSupplier() {
-            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Looking for %@...", locationName ), cancelOnTouch: {
+            let overlay = PearlOverlay.showProgressOverlayWithTitle( strl( "Finding: %@", locationName ), cancelOnTouch: {
                 self.geoCoder.cancelGeocode()
                 return true
             } )
@@ -836,21 +863,24 @@ class STOPlacemarkLocationResolver: STOPlacemarkResolver {
 
                 if let error_ = error {
                     PearlOverlay.showTemporaryOverlayWithTitle( error_.localizedDescription, dismissAfter: 3 )
-                    err( "ERROR: Reverse Geocode: %@", error.fullDescription() )
+                    err( "ERROR: Reverse Geocode: %@", error_.fullDescription() )
                 }
 
                 if let firstPlacemark = placemarks?.first {
-                    placemarkResolved( STOPlacemark( placemark: firstPlacemark ) )
+                    let resolvedPlacemark = STOPlacemark( placemark: firstPlacemark )
+                    resolvedPlacemark.title = self.locationName
+                    resolvedPlacemark.resolver = self
+                    placemarkResolved( resolvedPlacemark )
                 }
                 else {
-                    placemarkResolutionFailed()
+                    placemarkResolutionFailed( error )
                 }
 
                 overlay.cancelOverlayAnimated( true )
             } )
         }
         else {
-            placemarkResolutionFailed()
+            placemarkResolutionFailed( nil )
         }
     }
 }

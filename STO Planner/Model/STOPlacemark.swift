@@ -8,6 +8,7 @@ import MapKit
 import CoreLocation
 
 class STOPlacemark: MKPlacemark {
+    var resolver:    STOPlacemarkResolver?
     var routeLookup: RouteLookup?
 
     override init(placemark: CLPlacemark) {
@@ -22,8 +23,14 @@ class STOPlacemark: MKPlacemark {
         fatalError( "init(coder:) has not been implemented" )
     }
 
-    override var title: String? {
-        return self.name
+    private var  _title: String?
+    override var title:  String? {
+        get {
+            return _title ?? self.name
+        }
+        set {
+            _title = newValue
+        }
     }
 
     override var subtitle: String? {

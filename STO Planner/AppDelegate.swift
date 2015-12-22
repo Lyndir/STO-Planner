@@ -11,14 +11,11 @@ import Fabric
 import Crashlytics
 
 @UIApplicationMain
-public class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    public var window: UIWindow?
-
-    public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
+public class AppDelegate: PearlAppDelegate {
+    public override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
         Fabric.with( [ Crashlytics.self ] )
 
-        return true
+        return super.application( application, didFinishLaunchingWithOptions: launchOptions );
     }
 }
 
