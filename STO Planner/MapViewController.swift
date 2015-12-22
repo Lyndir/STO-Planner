@@ -621,8 +621,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         actionLabel.translatesAutoresizingMaskIntoConstraints = false
         labelLabel.font = UIFont( name: "HelveticaNeue-Light", size: 15 )
-        labelLabel.textColor = view.tintColor
+        labelLabel.textColor = routeLocationsStackView.tintColor
         labelLabel.textAlignment = .Left
+        labelLabel.enabled = false
         if placemark == sourcePlacemark {
             labelLabel.text = strl( "From:" )
         }
@@ -634,12 +635,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate, UISearch
         titleLabel.lineBreakMode = .ByTruncatingTail
         titleLabel.allowsDefaultTighteningForTruncation = true
         titleLabel.text = placemark.title
-        titleLabel.textColor = view.tintColor
+        titleLabel.textColor = routeLocationsStackView.tintColor
         titleLabel.textAlignment = .Center
         actionLabel.font = UIFont( name: "HelveticaNeue-Light", size: 15 )
         actionLabel.text = "⨯"
-        actionLabel.textColor = view.tintColor
+        actionLabel.textColor = routeLocationsStackView.tintColor
         actionLabel.textAlignment = .Right
+        actionLabel.enabled = false
 
         let locationButton = UIButton( type: .System )
         locationButton.translatesAutoresizingMaskIntoConstraints = false
