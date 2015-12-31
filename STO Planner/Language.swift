@@ -16,8 +16,8 @@ func %(left: String, right: [CVarArgType]) -> String {
 }
 
 extension GeneratorType {
-    public subscript(index: Int) -> Element? {
-        var lastValue: Element?, advancingSelf = self
+    public func at(index: Int) -> Self.Element? {
+        var lastValue: Self.Element?, advancingSelf = self
 
         for (var current = index; current >= 0; --current) {
             lastValue = advancingSelf.next()
