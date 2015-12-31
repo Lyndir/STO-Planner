@@ -15,20 +15,10 @@ func %(left: String, right: [CVarArgType]) -> String {
     return String( format: left, arguments: right )
 }
 
-func iterateEnum<T:Hashable>(_: T.Type) -> AnyGenerator<T> {
-    var i = 0
-    return anyGenerator {
-        let next = withUnsafePointer( &i ) {
-            UnsafePointer<T>( $0 ).memory
-        }
-        return next.hashValue == i++ ? next: nil
-    }
-}
-
 extension GeneratorType {
     public subscript(index: Int) -> Element? {
         var lastValue: Element?, advancingSelf = self
-        
+
         for (var current = index; current >= 0; --current) {
             lastValue = advancingSelf.next()
             if lastValue == nil {
@@ -40,11 +30,25 @@ extension GeneratorType {
     }
 }
 
+extension Indexable {
+    func at(index: Index) -> Self._Element? {
+        let fromStart = startIndex.distanceTo( index )
+        if fromStart < 0 {
+            return nil
+        }
+        if fromStart >= startIndex.distanceTo( endIndex ) {
+            return nil
+        }
+
+        return self[index]
+    }
+}
+
 struct WeakReference<T> {
     private weak var _value: AnyObject?
 }
 
-extension WeakReference where T:AnyObject {
+extension WeakReference where T: AnyObject {
     init(_ value: T) {
         self.value = value
     }

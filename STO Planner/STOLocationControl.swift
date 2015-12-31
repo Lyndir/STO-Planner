@@ -7,10 +7,10 @@ import UIKit
 
 class STOLocationControl: UISegmentedControl {
     init(handler: (control:STOLocationControl, segment:LocationControlSegment) -> ()) {
-        super.init( items: iterateEnum( LocationControlSegment ).map( { $0.title } ) )
+        super.init( items: LocationControlSegment.allValues.map( { $0.title } ) )
 
         on( .ValueChanged, {
-            if let segment = iterateEnum( LocationControlSegment )[self.selectedSegmentIndex] {
+            if let segment = LocationControlSegment.allValues.at( self.selectedSegmentIndex ) {
                 handler( control: self, segment: segment )
             }
             else {
@@ -28,7 +28,7 @@ class STOLocationControl: UISegmentedControl {
     }
 
     func select(segment: LocationControlSegment?) {
-        if let segment_ = segment, index = [ LocationControlSegment ]( iterateEnum( LocationControlSegment ) ).indexOf( segment_ ) {
+        if let segment_ = segment, index = LocationControlSegment.allValues.indexOf( segment_ ) {
             selectedSegmentIndex = index
         }
         else {
@@ -37,7 +37,9 @@ class STOLocationControl: UISegmentedControl {
     }
 }
 
-enum LocationControlSegment {
+public enum LocationControlSegment {
+    public static let allValues: [LocationControlSegment] = [ .Source, .Destination ]
+
     case Source
     case Destination
 

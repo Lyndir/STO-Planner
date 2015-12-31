@@ -95,14 +95,14 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     @IBOutlet var extrasMenuHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var sourceDestinationControl:   UISegmentedControl!
 
-    var mark: LocationMark?
+    var mark:                 LocationMark?
     var extraMenuShowing = false {
         didSet {
             updateExtrasMenu()
         }
     }
     var navigationController: STONavigationController!
-    var location: Location! {
+    var location:             Location! {
         didSet {
             titleLabel.text = strl( "%@, %@", location.placemark.name ?? "", location.placemark.locality ?? "" )
             subtitleLabel.text = location.placemark.postalCode
@@ -198,7 +198,7 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     }
 
     func markForLocation() -> LocationMark? {
-        for mark in iterateEnum( LocationMark ) {
+        for mark in LocationMark.allValues {
             if mark.matchesLocation( location ) {
                 return mark
             }

@@ -116,8 +116,8 @@ public class Location: NSObject {
 
     init(dict: [String:NSObject]) {
         self.placemark = STOPlacemark( coordinate: CLLocationCoordinate2D( latitude: (dict["coordinate.latitude"] as! CLLocationDegrees),
-                                                                          longitude: (dict["coordinate.longitude"]! as! CLLocationDegrees) ),
-                                      addressDictionary: dict["addressDictionary"] as! [String:NSObject]? )
+                                                                           longitude: (dict["coordinate.longitude"]! as! CLLocationDegrees) ),
+                                       addressDictionary: dict["addressDictionary"] as! [String:NSObject]? )
     }
 
     func toDict() -> [String:NSObject] {
@@ -162,20 +162,21 @@ public class Location: NSObject {
 }
 
 @objc public enum LocationMark: Int {
-    public static var observers = Observers<LocationMarkObserver>()
+    public static let allValues: [LocationMark] = [ .Home, .Work, .Play ]
+    public static var observers                 = Observers<LocationMarkObserver>()
 
     case Home
     case Work
     case Play
 
-    var name: String {
+    var name:  String {
         switch self {
-        case .Home:
-            return "home"
-        case .Work:
-            return "work"
-        case .Play:
-            return "play"
+            case .Home:
+                return "home"
+            case .Work:
+                return "work"
+            case .Play:
+                return "play"
         }
     }
     var title: String {
@@ -190,13 +191,14 @@ public class Location: NSObject {
     }
 
     func setLocation(location: Location) {
-        for mark in iterateEnum( LocationMark ) {
+        for mark in LocationMark.allValues {
             if mark == self {
                 NSUserDefaults.standardUserDefaults().setObject( location.toDict(), forKey: "locationMarks.\(mark.name)" )
                 LocationMark.observers.fire {
                     $0.locationChangedForMark( mark, toLocation: location )
                 }
-            } else if mark.matchesLocation( location ) {
+            }
+            else if mark.matchesLocation( location ) {
                 NSUserDefaults.standardUserDefaults().setObject( nil, forKey: "locationMarks.\(mark.name)" )
                 LocationMark.observers.fire {
                     $0.locationChangedForMark( mark, toLocation: nil )
