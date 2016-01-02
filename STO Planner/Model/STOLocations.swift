@@ -6,16 +6,16 @@
 import Foundation
 import MapKit
 
-@objc public protocol LocationsObserver: class {
-    func locationsChanged(locations: Locations, byLocation location: Location)
+@objc public protocol STOLocationsObserver: class {
+    func locationsChanged(locations: STOLocations, byLocation location: STOLocation)
 
-    func locationsCleared(locations: Locations)
+    func locationsCleared(locations: STOLocations)
 }
 
-public class Locations: NSObject, SequenceType {
-    public static var observers = Observers<LocationsObserver>()
-    public static var recent    = Locations( key: "locations.recent" )
-    public static var starred   = Locations( key: "locations.starred" )
+public class STOLocations: NSObject, SequenceType {
+    public static var observers = Observers<STOLocationsObserver>()
+    public static var recent    = STOLocations( key: "locations.recent" )
+    public static var starred   = STOLocations( key: "locations.starred" )
 
     let key:           String
     var locationDicts: [[String:NSObject]]
@@ -26,17 +26,17 @@ public class Locations: NSObject, SequenceType {
         ?? [ [ String: NSObject ] ]()
     }
 
-    public func generate() -> AnyGenerator<Location> {
+    public func generate() -> AnyGenerator<STOLocation> {
         var stateGenerator = locationDicts.generate()
         return anyGenerator( {
             while let locationDict = stateGenerator.next() {
-                if self === Locations.recent && Locations.starred.locationDicts.contains( {
+                if self === STOLocations.recent && STOLocations.starred.locationDicts.contains( {
                     return locationDict == $0
                 } ) {
                     continue
                 }
 
-                return Location( dict: locationDict )
+                return STOLocation( dict: locationDict )
             }
 
             return nil
@@ -47,34 +47,34 @@ public class Locations: NSObject, SequenceType {
         return locationDicts.count
     }
 
-    public subscript(index: Int) -> Location? {
-        return Location( dict: locationDicts[index] )
+    public subscript(index: Int) -> STOLocation? {
+        return STOLocation( dict: locationDicts[index] )
     }
 
-    func insert(location: Location) {
+    func insert(location: STOLocation) {
         locationDicts = locationDicts.filter( { !location.matchesDict( $0 ) } )
-        locationDicts.append( location.toDict() )
+        locationDicts.insert( location.toDict(), atIndex: 0 )
         NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
 
-        Locations.observers.fire {
+        STOLocations.observers.fire {
             $0.locationsChanged( self, byLocation: location )
         }
     }
 
-    func remove(location: Location) {
+    func remove(location: STOLocation) {
         let oldCount = locationDicts.count
         locationDicts = locationDicts.filter( { !location.matchesDict( $0 ) } )
 
         if locationDicts.count < oldCount {
             NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
 
-            Locations.observers.fire {
+            STOLocations.observers.fire {
                 $0.locationsChanged( self, byLocation: location )
             }
         }
     }
 
-    func toggle(location: Location) {
+    func toggle(location: STOLocation) {
         let locationDictsCount = locationDicts.count
         locationDicts = locationDicts.filter( { !location.matchesDict( $0 ) } )
         if locationDictsCount == locationDicts.count {
@@ -82,12 +82,12 @@ public class Locations: NSObject, SequenceType {
         }
         NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
 
-        Locations.observers.fire {
+        STOLocations.observers.fire {
             $0.locationsChanged( self, byLocation: location )
         }
     }
 
-    func contains(location: Location) -> Bool {
+    func contains(location: STOLocation) -> Bool {
         for locationDict in locationDicts {
             if (location.matchesDict( locationDict )) {
                 return true;
@@ -101,13 +101,13 @@ public class Locations: NSObject, SequenceType {
         locationDicts = [ [ String: NSObject ] ]()
         NSUserDefaults.standardUserDefaults().setObject( locationDicts, forKey: key )
 
-        Locations.observers.fire {
+        STOLocations.observers.fire {
             $0.locationsCleared( self )
         }
     }
 }
 
-public class Location: NSObject {
+public class STOLocation: NSObject {
     let placemark: STOPlacemark
 
     init(placemark: STOPlacemark) {
@@ -144,7 +144,7 @@ public class Location: NSObject {
     }
 
     public override func isEqual(obj: AnyObject?) -> Bool {
-        if let myLocation = placemark.location, objLocation = (obj as? Location)?.placemark.location {
+        if let myLocation = placemark.location, objLocation = (obj as? STOLocation)?.placemark.location {
             return myLocation.coordinate.longitude == objLocation.coordinate.longitude &&
                    myLocation.coordinate.latitude == objLocation.coordinate.latitude
         }
@@ -157,13 +157,13 @@ public class Location: NSObject {
     }
 }
 
-@objc public protocol LocationMarkObserver {
-    func locationChangedForMark(mark: LocationMark, toLocation location: Location?)
+@objc public protocol STOLocationMarkObserver {
+    func locationChangedForMark(mark: STOLocationMark, toLocation location: STOLocation?)
 }
 
-@objc public enum LocationMark: Int {
-    public static let allValues: [LocationMark] = [ .Home, .Work, .Play ]
-    public static var observers                 = Observers<LocationMarkObserver>()
+@objc public enum STOLocationMark: Int {
+    public static let allValues: [STOLocationMark] = [ .Home, .Work, .Play ]
+    public static var observers                    = Observers<STOLocationMarkObserver>()
 
     case Home
     case Work
@@ -190,32 +190,32 @@ public class Location: NSObject {
         }
     }
 
-    func setLocation(location: Location) {
-        for mark in LocationMark.allValues {
+    func setLocation(location: STOLocation) {
+        for mark in STOLocationMark.allValues {
             if mark == self {
                 NSUserDefaults.standardUserDefaults().setObject( location.toDict(), forKey: "locationMarks.\(mark.name)" )
-                LocationMark.observers.fire {
+                STOLocationMark.observers.fire {
                     $0.locationChangedForMark( mark, toLocation: location )
                 }
             }
             else if mark.matchesLocation( location ) {
                 NSUserDefaults.standardUserDefaults().setObject( nil, forKey: "locationMarks.\(mark.name)" )
-                LocationMark.observers.fire {
+                STOLocationMark.observers.fire {
                     $0.locationChangedForMark( mark, toLocation: nil )
                 }
             }
         }
     }
 
-    func getLocation() -> Location? {
+    func getLocation() -> STOLocation? {
         if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self.name)" ) as? [String:NSObject] {
-            return Location( dict: locationDict )
+            return STOLocation( dict: locationDict )
         }
 
         return nil
     }
 
-    func matchesLocation(location: Location) -> Bool {
+    func matchesLocation(location: STOLocation) -> Bool {
         if let locationDict = NSUserDefaults.standardUserDefaults().objectForKey( "locationMarks.\(self.name)" ) as? [String:NSObject] {
             return location.matchesDict( locationDict )
         }

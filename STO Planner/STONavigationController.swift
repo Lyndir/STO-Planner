@@ -6,5 +6,5 @@
 import UIKit
 
 class STONavigationController : UINavigationController {
-    var mapViewController: MapViewController!
+    var mapViewController: STOMapViewController!
 }

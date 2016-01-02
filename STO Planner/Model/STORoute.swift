@@ -6,15 +6,15 @@
 import Foundation
 import MapKit
 
-class RouteLookup: CustomStringConvertible {
+class STORouteLookup: CustomStringConvertible {
     let sourcePlacemark:      MKPlacemark
     let destinationPlacemark: MKPlacemark
     let travelTime:           STOTravelTime
-    let routes:               Array<Route>
+    let routes:               Array<STORoute>
     let title:                String
 
     init(sourcePlacemark: MKPlacemark, destinationPlacemark: MKPlacemark,
-         travelTime: STOTravelTime, routes: Array<Route>) {
+         travelTime: STOTravelTime, routes: Array<STORoute>) {
         self.sourcePlacemark = sourcePlacemark
         self.destinationPlacemark = destinationPlacemark
         self.travelTime = travelTime
@@ -33,11 +33,11 @@ class RouteLookup: CustomStringConvertible {
     }
 }
 
-class Route: CustomStringConvertible {
+class STORoute: CustomStringConvertible {
     let title: String
-    let steps: [ RouteStep ]
+    let steps: [STORouteStep]
 
-    init(title: String, steps: [ RouteStep ]) {
+    init(title: String, steps: [STORouteStep]) {
         self.title = title
         self.steps = steps
     }
@@ -53,13 +53,13 @@ class Route: CustomStringConvertible {
     }
 }
 
-class RouteStep: CustomStringConvertible {
+class STORouteStep: CustomStringConvertible {
     let timing:      String
-    let mode:        RouteStepMode
+    let mode:        STORouteStepMode
     let modeContext: String?
     let explanation: NSAttributedString
 
-    init(timing: String, mode: RouteStepMode, modeContext: String?, explanation: NSAttributedString) {
+    init(timing: String, mode: STORouteStepMode, modeContext: String?, explanation: NSAttributedString) {
         self.timing = timing
         self.mode = mode
         self.modeContext = modeContext
@@ -75,7 +75,7 @@ class RouteStep: CustomStringConvertible {
     }
 }
 
-enum RouteStepMode : String {
+enum STORouteStepMode: String {
     case Walk = "🚶"
     case Bus = "🚍"
 

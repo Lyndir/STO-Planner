@@ -5,14 +5,14 @@
 
 import UIKit
 
-class LocationResultsViewController: UITableViewController, LocationsObserver {
-    var locationItems = [ [ Location ] ]()
+class STOLocationResultsViewController: UITableViewController, STOLocationsObserver {
+    var locationItems = [ [ STOLocation ] ]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
-        Locations.observers.add( self )
+        locationItems = [ [ STOLocation ]( STOLocations.starred ), [ STOLocation ]( STOLocations.recent ) ]
+        STOLocations.observers.add( self )
     }
 
     /* Actions */
@@ -22,20 +22,20 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
     }
 
     @IBAction func didTapClear(sender: UIBarButtonItem) {
-        Locations.recent.clear()
+        STOLocations.recent.clear()
     }
 
     /* LocationsObserver */
 
-    func locationsChanged(locations: Locations, byLocation location: Location) {
+    func locationsChanged(locations: STOLocations, byLocation location: STOLocation) {
         let oldLocationItems = locationItems
-        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
+        locationItems = [ [ STOLocation ]( STOLocations.starred ), [ STOLocation ]( STOLocations.recent ) ]
         tableView?.reloadSectionsFromArray( oldLocationItems, toArray: locationItems )
     }
 
-    func locationsCleared(locations: Locations) {
+    func locationsCleared(locations: STOLocations) {
         let oldLocationItems = locationItems
-        locationItems = [ [ Location ]( Locations.starred ), [ Location ]( Locations.recent ) ]
+        locationItems = [ [ STOLocation ]( STOLocations.starred ), [ STOLocation ]( STOLocations.recent ) ]
         tableView?.reloadSectionsFromArray( oldLocationItems, toArray: locationItems )
     }
 
@@ -61,7 +61,7 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell         = tableView.dequeueReusableCellWithIdentifier( LocationCell.name(), forIndexPath: indexPath ) as! LocationCell
+        let cell         = tableView.dequeueReusableCellWithIdentifier( STOLocationCell.name(), forIndexPath: indexPath ) as! STOLocationCell
         let locationItem = locationItems[indexPath.section][indexPath.row]
         if let navigationController_ = self.navigationController as? STONavigationController {
             cell.navigationController = navigationController_
@@ -84,9 +84,9 @@ class LocationResultsViewController: UITableViewController, LocationsObserver {
     }
 }
 
-class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
+class STOLocationCell: UITableViewCell, STOLocationsObserver, STOLocationMarkObserver {
     class func name() -> String {
-        return "LocationCell"
+        return "STOLocationCell"
     }
 
     @IBOutlet var titleLabel:                 UILabel!
@@ -95,14 +95,14 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     @IBOutlet var extrasMenuHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var sourceDestinationControl:   UISegmentedControl!
 
-    var mark:                 LocationMark?
+    var mark:                 STOLocationMark?
     var extraMenuShowing = false {
         didSet {
             updateExtrasMenu()
         }
     }
     var navigationController: STONavigationController!
-    var location:             Location! {
+    var location:             STOLocation! {
         didSet {
             titleLabel.text = strl( "%@, %@", location.placemark.name ?? "", location.placemark.locality ?? "" )
             subtitleLabel.text = location.placemark.postalCode
@@ -113,8 +113,8 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        Locations.observers.add( self )
-        LocationMark.observers.add( self )
+        STOLocations.observers.add( self )
+        STOLocationMark.observers.add( self )
 
         extrasMenuControl.clipsToBounds = true
         extrasMenuControl.layer.cornerRadius = 4
@@ -125,15 +125,17 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
             }
             else if self.extrasMenuControl.selectedSegmentIndex == 1 {
                 // Trash
-                Locations.starred.remove( self.location )
-                Locations.recent.remove( self.location )
+                STOLocations.starred.remove( self.location )
+                STOLocations.recent.remove( self.location )
             }
             else if self.extrasMenuControl.selectedSegmentIndex == 2 {
                 // Favorite button
-                Locations.starred.toggle( self.location )
+                STOLocations.starred.toggle( self.location )
             }
             else {
-                LocationMark( rawValue: self.extrasMenuControl.selectedSegmentIndex - 3 )?.setLocation( self.location )
+                // Mark button
+                STOLocations.starred.insert( self.location )
+                STOLocationMark( rawValue: self.extrasMenuControl.selectedSegmentIndex - 3 )?.setLocation( self.location )
             }
         } )
         sourceDestinationControl.layer.cornerRadius = 4
@@ -162,19 +164,19 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
 
     /* LocationsObserver */
 
-    func locationsChanged(locations: Locations, byLocation location: Location) {
+    func locationsChanged(locations: STOLocations, byLocation location: STOLocation) {
         if (location == self.location) {
             updateExtrasMenu()
         }
     }
 
-    func locationsCleared(locations: Locations) {
+    func locationsCleared(locations: STOLocations) {
         updateExtrasMenu()
     }
 
     /* LocationMarkObserver */
 
-    func locationChangedForMark(mark: LocationMark, toLocation location: Location?) {
+    func locationChangedForMark(mark: STOLocationMark, toLocation location: STOLocation?) {
         if mark == self.mark || location == self.location {
             updateExtrasMenu()
         }
@@ -190,15 +192,15 @@ class LocationCell: UITableViewCell, LocationsObserver, LocationMarkObserver {
         } )
 
         mark = markForLocation()
-        let starred        = Locations.starred.contains( self.location )
+        let starred        = STOLocations.starred.contains( self.location )
         let firstItemTitle = extraMenuShowing ? "➡︎": mark?.title ?? (starred ? "★": "⬅︎")
         extrasMenuControl.setTitle( firstItemTitle, forSegmentAtIndex: 0 )
         extrasMenuControl.setTitle( starred ? "★": "☆︎", forSegmentAtIndex: 2 )
         extrasMenuControl.selectedSegmentIndex = mark == nil ? UISegmentedControlNoSegment: mark!.rawValue + 3
     }
 
-    func markForLocation() -> LocationMark? {
-        for mark in LocationMark.allValues {
+    func markForLocation() -> STOLocationMark? {
+        for mark in STOLocationMark.allValues {
             if mark.matchesLocation( location ) {
                 return mark
             }

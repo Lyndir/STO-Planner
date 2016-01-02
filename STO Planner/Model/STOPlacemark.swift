@@ -9,7 +9,7 @@ import CoreLocation
 
 class STOPlacemark: MKPlacemark {
     var resolver:    STOPlacemarkResolver?
-    var routeLookup: RouteLookup?
+    var routeLookup: STORouteLookup?
 
     override init(placemark: CLPlacemark) {
         super.init( placemark: placemark )

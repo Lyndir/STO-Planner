@@ -5,8 +5,8 @@
 
 import UIKit
 
-class RouteViewController: UITableViewController {
-    var routeLookup: RouteLookup? {
+class STORouteViewController: UITableViewController {
+    var routeLookup: STORouteLookup? {
         didSet {
             tableView.reloadData()
         }
@@ -32,8 +32,8 @@ class RouteViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "routeStepDetail" {
-            let vc = segue.destinationViewController as! RouteStepViewController
-            vc.routeStep = (sender as! RouteStepCell).routeStep
+            let vc = segue.destinationViewController as! STORouteStepViewController
+            vc.routeStep = (sender as! STORouteStepCell).routeStep
         }
         else {
             super.prepareForSegue( segue, sender: sender )
@@ -90,22 +90,22 @@ class RouteViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier( RouteLookupCell.name(), forIndexPath: indexPath ) as! RouteLookupCell
+            let cell = tableView.dequeueReusableCellWithIdentifier( STORouteLookupCell.name(), forIndexPath: indexPath ) as! STORouteLookupCell
             cell.routeLookup = routeLookup!
 
             return cell
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier( RouteStepCell.name(), forIndexPath: indexPath ) as! RouteStepCell
+        let cell = tableView.dequeueReusableCellWithIdentifier( STORouteStepCell.name(), forIndexPath: indexPath ) as! STORouteStepCell
         cell.routeStep = routeLookup!.routes[indexPath.section - 1].steps[indexPath.row]
 
         return cell
     }
 }
 
-class RouteLookupCell: UITableViewCell {
+class STORouteLookupCell: UITableViewCell {
     class func name() -> String {
-        return "RouteLookupCell"
+        return "STORouteLookupCell"
     }
 
     let timeFormatter     = NSDateFormatter()
@@ -116,7 +116,7 @@ class RouteLookupCell: UITableViewCell {
     @IBOutlet var arrivingLabel: UILabel!
     @IBOutlet var leavingLabel:  UILabel!
 
-    var routeLookup: RouteLookup! {
+    var routeLookup: STORouteLookup! {
         didSet {
             let source = routeLookup.sourcePlacemark, destination = routeLookup.destinationPlacemark
             titleLabel.text = destination.thoroughfare ?? destination.name ?? ""
@@ -159,16 +159,16 @@ class RouteLookupCell: UITableViewCell {
     }
 }
 
-class RouteStepCell: UITableViewCell {
+class STORouteStepCell: UITableViewCell {
     class func name() -> String {
-        return "RouteStepCell"
+        return "STORouteStepCell"
     }
 
     @IBOutlet var modeLabel:     UILabel!
     @IBOutlet var routeLabel:    UILabel!
     @IBOutlet var modeImageView: UIImageView!
 
-    var routeStep: RouteStep! {
+    var routeStep: STORouteStep! {
         didSet {
             modeImageView.image = routeStep.mode.thumbnailImage
             modeImageView.alpha = routeStep.modeContext?.startIndex == routeStep.modeContext?.endIndex ? 1: 0.38;
@@ -196,12 +196,12 @@ class RouteStepCell: UITableViewCell {
     }
 }
 
-class RouteStepViewController: UIViewController {
+class STORouteStepViewController: UIViewController {
 
     @IBOutlet var backgroundImage:  UIImageView!
     @IBOutlet var descriptionField: UITextView!
 
-    var routeStep: RouteStep!
+    var routeStep: STORouteStep!
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear( animated )

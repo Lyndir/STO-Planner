@@ -5,16 +5,34 @@
 
 import UIKit
 
+protocol STOLocationControlSegmentResolver {
+    func locationControl(control: STOLocationControl, activeSegmentForPlacemark placemark: STOPlacemark) -> STOLocationControlSegment?
+}
+
+protocol STOLocationControlSegmentHandler {
+    func locationControl(control: STOLocationControl, didSelectSegment segment: STOLocationControlSegment, forPlacemark placemark: STOPlacemark)
+}
+
 class STOLocationControl: UISegmentedControl {
-    init(handler: (control:STOLocationControl, segment:LocationControlSegment) -> ()) {
-        super.init( items: LocationControlSegment.allValues.map( { $0.title } ) )
+    var placemarkResolver: STOPlacemarkResolver!
+    var segmentResolver:   STOLocationControlSegmentResolver!
+
+    init(placemarkResolver: STOPlacemarkResolver, segmentResolver: STOLocationControlSegmentResolver, handler: STOLocationControlSegmentHandler) {
+        super.init( items: STOLocationControlSegment.allValues.map( { _ in " " } ) )
+
+        self.placemarkResolver = placemarkResolver
+        self.segmentResolver = segmentResolver
 
         on( .ValueChanged, {
-            if let segment = LocationControlSegment.allValues.at( self.selectedSegmentIndex ) {
-                handler( control: self, segment: segment )
-            }
-            else {
-                preconditionFailure( "Unsupported segment: \(self.selectedSegmentIndex)" )
+            if let selectedSegment_ = self.selectedSegment {
+                self.placemarkResolver.resolvePlacemark(
+                {
+                    handler.locationControl( self, didSelectSegment: selectedSegment_, forPlacemark: $0 )
+                    self.selectActiveSegmentForPlacemark( $0 )
+                }, placemarkResolutionFailed: {
+                    error in
+                    self.selectActiveSegmentForPlacemark( nil )
+                } )
             }
         } )
     }
@@ -27,28 +45,45 @@ class STOLocationControl: UISegmentedControl {
         fatalError( "init(coder:) has not been implemented" )
     }
 
-    func select(segment: LocationControlSegment?) {
-        if let segment_ = segment, index = LocationControlSegment.allValues.indexOf( segment_ ) {
-            selectedSegmentIndex = index
+    var selectedSegment: STOLocationControlSegment? {
+        return STOLocationControlSegment( rawValue: self.selectedSegmentIndex )
+    }
+
+    private func selectActiveSegmentForPlacemark(placemark: STOPlacemark?) {
+        if let placemark_ = placemark, segment_ = segmentResolver.locationControl( self, activeSegmentForPlacemark: placemark_ ) {
+            selectedSegmentIndex = segment_.rawValue
         }
         else {
             selectedSegmentIndex = -1
         }
+
+        for var segment in STOLocationControlSegment.allValues {
+            switch segment {
+                case .Starred:
+                    var starred = false
+                    if let placemark_ = placemark {
+                        starred = STOLocations.starred.contains( STOLocation( placemark: placemark_ ) )
+                    }
+
+                    setTitle( starred ? "★": "☆︎", forSegmentAtIndex: segment.rawValue )
+                case .Source:
+                    setTitle( "↱", forSegmentAtIndex: segment.rawValue )
+                case .Destination:
+                    setTitle( "↴", forSegmentAtIndex: segment.rawValue )
+            }
+        }
+    }
+
+    func selectActiveSegment() {
+        placemarkResolver.resolvePlacemark( { self.selectActiveSegmentForPlacemark( $0 ) },
+                                            placemarkResolutionFailed: { _ in self.selectActiveSegmentForPlacemark( nil ) } )
     }
 }
 
-public enum LocationControlSegment {
-    public static let allValues: [LocationControlSegment] = [ .Source, .Destination ]
+public enum STOLocationControlSegment: Int {
+    public static let allValues: [STOLocationControlSegment] = [ .Starred, .Source, .Destination ]
 
+    case Starred
     case Source
     case Destination
-
-    var title: String {
-        switch self {
-            case .Source:
-                return "↱"
-            case .Destination:
-                return "↴"
-        }
-    }
 }
